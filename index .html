@@ -1,0 +1,2164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pharmacy POS - Powered by ADI BUTT</title>
+<meta name="theme-color" content="#073b4c">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Pharmacy POS">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" id="pwaManifest" href="data:application/manifest+json,%7B%7D">
+<style>
+:root{--bg:#eef3f4;--card:#fff;--tx:#10262b;--mu:#5f747a;--ac:#0e7c86;--bd:#d8e3e5;--warn:#b45309;--bad:#b42318;--ok:#16794c}
+:root[data-theme="dark"]{--bg:#0c171a;--card:#14242a;--tx:#e4eef0;--mu:#8da4ab;--ac:#3cc4cf;--bd:#25393f;--warn:#f5a54a;--bad:#ff8a7a;--ok:#4cd694}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 8% 0%,rgba(14,124,134,.22),transparent 42%),radial-gradient(circle at 100% 35%,rgba(7,59,76,.16),transparent 45%),radial-gradient(circle at 20% 100%,rgba(22,121,76,.12),transparent 40%),var(--bg);background-attachment:fixed;min-height:100vh;position:relative;color:var(--tx);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-bottom:env(safe-area-inset-bottom,0)}
+header{position:sticky;top:0;background:linear-gradient(135deg,#073b4c,#0e7c86);color:#fff;z-index:9;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+header h1{margin:0;padding:10px 14px 2px;font-size:18px}
+header small{opacity:.75;font-weight:400;font-size:12px}
+nav{display:flex;gap:6px;overflow-x:auto;padding:6px 10px 10px}
+nav button{flex:none;border:1px solid rgba(255,255,255,.4);background:none;color:#fff;padding:7px 14px;border-radius:20px;font:inherit;cursor:pointer}
+nav button.on{background:#fff;color:#073b4c;border-color:#fff;font-weight:600}
+nav button.lo{background:#b42318;border-color:#b42318}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.9;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cpath d='M54 36h12v18h18v12H66v18H54V66H36V54h18z' fill='%230e7c86' fill-opacity='.07'/%3E%3Ccircle cx='100' cy='20' r='4' fill='%230e7c86' fill-opacity='.06'/%3E%3Ccircle cx='15' cy='105' r='5' fill='%230e7c86' fill-opacity='.05'/%3E%3C/svg%3E")}
+main{position:relative;z-index:1;max-width:950px;margin:0 auto;padding:12px}
+.card{backdrop-filter:blur(2px)}
+.pick{display:flex;justify-content:space-between;gap:10px;width:100%;text-align:left;padding:10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit;margin-top:6px;cursor:pointer}.pick small{color:var(--mu)}
+.qin{width:70px;padding:6px}
+.bar{height:9px;border-radius:6px;background:var(--bd);min-width:90px;overflow:hidden}.bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,#16794c,#0e7c86)}.bar i.n{background:var(--bad)}
+.card.hero{background:linear-gradient(135deg,#073b4c,#0e7c86);color:#fff;border:0}
+.hero b{font-size:24px;display:block}.hero span{opacity:.85;font-size:13px}
+.urdu{direction:rtl;text-align:right;font-family:"Noto Nastaliq Urdu","Jameel Noori Nastaleeq","Alvi Nastaleeq","Noto Naskh Arabic","Segoe UI",Tahoma,serif;line-height:2.2;font-size:16px}
+.urdu h3{margin:0 0 4px;color:var(--ac);font-size:18px}.urdu p{margin:2px 0}.guide .fy{color:var(--ok);font-weight:600}
+.guide details{border-bottom:1px solid var(--bd);padding:8px 0}.guide p{margin:6px 0}.guide .fy{color:var(--ok);font-weight:600}.guide summary{cursor:pointer;font-weight:700;color:var(--ac)}
+h2{font-size:19px;margin:8px 0 12px;padding-left:10px;border-left:4px solid var(--ac)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:12px;box-shadow:0 2px 10px rgba(7,59,76,.08)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:12px}
+.grid .card{margin:0;border-left:5px solid var(--c)}.grid b{display:block;font-size:20px;color:var(--c)}.grid span{color:var(--mu);font-size:13px}
+label{display:block;font-size:13px;color:var(--mu);margin:8px 0 3px}
+input,select,textarea{width:100%;padding:9px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit}
+.row{display:flex;gap:8px}.row>*{flex:1;min-width:0}
+button.p,button.s,button.d{border:0;border-radius:8px;padding:10px 16px;font:inherit;margin-top:10px;background:linear-gradient(135deg,#0e7c86,#0a5f73);color:#fff;cursor:pointer}
+button.s{background:none;border:1px solid var(--bd);color:var(--tx)}
+button.d{background:none;color:var(--bad);border:1px solid var(--bd);padding:5px 9px;margin:0}
+button.sm{padding:5px 9px;margin:0}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:7px 6px;text-align:left;border-bottom:1px solid var(--bd);white-space:nowrap}
+th{color:var(--mu);font-weight:500}td.r,th.r{text-align:right}
+.low{color:var(--warn)}.neg{color:var(--bad)}.pos{color:var(--ok)}
+.tot{display:flex;justify-content:space-between;font-size:17px;font-weight:600;padding:10px 0 0}
+#toast{display:none;position:fixed;left:12px;right:12px;bottom:14px;background:var(--tx);color:var(--bg);padding:11px 14px;border-radius:10px;z-index:200}
+.empty{color:var(--mu);padding:8px 0}
+.inv{padding:0;overflow:hidden}.ih{display:flex;justify-content:space-between;gap:10px;background:linear-gradient(135deg,#073b4c,#0e7c86);color:#fff;padding:16px}
+.ih b{font-size:19px}.ih .ir{text-align:right;font-size:17px;font-weight:600}
+.meta{display:flex;justify-content:space-between;padding:12px 16px;gap:10px}.meta small{color:var(--mu)}
+.it{margin:0 0 6px}.it th{background:var(--bg);color:var(--tx)}
+.sum{margin:6px 16px 0 auto;max-width:320px}.sum div{display:flex;justify-content:space-between;padding:3px 0}
+.sum .g{font-size:18px;font-weight:700;border-top:2px solid var(--ac);margin-top:4px;padding-top:6px;color:var(--ac)}
+.ft{text-align:center;padding:10px;border-top:1px dashed var(--bd);color:var(--mu);font-size:13px;margin-top:8px}
+#authOverlay{position:fixed;inset:0;background:linear-gradient(135deg,#073b4c,#0e7c86);z-index:100;display:flex;align-items:center;justify-content:center;padding:16px}
+.poster-card{background:var(--card);border-radius:18px;padding:24px;width:100%;max-width:420px;box-shadow:0 10px 25px rgba(0,0,0,.3);text-align:center}
+.poster-card h1{margin:0;font-size:24px}
+.poster-card .sub{font-size:15px;color:var(--ac);font-weight:bold;margin-bottom:15px}
+.auth-tabs{display:flex;gap:10px;margin-bottom:15px;border-bottom:1px solid var(--bd);padding-bottom:10px}
+.auth-tabs button{flex:1;padding:8px;border:none;background:none;font-weight:bold;color:var(--mu);cursor:pointer;font:inherit}
+.auth-tabs button.active{color:var(--ac);border-bottom:2px solid var(--ac)}
+.poster-card label{text-align:left}
+@media print{header,.noprint,#toast,body::before{display:none!important}body{background:#fff!important;color:#000}main{padding:0}.card{border:0;box-shadow:none}}
+.hrow{display:flex;align-items:center;justify-content:space-between;padding-right:10px}
+.tb{border:1px solid rgba(255,255,255,.45);background:none;color:#fff;width:38px;height:38px;border-radius:50%;font-size:18px;cursor:pointer;flex:none;padding:0}
+#authOverlay .tb{position:absolute;top:12px;right:12px}
+#printArea{display:none}
+.ih,.it th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.dz-modern .ih{background:none;color:var(--tx);border-bottom:4px solid var(--ac)}.dz-modern .ih .ir{color:var(--ac);font-size:22px}.dz-modern .sum .g{background:var(--ac);color:#fff;padding:8px 10px;border-radius:8px;border:0}
+.dz-bw .ih{background:none;color:#000;border:2px solid #000;margin:10px}.dz-bw .it th{background:#000;color:#fff}.dz-bw .it td{border-bottom:1px solid #000}.dz-bw .sum .g{color:#000;border-top:2px solid #000}
+.dz-elegant .ih{flex-direction:column;align-items:center;text-align:center;background:none;color:var(--tx);border-bottom:3px double var(--ac)}.dz-elegant .ih .ir{text-align:center;color:var(--ac)}.dz-elegant .it tr:nth-child(even) td{background:var(--bg)}.dz-elegant .meta{background:var(--bg)}
+.th{width:72mm;margin:0 auto;font:12px/1.35 "Courier New",monospace;color:#000;background:#fff}.th h3{text-align:center;margin:0;font-size:16px}.th .c{text-align:center}.th hr{border:0;border-top:1px dashed #000;margin:5px 0}.th table{width:100%;font-size:12px}.th td,.th th{padding:1px 0;border:0;white-space:normal;color:#000;background:none}.th .tt{display:flex;justify-content:space-between}.th .gt{font-size:15px;font-weight:700}
+@media print{:root,:root[data-theme="dark"]{--bg:#fff;--card:#fff;--tx:#000;--mu:#444;--bd:#ccc;--ac:#0e7c86}body>*:not(#printArea){display:none!important}#printArea{display:block!important}body{background:#fff!important}}
+#tabRegisterBtn{display:none}
+#menuPanel{display:none;position:absolute;right:10px;top:48px;z-index:50;min-width:210px;background:var(--card);color:var(--tx);border:1px solid var(--bd);border-radius:12px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.28)}
+#menuPanel .mi{display:block;width:100%;text-align:left;padding:11px 12px;border:0;background:none;color:var(--tx);font:inherit;border-radius:8px;cursor:pointer}
+#menuPanel .mi:active,#menuPanel .mi.on{background:var(--bg);color:var(--ac);font-weight:600}
+#menuPanel .mi.lo{color:var(--bad);border-top:1px solid var(--bd);border-radius:0 0 8px 8px;margin-top:4px}
+
+#splash{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;color:#fff;perspective:800px;background:radial-gradient(circle at 50% 38%,#13a8b3 0%,#0e7c86 32%,#073b4c 78%,#04222d 100%);transition:opacity .5s ease,visibility .5s}
+#splash.hide{opacity:0;visibility:hidden}
+#splash *{will-change:auto}
+#splash .vig{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,transparent 40%,rgba(2,18,26,.55) 100%);pointer-events:none}
+#splash .glow{position:absolute;width:420px;height:420px;border-radius:50%;top:50%;left:50%;margin:-250px 0 0 -210px;background:radial-gradient(circle,rgba(255,255,255,.26),transparent 65%);opacity:0;will-change:transform,opacity;animation:spGlowIn 1s ease .1s forwards}
+#splash .st{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;opacity:0;will-change:opacity;animation:spTw ease-in-out infinite}
+#splash .cap{position:absolute;bottom:-50px;border-radius:20px;opacity:0;will-change:transform,opacity;background:linear-gradient(90deg,rgba(255,255,255,.95) 50%,rgba(255,255,255,.4) 50%);animation:spFloat linear infinite}
+#splash .wrap{position:relative;width:120px;height:120px;display:flex;align-items:center;justify-content:center;margin-bottom:4px}
+#splash .rp{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(255,255,255,.7);opacity:0;will-change:transform,opacity;animation:spRipple 1.8s ease-out .9s infinite}
+#splash .rp.b{animation-delay:1.8s}
+#splash .orb{position:absolute;left:50%;top:50%;width:220px;height:220px;margin:-110px 0 0 -110px;border-radius:50%;border:1px solid rgba(255,255,255,.35);opacity:0;will-change:transform,opacity;animation:spOrbIn .6s ease 1s forwards,spOrb 4.5s linear 1s infinite}
+#splash .orb::after{content:"";position:absolute;top:-5px;left:50%;margin-left:-5px;width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 12px 3px rgba(255,255,255,.8)}
+#splash .lg{width:108px;height:108px;position:relative;will-change:transform;animation:spTilt 3s ease-in-out 1.4s infinite}
+#splash .rg{stroke-dasharray:1;stroke-dashoffset:1;animation:spDraw .8s ease .1s forwards}
+#splash .fc{transform-origin:100px 100px;transform:scale(0);animation:spPopC .5s cubic-bezier(.2,1.4,.4,1) .55s forwards}
+#splash .cr{transform-origin:100px 100px;transform:scale(0) rotate(-120deg);animation:spPopC .5s cubic-bezier(.2,1.4,.4,1) .85s forwards}
+#splash .ecg{width:260px;height:40px;margin-top:16px;overflow:visible}
+#splash .ecg path{fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:spDraw 1.1s ease-in-out 1.2s forwards}
+#splash .pw{margin-top:14px;font-size:12px;letter-spacing:12px;opacity:0;padding-left:12px;animation:spPw .9s ease 2s forwards}
+#splash .nmw{position:relative;overflow:hidden;margin-top:6px;padding:4px 12px;perspective:500px}
+#splash .nm{font-size:38px;font-weight:800;letter-spacing:5px;display:flex;gap:2px;text-shadow:0 0 18px rgba(255,255,255,.55)}
+#splash .nm span{opacity:0;display:inline-block;transform-origin:50% 100%;transform:rotateX(-90deg) translateY(24px);will-change:transform,opacity;animation:spLet .5s cubic-bezier(.2,1.3,.4,1) forwards}
+#splash .nmw::after{content:"";position:absolute;top:0;bottom:0;width:60px;left:-90px;background:linear-gradient(100deg,transparent,rgba(255,255,255,.7),transparent);transform:skewX(-20deg);will-change:left;animation:spShine .9s ease 3.3s forwards}
+#splash .tg{margin-top:10px;font-size:11px;letter-spacing:6px;padding-left:6px;opacity:0;animation:spTg .7s ease 3.5s forwards}
+#splash .bar{position:absolute;left:50%;bottom:8%;width:180px;height:4px;margin-left:-90px;border-radius:4px;background:rgba(255,255,255,.2);overflow:hidden}
+#splash .bar i{display:block;height:100%;width:100%;border-radius:4px;background:#fff;transform-origin:0 50%;transform:scaleX(0);will-change:transform;animation:spLoad 4.6s cubic-bezier(.45,0,.35,1) forwards}
+@keyframes spDraw{to{stroke-dashoffset:0}}
+@keyframes spPopC{to{transform:scale(1) rotate(0)}}
+@keyframes spTilt{0%,100%{transform:rotateY(-14deg)}50%{transform:rotateY(14deg)}}
+@keyframes spRipple{0%{transform:scale(.8);opacity:.6}100%{transform:scale(2.3);opacity:0}}
+@keyframes spGlowIn{to{opacity:1}}
+@keyframes spOrbIn{to{opacity:1}}
+@keyframes spOrb{from{transform:rotateX(68deg) rotateZ(0)}to{transform:rotateX(68deg) rotateZ(360deg)}}
+@keyframes spPw{0%{opacity:0;letter-spacing:26px}100%{opacity:.9;letter-spacing:12px}}
+@keyframes spLet{to{opacity:1;transform:none}}
+@keyframes spShine{to{left:125%}}
+@keyframes spTg{to{opacity:.85}}
+@keyframes spLoad{to{transform:scaleX(1)}}
+@keyframes spTw{0%,100%{opacity:0}50%{opacity:.85}}
+@keyframes spFloat{0%{transform:translateY(0) rotate(0);opacity:0}15%{opacity:var(--o,.22)}100%{transform:translateY(-112vh) rotate(var(--r,160deg));opacity:0}}
+@media (prefers-reduced-motion:reduce){#splash .cap,#splash .rp,#splash .glow,#splash .orb{display:none}}
+</style>
+<style>
+/* ===== v8: new invoice designs, QR, labels ===== */
+.inv .meta .qr{flex:none;line-height:0}.inv .meta .qr svg{display:block;border-radius:4px}
+.ih,.it th,.sum .g,.dz-royal .ih,.dz-green .ih,.dz-purple .ih,.dz-sunset .ih{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.dz-royal .ih{background:linear-gradient(135deg,#0b1f4b,#1b3a7a);color:#f4d27a;border-bottom:4px solid #c9a227}
+.dz-royal .ih small{color:#e9dcae}.dz-royal .ih .ir{color:#f4d27a}.dz-royal .it th{background:#0b1f4b;color:#f4d27a}
+.dz-royal .sum .g{color:#0b1f4b;border-top:2px solid #c9a227}.dz-royal .ft{border-top:2px solid #c9a227}
+.dz-green .ih{background:linear-gradient(135deg,#0a6b3d,#17a05d)}.dz-green .it th{background:#e5f6ec;color:#0a6b3d}
+.dz-green .it tr:nth-child(even) td{background:rgba(23,160,93,.08)}.dz-green .sum .g{color:#0a6b3d;border-top:2px solid #17a05d}
+.dz-purple .ih{background:linear-gradient(135deg,#4c1d95,#8b5cf6)}.dz-purple .it th{background:#ede9fe;color:#4c1d95}
+.dz-purple .sum .g{background:#6d28d9;color:#fff;padding:8px 12px;border-radius:999px;border:0}
+.dz-sunset .ih{background:linear-gradient(135deg,#c2410c,#f59e0b)}.dz-sunset .it th{background:#fff1e0;color:#9a3412}
+.dz-sunset .sum .g{color:#c2410c;border-top:2px solid #f59e0b}
+.dz-minimal .ih{background:none;color:var(--tx);border-bottom:1px solid var(--bd)}.dz-minimal .ih .ir{color:var(--mu);font-weight:400}
+.dz-minimal .it th{background:none;color:var(--mu);border-bottom:2px solid var(--tx);text-transform:uppercase;font-size:11px;letter-spacing:.08em}
+.dz-minimal .it td{border-bottom:1px solid var(--bd)}.dz-minimal .sum .g{color:var(--tx);border-top:1px solid var(--tx)}
+.dz-ledger .ih{background:none;color:var(--tx);border:2px solid var(--tx);margin:8px}
+.dz-ledger .it th,.dz-ledger .it td{border:1px solid var(--tx)}.dz-ledger .it th{background:var(--bg);color:var(--tx)}
+.dz-ledger .sum{border:1px solid var(--tx);padding:6px 10px;margin-bottom:8px}.dz-ledger .sum .g{color:var(--tx);border-top:2px solid var(--tx)}
+.dz-compact{font-size:12px}.dz-compact .ih{padding:8px 12px}.dz-compact .ih b{font-size:15px}.dz-compact .meta{padding:6px 12px}
+.dz-compact .it th,.dz-compact .it td{padding:3px 5px;font-size:12px}.dz-compact .sum .g{font-size:15px}
+.th .c svg{width:30mm;height:30mm}
+.lblA4{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;font-family:Arial,sans-serif;color:#000}
+.lblA4 .lbl{border:1px dashed #999;padding:3mm;break-inside:avoid}
+.lblS{font-family:Arial,sans-serif;color:#000}
+.lblS .lbl{width:var(--lw);height:var(--lh);padding:1.2mm 2mm;box-sizing:border-box;page-break-after:always;overflow:hidden}
+.lbl .ln{font:bold 9px/1.15 Arial,sans-serif;max-height:2.3em;overflow:hidden;text-align:center}
+.lbl .lc{font:8px/1 "Courier New",monospace;text-align:center}.lbl .lp{font:bold 10px/1.2 Arial,sans-serif;text-align:center}
+.lbl svg{display:block;width:100%}
+
+/* ===== v9: invoice text size ===== */
+.inv.fs-s{font-size:12px}.inv.fs-s table,.inv.fs-s .it th,.inv.fs-s .it td{font-size:12px}.inv.fs-s .ih b{font-size:16px}.inv.fs-s .ih .ir{font-size:14px}
+.inv.fs-l{font-size:17px}.inv.fs-l table,.inv.fs-l .it th,.inv.fs-l .it td{font-size:17px}.inv.fs-l .ih b{font-size:22px}.inv.fs-l .ih .ir{font-size:20px}.inv.fs-l .sum{max-width:380px}.inv.fs-l .sum .g{font-size:21px}
+.inv.fs-xl{font-size:21px}.inv.fs-xl table,.inv.fs-xl .it th,.inv.fs-xl .it td{font-size:21px}.inv.fs-xl .ih b{font-size:27px}.inv.fs-xl .ih .ir{font-size:24px}.inv.fs-xl .sum{max-width:440px}.inv.fs-xl .sum .g{font-size:26px}
+.th.fs-s{font-size:10px}.th.fs-s table{font-size:10px}.th.fs-s h3{font-size:14px}.th.fs-s .gt{font-size:13px}
+.th.fs-l{font-size:15px}.th.fs-l table{font-size:15px}.th.fs-l h3{font-size:19px}.th.fs-l .gt{font-size:18px}
+.th.fs-xl{font-size:18px}.th.fs-xl table{font-size:18px}.th.fs-xl h3{font-size:22px}.th.fs-xl .gt{font-size:21px}
+
+</style>
+</head>
+<body>
+<div id="splash"></div>
+<script>
+(function(){
+  var sp=document.getElementById('splash'),tm=null,hiddenAt=0,R=Math.random;
+  var LOGO='<div class="wrap"><span class="orb"></span><span class="rp"></span><span class="rp b"></span><svg class="lg" viewBox="0 0 200 200"><circle class="rg" cx="100" cy="100" r="95" fill="none" stroke="#fff" stroke-width="5" pathLength="1" transform="rotate(-90 100 100)"/><circle class="fc" cx="100" cy="100" r="84" fill="#fff"/><path class="cr" d="M88 52h24v36h36v24h-36v36H88v-36H52V88h36z" fill="#0e7c86"/></svg></div>'
+   +'<svg class="ecg" viewBox="0 0 300 44"><path pathLength="1" d="M0 22H72L84 22L93 5L106 39L117 13L126 22H196L205 22L213 9L224 34L232 22H300"/></svg>';
+  function play(){
+    clearTimeout(tm);
+    sp.style.display='flex';sp.classList.remove('hide');
+    var x='',i;
+    for(i=0;i<14;i++)x+='<span class="st" style="left:'+(R()*100).toFixed(0)+'%;top:'+(R()*100).toFixed(0)+'%;animation-duration:'+(2+R()*2).toFixed(1)+'s;animation-delay:'+(R()*3).toFixed(1)+'s"></span>';
+    /* 2 depth layers, no blur filters (smooth on phones) */
+    [{n:3,w:[56,80],h:[20,28],o:.12,d:[6,8]},{n:4,w:[22,34],h:[9,13],o:.35,d:[3.5,5]}].forEach(function(l){
+      for(i=0;i<l.n;i++){var w=l.w[0]+R()*(l.w[1]-l.w[0]),h=l.h[0]+R()*(l.h[1]-l.h[0]);
+        x+='<span class="cap" style="left:'+(R()*94).toFixed(0)+'%;width:'+w.toFixed(0)+'px;height:'+h.toFixed(0)+'px;--o:'+l.o+';--r:'+((R()<.5?-1:1)*(120+R()*120)).toFixed(0)+'deg;animation-duration:'+(l.d[0]+R()*(l.d[1]-l.d[0])).toFixed(1)+'s;animation-delay:'+(R()*3).toFixed(1)+'s"></span>'}});
+    sp.innerHTML='<div class="vig"></div><div class="glow"></div>'+x+LOGO+'<div class="pw">POWERED BY</div><div class="nmw"><div class="nm" id="spName"></div></div><div class="tg">PHARMACY INVOICE SYSTEM</div><div class="bar"><i></i></div>';
+    var t="ADI BUTT",box=document.getElementById('spName');
+    for(i=0;i<t.length;i++){var e=document.createElement('span');e.textContent=t[i]===' '?'\u00A0':t[i];e.style.animationDelay=(2.4+i*0.1)+'s';box.appendChild(e)}
+    tm=setTimeout(function(){sp.classList.add('hide');setTimeout(function(){sp.style.display='none'},600)},5000);
+  }
+  /* splash animation: once every time the app is opened (before login); not again until the app is closed and reopened */
+  var seen=false;try{seen=sessionStorage.getItem('pharmacy_splash_session')==='1';sessionStorage.setItem('pharmacy_splash_session','1')}catch(e){}
+  if(seen)sp.style.display='none';else play();
+  sp.addEventListener('click',function(){clearTimeout(tm);sp.classList.add('hide');setTimeout(function(){sp.style.display='none'},600)});
+})();
+</script>
+
+<div id="authOverlay">
+  <button id="themeLogin" class="tb" onclick="toggleTheme()" title="Light / Dark theme"></button>
+  <div class="poster-card">
+    <h1>Pharmacy Invoice System</h1>
+    <div class="sub">Powered by ADI BUTT</div>
+    <div class="auth-tabs">
+      <button id="tabLoginBtn" class="active" onclick="toggleAuth('login')">Login</button>
+      <button id="tabRegisterBtn" onclick="toggleAuth('register')">Create Account</button>
+    </div>
+    <div id="loginForm">
+      <label>Username</label><input id="l_user" type="text" placeholder="Enter username" autocomplete="username">
+      <label>Password</label><input id="l_pass" type="password" placeholder="Enter password" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()">
+      <button class="p" style="width:100%;margin-top:15px" onclick="login()">Login</button>
+      <div style="font-size:12px;color:var(--mu);margin-top:10px">Change your password anytime in Settings.</div>
+      <div id="authMsg" style="margin-top:10px;font-size:13px;min-height:18px;color:var(--bad)"></div>
+      
+      <div style="margin-top:6px"><a href="#" onclick="resetAll();return false" style="color:var(--mu);font-size:12px">Forgot password? Erase all data (needs Admin password or Recovery code)</a></div>
+    </div>
+    <div id="registerForm" style="display:none">
+      <div id="authMsg2" style="font-size:13px;min-height:18px;color:var(--bad)"></div>
+      <label>Create Username</label><input id="r_user" type="text" placeholder="Choose a username">
+      <label>Create Password</label><input id="r_pass" type="password" placeholder="Choose a password">
+      <button class="p" style="width:100%;margin-top:15px" onclick="register()">Create Account</button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="hrow"><h1 id="ttl"></h1><span style="display:flex;gap:8px;flex:none"><button id="themeBtn" class="tb" onclick="toggleTheme()" title="Light / Dark theme"></button><button id="menuBtn" class="tb" onclick="toggleMenu()" title="Menu">&#9776;</button></span></div><div id="menuPanel"></div>
+  <nav id="nav"></nav>
+</header>
+<main id="v"></main>
+<div id="toast"></div>
+<div id="printArea"></div>
+<div id="errBar" style="display:none;position:fixed;top:0;left:0;right:0;z-index:300;background:#b42318;color:#fff;padding:8px 12px;font-size:13px"></div>
+
+<script type="text/plain" class="appjs">
+function ld(d){d=d||new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function hp(u,p){const t=String(u).toLowerCase()+':'+p;let a=0xdeadbeef,b=0x41c6ce57;for(let i=0;i<t.length;i++){const c=t.charCodeAt(i);a=Math.imul(a^c,2654435761);b=Math.imul(b^c,1597334677)}a=Math.imul(a^a>>>16,2246822507)^Math.imul(b^b>>>13,3266489909);b=Math.imul(b^b>>>16,2246822507)^Math.imul(a^a>>>13,3266489909);return 'h$'+(4294967296*(2097151&b)+(a>>>0)).toString(36)}
+const CASH=['sale','saved','bills','returns','parties','guide'];
+function isAdmin(){const u=D&&D.users.find(x=>x.user===currentUser);return !!u&&u.role==='admin'}
+function syncItem(i){
+  i.batches=(i.batches||[]).filter(b=>b.qty>0.0004);
+  i.stock=nq(S(i.batches,b=>b.qty));
+  const f=[...i.batches].sort((a,b)=>(a.expiry||'9999')>(b.expiry||'9999')?1:-1)[0];
+  if(f){i.batch=f.batch;i.expiry=f.expiry||''}
+}
+function addBatch(i,q,bn,ex){
+  i.batches=i.batches||[];bn=bn||'';
+  let b=i.batches.find(x=>x.batch===bn&&(!ex||x.expiry===ex));
+  if(b)b.qty=nq(b.qty+q);else i.batches.push({batch:bn,expiry:ex||'',qty:nq(q)});
+  syncItem(i);
+}
+function takeStock(i,q,expFirst){
+  const t=today(),k=x=>x.expiry&&x.expiry<t?(expFirst?'0'+x.expiry:'z'+x.expiry):(x.expiry||'y');
+  const o=[...(i.batches||[])].sort((a,b)=>k(a)>k(b)?1:-1);
+  let r=nq(q),u=[];TK=[];
+  for(const b of o){
+    if(r<=0.0004)break;
+    const x=Math.min(b.qty,r);b.qty=nq(b.qty-x);r=nq(r-x);
+    u.push(b.batch||'-');TK.push({batch:b.batch||'',expiry:b.expiry||'',qty:x});
+  }
+  syncItem(i);return u.join(', ');
+}
+const KEY='pharmacy_pos_v2',$=s=>document.querySelector(s);
+let isq='',sq={bills:'',pur:'',sale:'',parties:'',exp:'',ret:'',profit:''},cn='',pm='Cash',D,tab='home',cart=[],cur=null,last=null,q='',bd=0,bt=0,sp='',currentUser=null,viewBill=null;
+let rt=ld(),rf=rt.slice(0,8)+'01';
+
+/* ---------- storage: IndexedDB is the main store (no 5 MB limit); localStorage only as fallback ---------- */
+let _db=null,_mt=0;
+function mOpen(ok,bad){
+  if(_db)return ok(_db);
+  try{
+    const r=indexedDB.open('pos_auto',1);
+    r.onupgradeneeded=()=>{if(!r.result.objectStoreNames.contains('k'))r.result.createObjectStore('k')};
+    r.onsuccess=()=>{_db=r.result;_db.onversionchange=()=>{try{_db.close()}catch(e){}_db=null};ok(_db)};
+    r.onerror=r.onblocked=()=>{bad&&bad()};
+  }catch(e){bad&&bad()}
+}
+function mainPut(s,cb){
+  mOpen(d=>{try{const tx=d.transaction('k','readwrite');tx.objectStore('k').put(s,'main');tx.oncomplete=()=>{cb&&cb(true)};tx.onerror=tx.onabort=()=>{cb&&cb(false)}}catch(e){cb&&cb(false)}},()=>{cb&&cb(false)});
+}
+function flushMain(){
+  clearTimeout(_mt);_mt=0;
+  let s;try{s=JSON.stringify(D)}catch(e){return}
+  mainPut(s,r=>{if(!r){try{localStorage.setItem(KEY,s)}catch(e){toast('Save failed. Download a backup now.')}}});
+}
+window.addEventListener('pagehide',()=>{if(_mt)flushMain()});
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'&&_mt)flushMain()});
+function load(){
+  const okO=o=>o&&typeof o==='object'&&!Array.isArray(o);
+  let a=window.__IDB_MAIN||null,b=null,x=null,y=null;
+  try{b=localStorage.getItem(KEY)}catch(e){}
+  try{x=a?JSON.parse(a):null}catch(e){x=null}
+  try{y=b?JSON.parse(b):null}catch(e){y=null}
+  const useLS=okO(y)&&(!okO(x)||(y.savedAt||0)>(x.savedAt||0));
+  D=useLS?y:(okO(x)?x:null);
+  if(!okO(D))D={};
+  fix();
+  /* one-time move of old localStorage data into IndexedDB; the old copy is deleted only after IndexedDB confirms */
+  if(window.__IDB_OK&&useLS)mainPut(JSON.stringify(D),r=>{if(r){try{localStorage.removeItem(KEY)}catch(e){}}});
+}
+function fix(){
+  D.items=D.items||[];D.bills=D.bills||[];D.pay=D.pay||[];D.exp=D.exp||[];D.returns=D.returns||[];
+  if(!Array.isArray(D.users))D.users=[];
+  D.users=D.users.filter(u=>u&&typeof u.user==='string'&&typeof u.pass==='string'&&!(u.user.toLowerCase()==='admin'&&u.pass==='1234'));
+  D.users.forEach((u,k)=>{if(!u.pass.startsWith('h$')&&!u.pass.startsWith('p2$'))u.pass=hp(u.user,u.pass);if(!u.role)u.role=k===0?'admin':'cashier'});
+  if(D.users.length&&!D.users.some(u=>u.role==='admin'))D.users[0].role='admin';
+  D.items.forEach(i=>{if(!Array.isArray(i.batches))i.batches=i.stock>0?[{batch:i.batch||'',expiry:i.expiry||'',qty:i.stock}]:[]});
+  D.shop=D.shop||{name:'My Pharmacy',phone:'',addr:''};
+  D.parties=D.parties||[{id:1,name:'Walk-in Customer',type:'customer',phone:''},{id:2,name:'Cash Purchase',type:'vendor',phone:''}];
+  D.seq=D.seq||{sale:1,purchase:1,return:1,id:10};
+  D.cprice=D.cprice||{};D.holds=D.holds||[];D.adj=D.adj||[];D.closings=D.closings||[];D.cash=D.cash||{};D.audit=D.audit||[];
+  D.items.forEach(i=>{if(!(i.upp>=1))i.upp=1;if(i.taxRate==null)i.taxRate=0;['salt','company','category'].forEach(k=>{if(i[k]==null)i[k]=''})});
+  D.parties.forEach(p=>{if(p.type==='customer'&&p.id>2&&!p.saved&&D.cprice[p.id]&&Object.keys(D.cprice[p.id]).length)p.saved=true});
+}
+function save(){
+  try{D.savedAt=Date.now()}catch(e){}
+  if(!window.__IDB_OK){try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){toast('Storage full / save failed. Download a backup now.')}return}
+  clearTimeout(_mt);_mt=setTimeout(flushMain,150);
+}
+const n=v=>Math.round((+v||0)*100)/100,
+m=v=>n(v).toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2}),
+esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),
+nid=()=>D.seq.id++,today=()=>ld(),
+val=i=>$('#'+i).value,S=(a,f)=>a.reduce((x,y)=>x+f(y),0);
+
+function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',2600)}
+
+/* ---------- Auth ---------- */
+function toggleAuth(mode){
+  const l=mode==='login';
+  $('#loginForm').style.display=l?'block':'none';
+  $('#registerForm').style.display=l?'none':'block';
+  $('#tabLoginBtn').classList.toggle('active',l);
+  $('#tabRegisterBtn').classList.toggle('active',!l);
+}
+function amsg(t,ok){['authMsg','authMsg2'].forEach(i=>{const e=$('#'+i);if(e){e.textContent=t;e.style.color=ok?'var(--ok)':'var(--bad)'}})}
+async function register(){
+  if(D.users.length)return amsg('Only an Admin can create new accounts (Settings > Users).');
+  if(regBusy)return;
+  const u=val('r_user').trim(),p=val('r_pass').trim();
+  if(!u||p.length<4)return amsg('A username and a password of at least 4 characters are required.');
+  regBusy=true;
+  try{
+    D.users.push({user:u,pass:await mkPass(u,p),role:'admin'});
+    const code=await makeRecovery();
+    aud('Admin account created',u);save();toggleAuth('login');amsg('Admin account created. You can log in now.',true);
+    if(code)alert('SAVE THIS RECOVERY CODE (write it down):\n\n'+code+'\n\nIt is the only way to reset the app if you forget the Admin password. It will not be shown again.');
+  }catch(e){showErr(e)}finally{regBusy=false}
+}
+let fl=0,lk=0;
+async function login(){
+  if(Date.now()<lk)return amsg('Too many wrong attempts. Try again in 30 seconds.');
+  if(loginBusy)return;
+  const u=val('l_user').trim(),p=val('l_pass').trim();
+  loginBusy=true;
+  try{
+    const f=D.users.find(x=>x.user.toLowerCase()===u.toLowerCase());
+    let ok=false;
+    try{ok=!!f&&await chkPass(f,p)}catch(e){showErr(e)}
+    if(!ok){if(++fl>=5){lk=Date.now()+30000;fl=0}return amsg('Incorrect username or password.')}
+    if(f.pass.startsWith('h$')&&canCrypto()){try{f.pass=await mkPass(f.user,p);save()}catch(e){}}
+    fl=0;currentUser=f.user;tab=isAdmin()?'home':'sale';amsg('');
+    $('#authOverlay').style.display='none';$('#l_pass').value='';
+    aud('Login','');save();
+    try{render()}catch(e){showErr(e)}
+    if(isAdmin()&&(!D.lastBackup||Date.now()-new Date(D.lastBackup)>7*864e5))setTimeout(()=>toast('Backup is over 7 days old - download a backup from Settings.'),600);
+  }finally{loginBusy=false}
+}
+let rc2=0;
+async function resetAll(){
+  if(resetBusy)return;resetBusy=true;
+  try{
+    if(D.users.length){
+      const s=prompt('To erase all data, enter an Admin password or your Recovery code:');
+      if(s===null)return;
+      const pw=s.trim();let ok=false;
+      for(const u of D.users.filter(x=>x.role==='admin')){if(await chkPass(u,pw)){ok=true;break}}
+      if(!ok&&D.rec)ok=await chkPass({user:'recovery',pass:D.rec},pw.toUpperCase().replace(/[^A-Z0-9]/g,''));
+      if(!ok)return amsg('Incorrect password / recovery code. Nothing was erased.');
+    }
+    if(prompt('WARNING: all items, bills and users will be deleted.\nType DELETE to confirm')!=='DELETE')return;
+    try{localStorage.removeItem(KEY)}catch(e){}
+    D={};fix();save();toggleAuth('register');amsg('Data erased. Create a new Admin account.',true);
+  }catch(e){showErr(e)}finally{resetBusy=false}
+}
+async function addUser(){
+  if(addUBusy)return;
+  const u=val('u_n').trim(),p=val('u_p').trim(),r=val('u_r');
+  if(!u||p.length<4)return toast('Enter a username and a password of 4+ characters.');
+  if(D.users.some(x=>x.user.toLowerCase()===u.toLowerCase()))return toast('This username already exists.');
+  addUBusy=true;
+  try{D.users.push({user:u,pass:await mkPass(u,p),role:r});aud('User added',u+' ('+r+')');save();toast('User added.');render()}
+  catch(e){showErr(e)}finally{addUBusy=false}
+}
+function delUser(k){const u=D.users[k];if(!u||u.user===currentUser)return;if(D.users.filter(x=>x.role==='admin'&&x!==u).length<1)return toast('At least one Admin is required.');if(!confirm('Delete user '+u.user+'?'))return;D.users.splice(k,1);save();render()}
+function usersCard(){return `<div class="card"><b>Users</b><div class="row"><div><label>Username</label><input id="u_n"></div><div><label>Password</label><input id="u_p" type="password"></div><div><label>Role</label><select id="u_r"><option value="cashier">Cashier</option><option value="admin">Admin</option></select></div></div><button class="p" onclick="addUser()">Add User</button><div class="scroll"><table>${D.users.map((u,k)=>`<tr><td>${esc(u.user)}</td><td>${u.role}</td><td>${u.user===currentUser?'':`<button class="d" onclick="delUser(${k})">Delete</button>`}</td></tr>`).join('')}</table></div></div>`}
+function showErr(e){const b=$('#errBar');if(b){b.textContent='Error: '+(e&&e.message||e);b.style.display='block'}}
+window.addEventListener('error',ev=>showErr(ev.error||ev.message));
+function logout(){closeMenu();currentUser=null;$('#authOverlay').style.display='flex'}
+
+/* ---------- Customer-wise remembered rates ---------- */
+function cpOf(nm){nm=String(nm||'').trim().toLowerCase();return nm?D.parties.find(p=>p.type==='customer'&&p.id>2&&p.saved&&p.name.toLowerCase()===nm):null}
+function hasCR(nm,i){const p=cpOf(nm);return !!(p&&D.cprice[p.id]&&D.cprice[p.id][i.id]!=null)}
+function crate(nm,i){const p=cpOf(nm),r=p&&D.cprice[p.id]&&D.cprice[p.id][i.id];return r!=null?r:i.price}
+function rememberRates(pid,lines){
+  const pp=D.parties.find(x=>x.id==pid);if(!(pid>2)||!pp||!pp.saved)return;const o=D.cprice[pid]=D.cprice[pid]||{};
+  lines.forEach(l=>{const i=D.items.find(x=>x.id==l.itemId);if(!i)return;
+    if(n(l.rate)!==n(i.price))o[l.itemId]=n(l.rate);else delete o[l.itemId]});
+}
+function custNote(){
+  const p=cpOf(cn);if(!p)return '';
+  const c=Object.keys(D.cprice[p.id]||{}).length;
+  return `Saved account: <b>${esc(p.name)}</b> - ${c} special rate(s) remembered (shown with ★).`;
+}
+function cNote(){const e=$('#c_note');if(e)e.innerHTML=custNote()}
+function applyCustRates(){
+  const p=cpOf(cn);if(!p)return;let ch=0;
+  cart.forEach(l=>{const i=D.items.find(x=>x.id==l.itemId);if(!i)return;const r=crate(cn,i);if(r!==l.rate){l.rate=r;ch++}});
+  if(ch){const e=$('#s_cart');if(e)e.innerHTML=cartHtml();const s=$('#s_res');if(s)s.innerHTML=saleRes();toast(p.name+': saved rates applied to '+ch+' item(s).')}
+  cNote();
+}
+/* ---------- Hold bill ---------- */
+function holdBill(){
+  cart=cart.filter(l=>l.qty>0);if(!cart.length)return toast('Cart is empty - nothing to hold.');
+  D.holds.push({id:nid(),cn,pm,cart,bd,bt,time:new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})});
+  cart=[];cn='';pm='Cash';bd=0;bt=0;isq='';save();toast('Bill put on hold. You can start a new bill.');render();
+}
+function resumeHold(id){
+  const h=D.holds.find(x=>x.id==id);if(!h)return;
+  if(cart.length)holdBill();
+  D.holds=D.holds.filter(x=>x.id!=id);
+  cart=h.cart;cn=h.cn||'';pm=h.pm||'Cash';bd=h.bd||0;bt=h.bt||0;isq='';last=null;save();render();toast('Held bill resumed.');
+}
+function delHold(id){if(!confirm('Delete this held bill?'))return;D.holds=D.holds.filter(x=>x.id!=id);save();render()}
+function holdCard(){
+  if(!D.holds.length)return '';
+  return `<div class="card scroll"><b>Held Bills (${D.holds.length})</b><table><tr><th>Time</th><th>Customer</th><th class="r">Items</th><th class="r">Amount</th><th></th></tr>
+  ${D.holds.map(h=>`<tr><td>${esc(h.time||'')}</td><td>${esc(h.cn||'Walk-in')}</td><td class="r">${h.cart.length}</td><td class="r">${m(S(h.cart,l=>l.qty*l.rate))}</td><td><button class="p sm" style="margin:0" onclick="resumeHold(${h.id})">Resume</button> <button class="d" onclick="delHold(${h.id})">Delete</button></td></tr>`).join('')}</table></div>`;
+}
+
+/* ---------- Core ---------- */
+const byNameOrBarcode=s=>{s=String(s).trim().toLowerCase();return s?D.items.find(i=>i.name.toLowerCase()==s||(i.barcode&&String(i.barcode).toLowerCase()==s)):null};
+const CATS=['Rent','Salary','Electricity','Transport','Tea / Misc','Other'];
+const L={home:'Home',sale:'Sale Bill',saved:'Saved Accounts',purchase:'Purchase Bill',items:'Items',bills:'Bills',returns:'Returns',parties:'Parties',expense:'Expenses',summary:'Profit',guide:'Help',data:'Settings',orders:'Order List',reports:'Reports'};
+const soon=()=>ld(new Date(Date.now()+90*864e5));
+const partyName=id=>(D.parties.find(p=>p.id==id)||{}).name||'-';
+
+function go(t){closeMenu();cph='';rcv='';spC='';spCd='';spW='';isq='';sq={bills:'',pur:'',sale:'',parties:'',exp:'',ret:'',profit:''};cn='';pm='Cash';tab=t;cart=[];cur=null;last=null;viewBill=null;q='';bd=0;bt=0;render()}
+
+function render(){
+  if(!currentUser)return;
+  if(!isAdmin()&&!CASH.includes(tab))tab='sale';
+  $('#ttl').innerHTML=`<svg width="24" height="24" viewBox="0 0 200 200" style="vertical-align:-4px;margin-right:6px"><circle cx="100" cy="100" r="92" fill="#fff"/><path d="M88 52h24v36h36v24h-36v36H88v-36H52V88h36z" fill="#0e7c86"/></svg>${esc(D.shop.name)} <small>Powered by ADI BUTT</small>`;
+  const vis=Object.keys(L).filter(t=>isAdmin()||CASH.includes(t)),FR=(isAdmin()?['home','sale','saved','purchase','items','bills']:['sale','saved','bills']).filter(t=>vis.includes(t));
+  $('#nav').innerHTML=FR.map(t=>`<button class="${t==tab?'on':''}" onclick="go('${t}')">${L[t]}</button>`).join('');
+  $('#menuPanel').innerHTML=vis.filter(t=>!FR.includes(t)).map(t=>`<button class="mi ${t==tab?'on':''}" onclick="go('${t}')">${L[t]}</button>`).join('')+`<button class="mi lo" onclick="logout()">Logout (${esc(currentUser)})</button>`;
+  const views={home,summary,guide,saved:savedAccounts,sale:()=>bill('sale'),purchase:()=>bill('purchase'),returns,items,bills,parties,expense,data,orders,reports};
+  try{$('#v').innerHTML=views[tab]()}catch(e){showErr(e);$('#v').innerHTML='<div class="card"><b>Something went wrong on this page.</b><div class="empty">'+esc(e.message)+'</div></div>'}
+}
+
+/* ---------- Home ---------- */
+function home(){
+  const td=today(),s=D.bills.filter(b=>b.type=='sale'&&b.date==td),p=D.bills.filter(b=>b.type=='purchase'&&b.date==td);
+  const rfd=D.returns.filter(r=>(r.type||'sale')=='sale'&&r.date==td),pr=S(s,b=>S(b.lines,l=>(l.rate-l.cost)*l.qty)-(b.disc||0))-S(rfd,r=>r.refund)+S(rfd,r=>(r.cost||0)*r.qty)-writeOff(td,td),ex=S(D.exp.filter(e=>e.date==td),e=>e.amt);
+  const low=D.items.filter(i=>i.stock<=i.reorder),exp=D.items.flatMap(i=>(i.batches||[]).filter(b=>b.qty>0&&b.expiry&&b.expiry<=soon()).map(b=>({name:i.name,batch:b.batch,expiry:b.expiry,stock:fq(b.qty,i)}))).sort((a,b)=>a.expiry>b.expiry?1:-1);
+  const c=(a,b,col)=>`<div class="card" style="--c:${col}"><b>${m(b)}</b><span>${a}</span></div>`;
+  return `<h2>Today Summary (${td})</h2><div class="grid">${c('Sales Today',S(s,b=>b.total),'#16794c')}${c('Purchases Today',S(p,b=>b.total),'#0e7c86')}${c('Profit Today',pr,'#b45309')}${c('Expenses Today',ex,'#b42318')}</div>
+  <div class="card"><b>Low Stock Items (${low.length})</b>${low.length?`<div class="scroll"><table><tr><th>Item</th><th class="r">Stock</th><th class="r">Re-order</th><th>Rack</th></tr>${low.map(i=>`<tr><td>${esc(i.name)}</td><td class="r low">${sf(i)}</td><td class="r">${i.reorder}</td><td>${esc(i.rack||'-')}</td></tr>`).join('')}</table></div>`:'<div class="empty">All items are sufficiently stocked.</div>'}</div>
+  <div class="card"><b>Expiring within 90 days / Expired (${exp.length})</b>${exp.length?`<div class="scroll"><table><tr><th>Item</th><th>Batch</th><th>Expiry</th><th class="r">Stock</th></tr>${exp.map(i=>`<tr><td>${esc(i.name)}</td><td>${esc(i.batch||'-')}</td><td class="${i.expiry<today()?'neg':'low'}">${i.expiry}${i.expiry<today()?' (EXPIRED)':''}</td><td class="r">${i.stock}</td></tr>`).join('')}</table></div>`:'<div class="empty">No items expiring soon.</div>'}</div>`;
+}
+
+/* ---------- Items ---------- */
+function itemRows(){
+  const k=q.toLowerCase();
+  return D.items.filter(i=>imatch(i,k)).slice(0,200).map(i=>`
+  <tr><td>${esc(i.name)}${i.salt?`<br><small>${esc(i.salt)}${i.company?' | '+esc(i.company):''}</small>`:''}</td><td>${esc(i.barcode||'-')}</td><td>${esc(i.batch||'-')}</td><td>${esc(i.rack||'-')}</td><td class="r ${i.stock<=i.reorder?'low':''}">${sf(i)}</td><td class="r">${m(i.price)}${upk(i)>1?`<br><small>Loose ${m(i.price/upk(i))}</small>`:''}</td><td>${i.expiry||'-'}</td>
+  <td><button class="s sm" onclick="cur=${i.id};render();window.scrollTo(0,0)">Edit</button> <button class="d" onclick="delItem(${i.id})">Delete</button></td></tr>`).join('')||'<tr><td colspan="8" class="empty">No items found.</td></tr>';
+}
+function items(){
+  const f=cur?D.items.find(i=>i.id==cur)||{}:{};
+  const fld=(k,l,ty='text',ph='')=>`<div><label>${l}</label><input id="f_${k}" type="${ty}" ${ty=='number'?'step="any"':''} placeholder="${esc(ph)}" value="${esc(f[k]??'')}"></div>`;
+  const log=(D.adj||[]).slice(-15).reverse();
+  return `<h2>Manage Items / Medicines</h2>
+  <div class="card">
+    <div class="row">${fld('name','Item Name')}${fld('barcode','Barcode (Scan/Type)')}</div>
+    <div class="row">${fld('salt','Salt / Formula','text','e.g. Paracetamol')}${fld('company','Company')}</div>
+    <div class="row">${fld('category','Category','text','e.g. Tablet, Syrup')}${fld('unit','Pack type (strip, bottle)')}</div>
+    <div class="row">${fld('upp','Units per pack (e.g. tablets in a strip)','number','1')}${fld('taxRate','Tax % (optional)','number')}</div>
+    <div class="row">${fld('rack','Rack / Shelf')}${fld('batch','Batch No.')}</div>
+    <div class="row">${fld('expiry','Expiry Date','date')}${fld('reorder','Re-order Level (packs)','number')}</div>
+    <div class="row">${fld('cost','Cost Price (per pack)','number')}${fld('price','Sale Price (per pack)','number')}</div>
+    <div class="row">${fld('stock','Current Stock (packs)','number')}<div></div></div>
+    <div class="empty">Stock, cost and price are per pack. If "Units per pack" is more than 1, the item can also be sold loose (price = pack price / units per pack).</div>
+    <button class="p" onclick="saveItem()">${cur?'Update Item':'Add Item'}</button> ${cur?'<button class="s" onclick="cur=null;render()">Cancel</button>':''}
+  </div>
+  <div class="card noprint">
+    <b>Import Items from CSV</b>
+    <div class="empty">Columns: name, barcode, salt, company, category, unit, upp (units per pack), rack, batch, expiry, cost, price, stock, reorder, tax. Only "name" is required. Save the sheet from Excel as CSV and upload it here.</div>
+    <input type="file" accept=".csv,text/csv" onchange="importCSV(this.files[0],this)">
+    <button class="s" onclick="sampleCSV()">Download Sample CSV</button>
+  </div>
+  <div class="row" style="margin-bottom:10px"><input placeholder="Search by name, barcode, salt, company or category" value="${esc(q)}" oninput="q=this.value;$('#irows').innerHTML=itemRows()"><button class="s" style="flex:none;margin:0" onclick="scanBarcode(v=>{q=v;render()})">Scan</button></div>
+  <div class="card scroll"><table><tr><th>Item</th><th>Barcode</th><th>Batch</th><th>Rack</th><th class="r">Stock</th><th class="r">Price</th><th>Expiry</th><th>Action</th></tr><tbody id="irows">${itemRows()}</tbody></table></div>
+  <div class="card"><b>Stock Adjustment (damage / expired / count correction)</b><label>Item</label><input id="a_item" list="al" autocomplete="off"><datalist id="al">${D.items.map(i=>`<option value="${esc(i.name)}">`).join('')}</datalist>
+  <div class="row"><div><label>Qty (use -5 to reduce)</label><input id="a_qty" type="number" step="any"></div><div><label>Unit</label><select id="a_unit"><option value="p">Pack</option><option value="l">Loose</option></select></div><div><label>Reason</label><select id="a_reason"><option>Damage</option><option>Expired</option><option>Count correction</option><option>Other</option></select></div></div>
+  <label>Note</label><input id="a_note"><button class="p" onclick="adjStock()">Adjust</button>
+  <div class="empty">Damage and Expired write-offs are counted as a loss on the Profit page.</div>
+  <div class="scroll"><table>${log.map(a=>`<tr><td>${a.date}</td><td>${esc(a.item)}</td><td class="r ${a.qty<0?'neg':''}">${a.lu?a.lu+' loose':nq(a.qty)}</td><td>${esc(a.reason)}</td></tr>`).join('')}</table></div></div>`;
+}
+function saveItem(){
+  const o={name:val('f_name').trim(),barcode:val('f_barcode').trim(),salt:val('f_salt').trim(),company:val('f_company').trim(),category:val('f_category').trim(),
+    unit:val('f_unit'),upp:Math.max(1,Math.round(n(val('f_upp'))||1)),taxRate:Math.max(0,n(val('f_taxRate'))),rack:val('f_rack'),batch:val('f_batch'),expiry:val('f_expiry'),
+    cost:n(val('f_cost')),price:n(val('f_price')),stock:nq(val('f_stock')),reorder:n(val('f_reorder'))};
+  if(!o.name)return toast('Item name is required.');
+  if(o.barcode&&D.items.some(i=>i.barcode==o.barcode&&i.id!=cur))return toast('This barcode belongs to another item.');
+  const mk=()=>o.stock>0?[{batch:o.batch,expiry:o.expiry,qty:o.stock}]:[];
+  if(cur){const t=D.items.find(i=>i.id==cur),os=t.stock,ob=(t.batches||[]).length;Object.assign(t,o);if(ob<2||o.stock!==os)t.batches=mk()}
+  else D.items.push({id:nid(),...o,batches:mk()});
+  save();toast(cur?'Item Updated.':'Item Added.');cur=null;render();
+}
+function delItem(i){if(!confirm('Delete this item?'))return;D.items=D.items.filter(x=>x.id!=i);save();render()}
+
+/* ---------- CSV import ---------- */
+function parseCSV(t){
+  t=String(t).replace(/^\uFEFF/,'');
+  const first=t.split(/\r?\n/)[0]||'',dl=(first.split(';').length>first.split(',').length)?';':',';
+  const rows=[];let r=[],f='',q=false;
+  for(let i=0;i<t.length;i++){const c=t[i];
+    if(q){if(c=='"'){if(t[i+1]=='"'){f+='"';i++}else q=false}else f+=c}
+    else if(c=='"')q=true;
+    else if(c==dl){r.push(f);f=''}
+    else if(c=='\n'||c=='\r'){if(c=='\r'&&t[i+1]=='\n')i++;r.push(f);f='';rows.push(r);r=[]}
+    else f+=c}
+  if(f!==''||r.length){r.push(f);rows.push(r)}
+  return rows.filter(x=>x.some(v=>String(v).trim()!==''));
+}
+function csvDate(v){
+  v=String(v||'').trim();if(!v)return '';
+  let m1=v.match(/^(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})$/);
+  if(m1)return `${m1[1]}-${m1[2].padStart(2,'0')}-${m1[3].padStart(2,'0')}`;
+  m1=v.match(/^(\d{1,2})[-\/](\d{1,2})[-\/](\d{4})$/);
+  if(m1)return `${m1[3]}-${m1[2].padStart(2,'0')}-${m1[1].padStart(2,'0')}`;
+  return '';
+}
+function importCSV(file,inp){
+  if(!file)return;
+  const rd=new FileReader();
+  rd.onload=()=>{
+    try{
+      const rows=parseCSV(rd.result);
+      if(rows.length<2)return toast('No data found in the CSV.');
+      const hd=rows[0].map(h=>String(h).trim().toLowerCase().replace(/[^a-z]/g,''));
+      const al={name:['name','itemname','item','medicine'],barcode:['barcode','code'],unit:['unit'],rack:['rack','shelf'],batch:['batch','batchno'],
+        expiry:['expiry','expirydate','exp'],cost:['cost','costprice','purchaseprice'],price:['price','saleprice','sellingprice','rate'],
+        stock:['stock','qty','quantity','currentstock'],reorder:['reorder','reorderlevel'],salt:['salt','formula','generic'],company:['company','manufacturer','brand'],category:['category','type'],upp:['upp','unitsperpack','unitspack','perpack','packsize'],tax:['tax','taxrate','taxpercent']};
+      const ix={};for(const k in al){ix[k]=hd.findIndex(h=>al[k].includes(h))}
+      if(ix.name<0)return toast('No "name" column found. Download the sample CSV to see the format.');
+      const g=(r,k)=>ix[k]>=0?String(r[ix[k]]??'').trim():'';
+      const list=[];let skipped=0;
+      rows.slice(1).forEach(r=>{
+        const name=g(r,'name');if(!name){skipped++;return}
+        list.push({name,barcode:g(r,'barcode'),unit:g(r,'unit'),rack:g(r,'rack'),batch:g(r,'batch'),expiry:csvDate(g(r,'expiry')),
+          cost:n(g(r,'cost').replace(/,/g,'')),price:n(g(r,'price').replace(/,/g,'')),stock:n(g(r,'stock').replace(/,/g,'')),reorder:n(g(r,'reorder').replace(/,/g,'')),
+          salt:g(r,'salt'),company:g(r,'company'),category:g(r,'category'),upp:Math.max(1,Math.round(n(g(r,'upp').replace(/,/g,''))||1)),taxRate:n(g(r,'tax').replace(/,/g,'')),has:{cost:ix.cost>=0,price:ix.price>=0,stock:ix.stock>=0,reorder:ix.reorder>=0,upp:ix.upp>=0,taxRate:ix.tax>=0}});
+      });
+      const nk=x=>String(x).toLowerCase().replace(/\s+/g,' ').trim();
+      const find=o=>D.items.find(i=>(o.barcode&&i.barcode&&String(i.barcode)==o.barcode)||nk(i.name)==nk(o.name));
+      const seen=new Map();list.forEach(o=>{o.name=o.name.replace(/\s+/g,' ');seen.set(o.barcode||nk(o.name),o)});
+      const dup=list.length-seen.size;list.length=0;seen.forEach(o=>list.push(o));
+      const nw=list.filter(o=>!find(o)).length,up=list.length-nw;
+      if(!list.length)return toast('No valid rows found.');
+      const sci=list.filter(o=>/^\d(\.\d+)?e\+?\d+$/i.test(o.barcode)).length;
+      if(!confirm(`${nw} new items will be added, ${up} existing items will be updated (price, stock and details come from the CSV).`+(dup?`\n${dup} duplicate rows in the file were merged into one.`:'')+(skipped?`\n${skipped} empty rows skipped.`:'')+(sci?'\nWARNING: '+sci+' barcodes are in scientific format (8.9E+12). Set the barcode column to Text in Excel and export the CSV again.':'')+'\nContinue?'))return;
+      list.forEach(o=>{
+        const ex=find(o),d={name:o.name,barcode:o.barcode,unit:o.unit,rack:o.rack,batch:o.batch,expiry:o.expiry,cost:o.cost,price:o.price,stock:o.stock,reorder:o.reorder,salt:o.salt,company:o.company,category:o.category,upp:o.upp,taxRate:o.taxRate};
+        if(ex){for(const k in d){if(['cost','price','stock','reorder','upp','taxRate'].includes(k)){if(o.has[k])ex[k]=d[k]}else if(d[k]!=='')ex[k]=d[k]}if(o.has.stock)ex.batches=ex.stock>0?[{batch:ex.batch||'',expiry:ex.expiry||'',qty:ex.stock}]:[]}
+        else D.items.push({id:nid(),...d,batches:d.stock>0?[{batch:d.batch,expiry:d.expiry,qty:d.stock}]:[]});
+      });
+      save();render();toast(`Import complete: ${nw} new, ${up} updated.`);
+    }catch(e){showErr(e);toast('CSV import failed.')}
+    finally{if(inp)inp.value=''}
+  };
+  rd.readAsText(file);
+}
+function sampleCSV(){
+  const t='name,barcode,salt,company,category,unit,upp,rack,batch,expiry,cost,price,stock,reorder,tax\r\nParacetamol 500mg,8961001,Paracetamol,GSK,Tablet,strip,10,A1,B101,2027-06-30,18,25,100,20,0\r\nPanadol Syrup,8961002,Paracetamol,GSK,Syrup,bottle,1,B2,B202,2027-01-15,95,120,40,10,0\r\n';
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/csv'}));a.download='items-sample.csv';a.click();
+}
+
+/* ---------- Billing ---------- */
+function bill(type){
+  if(type==='sale')return saleBill();
+  const sale=false,key='pur';
+  return `<h2>${sale?'Sale':'Purchase'} Invoice</h2>
+  <div class="card">
+    <div class="row">
+      ${sale?`<div><label>Customer Name</label><input id="b_cname" value="${esc(cn)}" oninput="cn=this.value" list="cl" placeholder="Walk-in if left empty" autocomplete="off"><datalist id="cl">${D.parties.filter(p=>p.type=='customer'&&p.id!=1).map(p=>`<option value="${esc(p.name)}">`).join('')}</datalist></div>`:`<div><label>Vendor Name (supplier)</label><input id="b_vname" value="${esc(cn)}" oninput="cn=this.value" list="vl" placeholder="Who supplied the goods?" autocomplete="off"><datalist id="vl">${D.parties.filter(p=>p.type=='vendor'&&p.id!=2).map(p=>`<option value="${esc(p.name)}">`).join('')}</datalist></div>`}
+      <div><label>Payment Method</label><select id="b_pay_method" onchange="pm=this.value;if(tab==='sale')render()">${['Cash','Card','Online Wallet / Easypaisa','Credit (On Account)'].map(o=>`<option ${o==pm?'selected':''}>${o}</option>`).join('')}</select></div>
+    </div>
+    <label>${sale?'Scan Barcode / Select Item':'Item Name (new or existing) / Scan Barcode'}</label>
+    <input id="b_item" list="il" placeholder="${sale?'Scan Barcode or type Name':'Type the item name or scan barcode'}" oninput="pickItem()" autocomplete="off" onkeydown="if(event.key==='Enter'){event.preventDefault();saveBillLine()}">
+    <datalist id="il">${D.items.map(i=>`<option value="${esc(i.name)}">${i.barcode?esc(i.barcode):''}</option>`).join('')}</datalist>
+    <div id="b_info" class="empty"></div>
+    <div class="row">
+      <div><label>Quantity</label><input id="b_qty" type="number" step="any" value="1"></div>
+      <div><label>${sale?'Rate':'Purchase Price (cost per unit)'}</label><input id="b_rate" type="number" step="any"></div>
+    </div>
+    ${sale?'':`<div class="row"><div><label>Selling Price (per unit)</label><input id="b_sprice" type="number" step="any"></div><div><label>Barcode (optional, for new item)</label><input id="b_bc"></div></div><div class="row"><div><label>Batch No.</label><input id="b_batch"></div><div><label>Expiry Date</label><input id="b_exp" type="date"></div></div>`}
+    <div class="row"><div><label>Discount (Rs, optional)</label><input id="b_disc" type="number" step="any"></div><div><label>Tax % (optional)</label><input id="b_tax" type="number" step="any"></div></div>
+    <button class="p" onclick="saveBillLine()">Save Item</button>
+  </div>
+  <h2 style="font-size:17px;margin-top:18px">Saved ${sale?'Sales':'Purchases'} (search)</h2>
+  ${billBox(key,'Search by name, item, bill no, date...')}`;
+}
+/* ---------- Sale page (search -> cart -> one invoice) ---------- */
+function saleBill(){
+  if(last&&last.type==='sale')return inv(last)+printBtns(last)+`<button class="s noprint" onclick="last=null;newBillReset();render()">New Bill</button>${canEdit(last)?`<button class="p noprint" style="margin-left:8px;padding:10px 16px" onclick="startEdit(${last.id})">Edit Bill</button>`:''}`;
+  return `<h2>Sale Invoice</h2>${holdCard()}
+  <div class="card">
+    <div class="row">
+      <div><label>Customer Name</label><input id="b_cname" value="${esc(cn)}" oninput="cn=this.value;cNote()" onchange="applyCustRates()" list="cl" placeholder="Walk-in if left empty" autocomplete="off"><datalist id="cl">${D.parties.filter(p=>p.type=='customer'&&p.id!=1).map(p=>`<option value="${esc(p.name)}">`).join('')}</datalist></div>
+      <div><label>Customer Phone (optional)</label><input id="b_cphone" type="tel" value="${esc(cph)}" oninput="cph=this.value" placeholder="03xx-xxxxxxx"></div>
+    </div>
+    <label>Payment Method</label><select id="b_pay_method" onchange="pm=this.value;render()">${PMS.map(o=>`<option ${o==pm?'selected':''}>${o}</option>`).join('')}</select>
+    <div id="c_note" class="empty">${custNote()}</div>
+    <label>Search item (name, barcode, salt, company) - tap an item to add it</label>
+    <div class="row"><input id="s_q" value="${esc(isq)}" placeholder="Type item name or scan barcode" autocomplete="off" oninput="isq=this.value;$('#s_res').innerHTML=saleRes()" onkeydown="if(event.key==='Enter'){event.preventDefault();saleEnter()}"><button class="s" style="flex:none;margin:0" onclick="scanBarcode(saleScanned)">Scan</button></div>
+    <div id="s_res">${saleRes()}</div>
+  </div>
+  <div class="card scroll" id="s_cart">${cartHtml()}</div>
+  <h2 style="font-size:17px;margin-top:18px">Saved Sales (search)</h2>
+  ${billBox('sale','Search by name, item, bill no, date...')}`;
+}
+function saleRes(){
+  const k=isq.trim().toLowerCase();if(!k)return '';
+  const r=D.items.filter(i=>imatch(i,k)).slice(0,8);
+  return r.length?r.map(i=>{const U=upk(i),pr=crate(cn,i);
+    return `<button class="pick" onclick="addToCart(${i.id})"><span><b>${esc(i.name)}</b>${i.salt?`<br><small>${esc(i.salt)}${i.company?' | '+esc(i.company):''}</small>`:''}<br><small>Rack: ${esc(i.rack||'-')} | Expiry: ${i.expiry||'-'}</small></span><span style="text-align:right">${m(pr)}${hasCR(cn,i)?' ★':''}${U>1?`<br><small>Loose: ${m(pr/U)}</small>`:''}<br><small class="${i.stock<=i.reorder?'low':''}">Stock: ${sf(i)}</small></span></button>`+(i.salt?`<button class="s sm" style="margin:3px 0 0" onclick="showAlt(${i.id})">Alternatives (same salt)</button>`:'')}).join(''):'<div class="empty">No item found.</div>';
+}
+function saleEnter(){
+  const i=byNameOrBarcode(isq);
+  if(i)return addToCart(i.id);
+  const k=isq.trim().toLowerCase();if(!k)return;
+  const r=D.items.filter(x=>imatch(x,k));
+  if(r.length===1)addToCart(r[0].id);else toast(r.length?'Tap the item you want from the list.':'Item not found.');
+}
+function addToCart(id){
+  const i=D.items.find(x=>x.id==id);if(!i)return;
+  const ln=cart.find(l=>l.itemId==id),U=upk(i),have=ln?ln.qty:0,step=ln&&ln.u==='l'?1/U:1;
+  if(have+step>i.stock+0.0005)return toast(`Not enough stock (available: ${sf(i)}).`);
+  if(!ln&&i.expiry&&i.expiry<today()&&!confirm('This item has expired. Add it anyway?'))return;
+  if(ln){normLine(ln);ln.cnt=nq(ln.cnt+1);ln.qty=nq(ln.cnt/(ln.u==='l'?(ln.upp||1):1))}
+  else cart.push({itemId:i.id,name:i.name,cnt:1,u:'p',qty:1,upp:U,tr:i.taxRate||0,rate:crate(cn,i),cost:i.cost,batch:i.batch||''});
+  isq='';render();
+  if(!ln&&hasCR(cn,i))toast(cn.trim()+': saved rate '+m(crate(cn,i))+' applied.');
+  setTimeout(()=>{const e=$('#s_q');e&&e.focus()},0);
+}
+function cartHtml(){
+  cart.forEach(normLine);
+  if(!cart.length)return '<div class="empty">Cart is empty. Search an item above and tap it to add.</div><button class="s" onclick="saveAccount()">Account Save</button>';
+  const rows=cart.map((l,k)=>{
+    const U=l.upp||1,loose=l.u==='l';
+    return `<tr><td>${esc(l.name)}</td>
+    <td>${U>1?`<select class="qin" style="width:92px" onchange="setLine(${k},'unit',this.value)"><option value="p" ${loose?'':'selected'}>Pack</option><option value="l" ${loose?'selected':''}>Loose (1 of ${U})</option></select>`:'<small>-</small>'}</td>
+    <td class="r"><input class="qin" type="number" step="any" min="0" value="${l.cnt}" oninput="setLine(${k},'cnt',this.value,this)"></td>
+    <td class="r"><input class="qin" type="number" step="any" min="0" value="${loose?n(l.rate/U):l.rate}" oninput="setLine(${k},'price',this.value,this)"></td>
+    <td class="r" id="lt_${k}">${m(l.qty*l.rate)}</td><td><button class="d" onclick="cart.splice(${k},1);render()">&#10005;</button></td></tr>`}).join('');
+  let pay='';
+  if(pm==='Cash')pay=`<label>Cash received (to calculate change)</label><input type="number" step="any" value="${esc(rcv)}" oninput="rcv=this.value;calcTot()">`;
+  else if(pm.startsWith('Credit'))pay='<label>Amount received now (optional)</label><input id="s_paid" type="number" step="any">';
+  else if(pm==='Split Payment')pay=`<div class="row"><div><label>Cash</label><input type="number" step="any" value="${esc(spC)}" oninput="spC=this.value;calcTot()"></div><div><label>Card</label><input type="number" step="any" value="${esc(spCd)}" oninput="spCd=this.value;calcTot()"></div><div><label>Wallet</label><input type="number" step="any" value="${esc(spW)}" oninput="spW=this.value;calcTot()"></div></div><div class="empty">Whatever is left after these amounts goes on the customer's account (credit).</div>`;
+  return `<table><tr><th>Item</th><th>Unit</th><th class="r">Qty</th><th class="r">Price</th><th class="r">Total</th><th></th></tr>${rows}</table>
+  <div class="row"><div><label>Discount (Rs)</label><input type="number" step="any" value="${bd||''}" oninput="bd=n(this.value);calcTot()"></div><div><label>Tax % (empty = use each item's tax)</label><input type="number" step="any" value="${bt||''}" oninput="bt=n(this.value);calcTot()"></div></div>
+  <div id="s_tot">${totHtml()}</div>${pay}
+  <button class="p" onclick="saveBill('sale')">Save &amp; Print Invoice</button> <button class="s" onclick="holdBill()">Hold Bill</button> <button class="s" onclick="saveAccount()">Account Save</button>`;
+}
+function totHtml(){
+  const sub=S(cart,l=>l.qty*l.rate),disc=Math.max(0,Math.min(n(bd),sub)),tax=calcTax(cart,sub,disc,Math.max(0,n(bt))),tot=n(sub-disc+tax);
+  let h=`<div class="tot"><span>Subtotal</span><span>${m(sub)}</span></div>`;
+  if(disc>0)h+=`<div class="tot"><span>Discount</span><span>- ${m(disc)}</span></div>`;
+  if(tax>0)h+=`<div class="tot"><span>Tax</span><span>${m(tax)}</span></div>`;
+  h+=`<div class="tot"><span>Total</span><span>${m(tot)}</span></div>`;
+  if(pm==='Cash'&&n(rcv)>0){const ch=n(n(rcv)-tot);h+=`<div class="tot"><span>${ch>=0?'Change to return':'Still to receive'}</span><span class="${ch>=0?'pos':'neg'}">${m(Math.abs(ch))}</span></div>`}
+  if(pm==='Split Payment'){const rest=n(tot-n(spC)-n(spCd)-n(spW));h+=`<div class="tot"><span>${rest<0?'Over-paid by':'On account (credit)'}</span><span class="${rest<0?'neg':''}">${m(Math.abs(rest))}</span></div>`}
+  return h;
+}
+function calcTot(){const e=$('#s_tot');if(e)e.innerHTML=totHtml()}
+function setLine(k,f,v,el){
+  const l=cart[k];if(!l)return;
+  const i=D.items.find(x=>x.id==l.itemId),U=l.upp||1;
+  if(f==='unit'){l.u=v==='l'?'l':'p';l.cnt=1;l.qty=nq(1/(l.u==='l'?U:1));render();return}
+  v=Math.max(0,+v||0);
+  if(f==='cnt'){
+    const d=l.u==='l'?U:1;let q=nq(v/d);
+    if(i&&q>i.stock+0.0005){q=i.stock;v=nq(q*d);if(el)el.value=v;toast('Only '+sf(i)+' in stock.')}
+    l.cnt=v;l.qty=q;
+  }else if(f==='price'){l.rate=n(v*(l.u==='l'?U:1))}
+  const t=$('#lt_'+k);if(t)t.textContent=m(l.qty*l.rate);calcTot();
+}
+function pickItem(){
+  const i=byNameOrBarcode(val('b_item'));
+  if(i){$('#b_rate').value=tab==='sale'?i.price:i.cost;if(tab!=='sale'){$('#b_sprice').value=i.price}$('#b_info').textContent=`Stock: ${i.stock} ${i.unit||''} | Rack: ${i.rack||'-'} | Expiry: ${i.expiry||'-'}`}
+  else $('#b_info').textContent='';
+}
+function saveBillLine(){
+  const sale=tab==='sale',typed=val('b_item').trim(),i=byNameOrBarcode(typed),qty=n(val('b_qty')),rate=n(val('b_rate'));
+  if(!typed)return toast('Enter the item name.');
+  if(qty<=0)return toast('Quantity must be greater than zero.');
+  let line;
+  if(sale){
+    if(!i)return toast('Item not found.');
+    if(qty>i.stock)return toast(`Not enough stock (available: ${i.stock}).`);
+    if(i.expiry&&i.expiry<today()&&!confirm('This item has expired. Save it anyway?'))return;
+    line={itemId:i.id,name:i.name,qty,rate,cost:i.cost,batch:i.batch||''};
+  }else{
+    const sp=n(val('b_sprice'));
+    line={itemId:i?i.id:null,name:i?i.name:typed,qty,rate,salePrice:sp||(i?i.price:0),cost:rate,barcode:i?'':val('b_bc').trim(),batch:'',batchNo:val('b_batch').trim(),expiry:val('b_exp')};
+  }
+  cart=[line];bd=n(val('b_disc'));bt=n(val('b_tax'));
+  if(saveBill(tab)){last=null;toast('Item saved and added to Bills.')}
+  setTimeout(()=>{const e=$('#b_item');e&&e.focus()},0);
+}
+function saveBill(type){
+  const sale=type==='sale';
+  if(sale)cart=cart.filter(l=>l.qty>0);
+  if(!cart.length)return false;
+  if(sale){
+    const bad=cart.find(l=>{const i=D.items.find(x=>x.id==l.itemId);return !i||l.qty>i.stock+0.0005});
+    if(bad){toast('Not enough stock: '+bad.name);return false}
+    if(cart.some(l=>l.rate<l.cost)&&!confirm('Some items are priced below cost. Save anyway?'))return false;
+  }
+  const pmv=val('b_pay_method'),isSplit=sale&&pmv==='Split Payment';
+  const sub=S(cart,l=>l.qty*l.rate),disc=Math.max(0,Math.min(n(bd),sub)),tax=calcTax(cart,sub,disc,Math.max(0,n(bt))),tot=n(sub-disc+tax);
+  let pays=null,credAmt=pmv.startsWith('Credit')?tot:0;
+  if(isSplit){
+    const c=n(spC),cd=n(spCd),w=n(spW),rest=n(tot-c-cd-w);
+    if(c<0||cd<0||w<0){toast('Amounts cannot be negative.');return false}
+    if(rest<0){toast('Split amounts are more than the bill total.');return false}
+    pays=[];
+    if(c)pays.push({m:'Cash',a:c});
+    if(cd)pays.push({m:'Card',a:cd});
+    if(w)pays.push({m:'Online Wallet / Easypaisa',a:w});
+    if(rest)pays.push({m:'Credit (On Account)',a:rest});
+    credAmt=rest;
+  }
+  const phone=sale?String((($('#b_cphone')||{}).value)||'').trim():'';
+  let partyId;
+  if(sale){
+    const nm=val('b_cname').trim();
+    if(!nm&&credAmt>0){toast('Enter the customer name for a credit sale.');return false}
+    if(nm){
+      let pt=D.parties.find(x=>x.type==='customer'&&x.name.toLowerCase()===nm.toLowerCase());
+      if(pt&&credAmt>0&&n(pt.limit)>0&&n(balance(pt)+credAmt)>n(pt.limit)&&!confirm('Credit limit exceeded for '+pt.name+'.\nLimit: '+m(pt.limit)+'\nOutstanding: '+m(balance(pt))+' + this bill on credit: '+m(credAmt)+'\nSave anyway?'))return false;
+      if(!pt){pt={id:nid(),name:nm,type:'customer',phone:''};D.parties.push(pt)}
+      if(phone&&!pt.phone)pt.phone=phone;
+      partyId=pt.id;
+    }else partyId=1;
+  }else{
+    const vn=val('b_vname').trim();
+    if(!vn&&pmv.startsWith('Credit')){toast('Enter the vendor name for a credit purchase.');return false}
+    if(vn){let pt=D.parties.find(x=>x.type==='vendor'&&x.name.toLowerCase()===vn.toLowerCase());
+      if(!pt){pt={id:nid(),name:vn,type:'vendor',phone:''};D.parties.push(pt)}partyId=pt.id}
+    else partyId=2;
+  }
+  cart.forEach(l=>{
+    let i=D.items.find(x=>x.id==l.itemId);
+    if(!i&&!sale)i=D.items.find(x=>x.name.toLowerCase()===l.name.toLowerCase());
+    if(!i&&!sale){i={id:nid(),name:l.name,barcode:l.barcode||'',unit:'',rack:'',batch:'',expiry:'',cost:l.rate,price:l.salePrice||0,stock:0,reorder:0,salt:l.salt||'',company:'',category:'',upp:Math.max(1,Math.round(+l.upp||1)),taxRate:0,batches:[]};D.items.push(i)}
+    if(i){l.itemId=i.id;
+      if(sale){l.batch=takeStock(i,l.qty)||l.batch;l.bts=TK.slice()}
+      else{const os=Math.max(0,i.stock);i.cost=n((os*i.cost+l.qty*l.rate)/(os+l.qty));addBatch(i,l.qty,l.batchNo,l.expiry);l.batch=l.batchNo||'';if(l.salePrice>0)i.price=l.salePrice;if(l.barcode&&!i.barcode)i.barcode=l.barcode}}
+  });
+  last={id:nid(),type,no:D.seq[type]++,date:today(),time:nowT(),partyId,payMethod:pmv,lines:cart,sub,disc,tax,total:tot,user:currentUser};
+  if(pays)last.pays=pays;
+  if(sale){
+    if(phone)last.phone=phone;
+    const rc=n(rcv);if(pmv==='Cash'&&rc>tot){last.rcv=rc;last.change=n(rc-tot)}
+  }
+  D.bills.push(last);
+  if(sale)rememberRates(partyId,cart);
+  if(sale&&!isSplit&&pmv.startsWith('Credit')&&partyId>2){
+    const pd=Math.min(n((($('#s_paid')||{}).value)),tot);
+    if(pd>0)D.pay.push({id:nid(),partyId,amt:pd,date:today(),time:nowT(),m:'Cash',note:'Part payment bill #'+last.no});
+  }
+  cart=[];bd=0;bt=0;
+  if(sale){cph='';rcv='';spC='';spCd='';spW=''}
+  save();render();return true;
+}
+function inv(b,dz){
+  dz=dz||D.shop.design||'classic';
+  const s=D.shop,sale=b.type==='sale',ph=billPhone(b);
+  const logo=/^data:image\//.test(s.logo||'')?`<img src="${s.logo}" alt="" style="height:44px;max-width:130px;object-fit:contain;margin-right:10px;vertical-align:middle;background:#fff;border-radius:6px;padding:2px">`:'';
+  const ids=[s.ntn?'NTN: '+esc(s.ntn):'',s.strn?'STRN: '+esc(s.strn):'',s.pos?'POS ID: '+esc(s.pos):''].filter(Boolean).join(' &nbsp; ');
+  const hasTax=b.lines.some(l=>l.tr>0);
+  return `<div class="card inv dz-${dz} ${fsC()}">
+    <div class="ih"><div>${logo}<b>${esc(s.name)}</b><br><small>${esc(s.addr||'')} ${esc(s.phone||'')}</small>${ids?`<br><small>${ids}</small>`:''}<br><small>Powered by ADI BUTT</small></div><div class="ir">${sale?'Sale Invoice':'Purchase Bill'}<br><small>#${b.no}</small></div></div>
+    <div class="meta">
+      <div><small>Date:</small> <b>${b.date}</b>${b.time?` <small>${b.time}</small>`:''}<br><small>${sale?'Customer':'Vendor'}:</small> <b>${esc(partyName(b.partyId))}</b>${ph?`<br><small>Phone:</small> <b>${esc(ph)}</b>`:''}<br><small>Billed By:</small> <b>${esc(b.user||'Admin')}</b>${b.edited?`<br><small>Edited on ${b.edited}</small>`:''}</div>
+      <div class="qr">${qrSvg(qrText(b),84)}</div>
+    </div>
+    <div class="scroll"><table class="it"><tr><th>Item</th><th class="r">Batch</th><th class="r">Qty</th><th class="r">Rate</th>${hasTax?'<th class="r">Tax %</th>':''}<th class="r">Amount</th></tr>
+    ${b.lines.map(l=>{const q=lineQ(l);return `<tr><td>${esc(l.name)}</td><td class="r">${esc(l.batch||'-')}</td><td class="r">${q.q}</td><td class="r">${q.r}</td>${hasTax?`<td class="r">${l.tr||0}</td>`:''}<td class="r">${m(l.qty*l.rate)}</td></tr>`}).join('')}</table></div>
+    <div class="sum">
+      <div><span>Subtotal</span><span>${m(b.sub??b.total)}</span></div>
+      ${b.disc?`<div><span>Discount</span><span>- ${m(b.disc)}</span></div>`:''}
+      ${b.tax?`<div><span>Tax</span><span>${m(b.tax)}</span></div>`:''}
+      <div class="g"><span>Total (${esc(b.payMethod||'Cash')})</span><span>${m(b.total)}</span></div>
+      ${payLines(b)}
+    </div>
+    <div class="ft">${esc(s.footer||'Thank you for visiting!')}</div>
+  </div>`;
+}
+
+/* ---------- Menu + Saved Accounts ---------- */
+function toggleMenu(){const e=$('#menuPanel');if(e)e.style.display=e.style.display==='block'?'none':'block'}
+function closeMenu(){const e=$('#menuPanel');if(e)e.style.display='none'}
+document.addEventListener('click',e=>{if(!e.target.closest('#menuPanel')&&!e.target.closest('#menuBtn'))closeMenu()});
+function saveAccount(){
+  const nm=val('b_cname').trim();if(!nm)return toast('Enter the customer name first.');
+  let pt=D.parties.find(x=>x.type==='customer'&&x.id>2&&x.name.toLowerCase()===nm.toLowerCase());
+  if(!pt){pt={id:nid(),name:nm,type:'customer',phone:''};D.parties.push(pt)}
+  pt.saved=true;cn=pt.name;rememberRates(pt.id,cart.filter(l=>l.qty>0));
+  save();render();toast('Account saved: '+pt.name+'. Find it under Saved Accounts.');
+}
+function savedRows(){
+  const l=D.parties.filter(p=>p.type==='customer'&&p.id>2&&p.saved&&qm('saved',p.name,p.phone||''));
+  return l.length?`<table><tr><th>Name</th><th>Phone</th><th class="r">Rates</th><th class="r">Balance</th><th></th></tr>${l.map(p=>{const b=balance(p),c=Object.keys(D.cprice[p.id]||{}).length;return `<tr><td>${esc(p.name)}</td><td>${esc(p.phone||'-')}</td><td class="r">${c}</td><td class="r ${b>0?'neg':''}">${m(b)}</td><td><button class="p sm" style="margin:0" onclick="billFor(${p.id})">Make Bill</button> <button class="d" onclick="unsaveAcc(${p.id})">Remove</button></td></tr>`}).join('')}</table>`:'<div class="empty">No saved accounts yet. On the Sale Bill page type a customer name and press Account Save.</div>';
+}
+function savedAccounts(){return `<h2>Saved Accounts</h2>${sbox('saved','Search saved accounts by name or phone...','savedRows')}<div class="card scroll" id="sr_saved">${savedRows()}</div>`}
+function billFor(id){const p=D.parties.find(x=>x.id==id);if(!p)return;go('sale');cn=p.name;render();toast('Bill for '+p.name+' - saved rates will be applied.')}
+function unsaveAcc(id){const p=D.parties.find(x=>x.id==id);if(!p||!confirm('Remove '+p.name+' from Saved Accounts? Their saved rates will be cleared.'))return;p.saved=false;delete D.cprice[id];save();render()}
+/* ---------- Theme / Print ---------- */
+function applyTheme(t){document.documentElement.dataset.theme=t;['#themeBtn','#themeLogin'].forEach(i=>{const e=$(i);if(e)e.textContent=t=='dark'?'\u2600\uFE0F':'\uD83C\uDF19'})}
+function toggleTheme(){const t=document.documentElement.dataset.theme=='dark'?'light':'dark';try{localStorage.setItem('pharmacy_theme',t)}catch(e){}applyTheme(t)}
+const FSIZES={s:'Small',m:'Medium (normal)',l:'Large',xl:'Extra Large'};
+function fsC(){return 'fs-'+((D.shop&&D.shop.fs)||'m')}
+function fsSel(){const f=D.shop.fs||'m';return `<label>Invoice text size</label><select onchange="D.shop.fs=this.value;save();render()">${Object.keys(FSIZES).map(k=>`<option value="${k}" ${k==f?'selected':''}>${FSIZES[k]}</option>`).join('')}</select>`}
+const DESIGNS={classic:'Classic (Teal)',modern:'Modern',elegant:'Elegant',bw:'Black & White (saves ink)',royal:'Royal (Navy & Gold)',green:'Fresh Green',purple:'Purple',sunset:'Sunset',minimal:'Minimal',ledger:'Ledger (boxed)',compact:'Compact (small paper)'};
+function printBtns(b){
+  const d=D.shop.design||'classic';
+  return `<div class="card noprint"><b>Print / Share this bill</b><label>A4 invoice design</label><select onchange="D.shop.design=this.value;save();render()">${Object.keys(DESIGNS).map(k=>`<option value="${k}" ${k==d?'selected':''}>${DESIGNS[k]}</option>`).join('')}</select>
+  ${fsSel()}<button class="p" onclick="printInv(${b.id},'a4')">Print A4</button> <button class="p" onclick="printInv(${b.id},'th')">Print Thermal (80mm)</button>
+  <button class="s" onclick="pdfInv(${b.id})">Save as PDF</button> <button class="s" onclick="shareWA(${b.id})">WhatsApp</button> <button class="s" onclick="shareSys(${b.id})">Share...</button></div>`;
+}
+function invTh(b){
+  const s=D.shop,sale=b.type==='sale',ph=billPhone(b),row=(a,v,c)=>`<div class="tt ${c||''}"><span>${a}</span><span>${v}</span></div>`;
+  const ids=[s.ntn?'NTN: '+esc(s.ntn):'',s.strn?'STRN: '+esc(s.strn):''].filter(Boolean).join(' ');
+  const hasTax=b.lines.some(l=>l.tr>0);
+  return `<div class="th ${fsC()}"><h3>${esc(s.name)}</h3><div class="c">${esc(s.addr||'')}<br>${esc(s.phone||'')}${ids?'<br>'+ids:''}</div><hr>
+  <div>${sale?'Sale Invoice':'Purchase Bill'} #${b.no}<br>Date: ${b.date}${b.time?' '+b.time:''}<br>${sale?'Customer':'Vendor'}: ${esc(partyName(b.partyId))}${ph?'<br>Phone: '+esc(ph):''}<br>By: ${esc(b.user||'Admin')}</div><hr>
+  <table><tr><th>Item</th><th class="r">Qty</th><th class="r">Rate</th><th class="r">Amt</th></tr>
+  ${b.lines.map(l=>{const q=lineQ(l);return `<tr><td colspan="4">${esc(l.name)}${hasTax&&l.tr?' ('+l.tr+'% tax)':''}</td></tr><tr><td></td><td class="r">${q.q}</td><td class="r">${q.r}</td><td class="r">${m(l.qty*l.rate)}</td></tr>`}).join('')}</table><hr>
+  ${row('Subtotal',m(b.sub??b.total))}${b.disc?row('Discount','- '+m(b.disc)):''}${b.tax?row('Tax',m(b.tax)):''}${row('TOTAL ('+esc(b.payMethod||'Cash')+')',m(b.total),'gt')}
+  ${(b.pays||[]).map(p=>row(/^Credit/.test(p.m)?'On account':'Paid '+esc(p.m.replace(' / Easypaisa','')),m(p.a))).join('')}${b.change?row('Cash received',m(b.rcv))+row('Change',m(b.change)):''}<hr>
+  <div class="c">${qrSvg(qrText(b),110)}</div>
+  <div class="c">${esc(s.footer||'Thank you for visiting!')}<br>Powered by ADI BUTT</div><br></div>`;
+}
+function printInv(id,mode){
+  const b=D.bills.find(x=>x.id==id);if(!b)return toast('Bill not found.');
+  $('#printArea').innerHTML=mode=='th'?invTh(b):inv(b);
+  let st=$('#pgStyle');if(!st){st=document.createElement('style');st.id='pgStyle';document.head.appendChild(st)}
+  st.textContent=mode=='th'?'@page{size:80mm auto;margin:2mm}':'@page{size:A4;margin:10mm}';
+  setTimeout(()=>window.print(),80);
+}
+/* print area is kept until the next print: on phones 'afterprint' fires before Save-as-PDF finishes, which made the PDF blank */
+
+/* ---------- Bills history ---------- */
+const BT={bills:['sale','purchase'],pur:['purchase'],sale:['sale']},LIM={bills:0,pur:20,sale:20};
+function billMatch(b,k){
+  const hay=[partyName(b.partyId),b.no,b.date,b.payMethod,b.total,b.user,b.type,...b.lines.map(l=>l.name)].join(' | ').toLowerCase();
+  return k.split(/\s+/).every(w=>hay.includes(w));
+}
+function billList(key){
+  const k=(sq[key]||'').toLowerCase().trim(),l=D.bills.filter(b=>BT[key].includes(b.type)&&(!k||billMatch(b,k))).reverse(),sh=LIM[key]?l.slice(0,LIM[key]):l;
+  if(!sh.length)return '<div class="empty">No matching bills.</div>';
+  return `<table><tr><th>Type</th><th>#</th><th>Date</th><th>Party</th><th>Items</th><th>Payment</th><th class="r">Total</th><th></th></tr>
+  ${sh.map(b=>`<tr><td>${b.type=='sale'?'Sale':'Purchase'}</td><td>${b.no}</td><td>${b.date}</td><td>${esc(partyName(b.partyId))}</td><td>${esc(b.lines.map(x=>x.name).join(', ').slice(0,40))}</td><td>${esc(b.payMethod||'')}</td><td class="r">${m(b.total)}</td><td><button class="s sm" onclick="openBill(${b.id})">View</button></td></tr>`).join('')}</table>`+(LIM[key]&&l.length>LIM[key]?`<div class="empty">Showing latest ${LIM[key]} of ${l.length}. Refine the search or open the Bills section.</div>`:'');
+}
+function billBox(key,ph){
+  return `<input placeholder="${ph}" value="${esc(sq[key])}" oninput="sq.${key}=this.value;$('#bl_${key}').innerHTML=billList('${key}')" style="margin-bottom:10px"><div class="card scroll" id="bl_${key}">${billList(key)}</div>`;
+}
+function openBill(id){tab='bills';viewBill=id;cart=[];render();window.scrollTo(0,0)}
+function sbox(key,ph,fn){
+  return `<input placeholder="${ph}" value="${esc(sq[key])}" oninput="sq.${key}=this.value;$('#sr_${key}').innerHTML=${fn}()" style="margin-bottom:10px">`;
+}
+function sset(key,v){sq[key]=v;render();const e=$('#sq_'+key);if(e){e.focus();const l=e.value.length;e.setSelectionRange(l,l)}}
+const qm=(key,...f)=>{const k=(sq[key]||'').toLowerCase().trim();return !k||k.split(/\s+/).every(w=>f.join(' | ').toLowerCase().includes(w))};
+function bills(){
+  if(viewBill){const b=D.bills.find(x=>x.id==viewBill);if(eb&&eb.id==viewBill)return editUI(b);return inv(b)+printBtns(b)+`<button class="s noprint" onclick="viewBill=null;eb=null;render()">Back</button>${canEdit(b)?`<button class="p noprint" style="margin-left:8px;padding:10px 16px" onclick="startEdit(${b.id})">Edit Bill</button>`:''}${isAdmin()?`<button class="d noprint" style="margin-left:8px;padding:10px 16px" onclick="voidBill(${b.id})">Cancel Bill</button>`:''}`}
+  return `<h2>Bills History</h2>${billBox('bills','Search by customer / vendor name, item, bill no, date, payment...')}`;
+}
+
+
+/* ---------- Edit saved bill ---------- */
+let eb=null;
+function canEdit(b){return !!b&&(isAdmin()||(b.user===currentUser&&b.date===today()))}
+function startEdit(id){
+  const b=D.bills.find(x=>x.id==id);if(!b||!canEdit(b))return;
+  if(b.pays)return toast('Split-payment bills cannot be edited. Cancel the bill and create it again.');
+  if(D.returns.some(r=>r.type===b.type&&r.billNo==b.no))return toast('This bill already has a return and cannot be edited.');
+  const base=n((b.sub??b.total)-(b.disc||0)),pp=D.pay.find(x=>x.partyId==b.partyId&&x.note==='Part payment bill #'+b.no);
+  eb={id:b.id,lines:b.lines.map(l=>Object.assign({},l)),disc:b.disc||0,tax:base>0?n((b.tax||0)/base*100):0,
+      pay:b.payMethod||'Cash',party:b.partyId>2?partyName(b.partyId):'',paid:pp?pp.amt:''};
+  eb.lines.forEach(normLine);
+  tab='bills';viewBill=id;last=null;cart=[];render();window.scrollTo(0,0);
+}
+function ebTot(){
+  const sub=S(eb.lines,l=>l.qty*l.rate),disc=Math.max(0,Math.min(n(eb.disc),sub)),tax=n((sub-disc)*Math.max(0,n(eb.tax))/100);
+  return {sub,disc,tax,total:n(sub-disc+tax)};
+}
+function ebTotHtml(){const t=ebTot();return `<div class="tot"><span>Subtotal</span><span>${m(t.sub)}</span></div><div class="tot"><span>Total</span><span>${m(t.total)}</span></div>`}
+function ebSet(k,f,v){
+  const l=eb.lines[k];if(!l)return;const U=l.upp||1;v=Math.max(0,+v||0);
+  if(f==='cnt'){l.cnt=v;l.qty=nq(v/(l.u==='l'?U:1))}
+  else if(f==='price'){l.rate=n(v*(l.u==='l'?U:1))}
+  const e=$('#el_'+k);if(e)e.textContent=m(l.qty*l.rate);const t=$('#e_tot');if(t)t.innerHTML=ebTotHtml();
+}
+function ebHead(f,v){eb[f]=v;const t=$('#e_tot');if(t)t.innerHTML=ebTotHtml()}
+function ebFind(v){
+  const k=String(v).trim().toLowerCase(),e=$('#e_res');if(!e)return;
+  if(!k){e.innerHTML='';return}
+  const r=D.items.filter(i=>i.name.toLowerCase().includes(k)||(i.barcode&&String(i.barcode).toLowerCase().includes(k))).slice(0,8);
+  e.innerHTML=r.length?r.map(i=>`<button class="pick" onclick="ebAdd(${i.id})"><span><b>${esc(i.name)}</b></span><span style="text-align:right">${m(i.price)}<br><small>Stock: ${i.stock}</small></span></button>`).join(''):'<div class="empty">No item found.</div>';
+}
+function ebFindEnter(v){const i=byNameOrBarcode(v);if(i)ebAdd(i.id);else toast('Tap the item from the list.')}
+function ebAdd(id){
+  const i=D.items.find(x=>x.id==id);if(!i)return;
+  const sale=D.bills.find(x=>x.id==eb.id).type==='sale',ln=eb.lines.find(l=>l.itemId==id&&l.u!=='l');
+  if(ln){ln.cnt=nq(ln.cnt+1);ln.qty=nq(ln.cnt)}
+  else eb.lines.push(sale?{itemId:i.id,name:i.name,cnt:1,u:'p',qty:1,upp:upk(i),tr:i.taxRate||0,rate:crate(eb.party,i),cost:i.cost,batch:i.batch||''}
+    :{itemId:i.id,name:i.name,cnt:1,u:'p',qty:1,rate:i.cost,salePrice:i.price,cost:i.cost,barcode:'',batch:'',batchNo:'',expiry:''});
+  render();setTimeout(()=>{const e=$('#e_q');e&&e.focus()},0);
+}
+function editUI(b){
+  const sale=b.type==='sale';
+  return `<h2>Edit ${sale?'Sale':'Purchase'} Bill #${b.no}</h2>
+  <div class="card scroll">
+    <div class="row">
+      <div><label>${sale?'Customer Name':'Vendor Name'}</label><input value="${esc(eb.party)}" oninput="eb.party=this.value" placeholder="${sale?'Walk-in if left empty':'Leave empty if unknown'}" autocomplete="off"></div>
+      <div><label>Payment Method</label><select onchange="eb.pay=this.value;render()">${['Cash','Card','Online Wallet / Easypaisa','Credit (On Account)'].map(o=>`<option ${o==eb.pay?'selected':''}>${o}</option>`).join('')}</select></div>
+    </div>
+    <label>Add another item (search name / barcode)</label>
+    <input id="e_q" placeholder="Type item name or scan barcode" autocomplete="off" oninput="ebFind(this.value)" onkeydown="if(event.key==='Enter'){event.preventDefault();ebFindEnter(this.value)}">
+    <div id="e_res"></div>
+    <table><tr><th>Item</th><th class="r">Qty</th><th class="r">${sale?'Price':'Cost'}</th><th class="r">Total</th><th></th></tr>
+    ${eb.lines.map((l,k)=>{const U=l.upp||1,lo=l.u==='l';return `<tr><td>${esc(l.name)}${lo?'<br><small>loose (1 of '+U+')</small>':''}</td><td class="r"><input class="qin" type="number" step="any" min="0" value="${l.cnt}" oninput="ebSet(${k},'cnt',this.value)"></td><td class="r"><input class="qin" type="number" step="any" min="0" value="${lo?n(l.rate/U):l.rate}" oninput="ebSet(${k},'price',this.value)"></td><td class="r" id="el_${k}">${m(l.qty*l.rate)}</td><td>${eb.lines.length>1?`<button class="d" onclick="eb.lines.splice(${k},1);render()">&#10005;</button>`:''}</td></tr>`}).join('')}</table>
+    <div class="row"><div><label>Discount (Rs)</label><input type="number" step="any" value="${eb.disc||''}" oninput="ebHead('disc',this.value)"></div><div><label>Tax %</label><input type="number" step="any" value="${eb.tax||''}" oninput="ebHead('tax',this.value)"></div></div>
+    <div id="e_tot">${ebTotHtml()}</div>
+    ${eb.pay.startsWith('Credit')?`<label>Amount ${sale?'received':'paid'} now (optional)</label><input type="number" step="any" value="${eb.paid}" oninput="eb.paid=this.value">`:''}
+    <button class="p" onclick="ebSave()">Save Changes</button>
+    <button class="s" style="margin-left:8px" onclick="eb=null;render()">Cancel</button>
+  </div>`;
+}
+function ebSave(){
+  const b=D.bills.find(x=>x.id==eb.id);if(!b||!canEdit(b))return;
+  const sale=b.type==='sale',lines=eb.lines.filter(l=>l.qty>0),nm=eb.party.trim(),pay=eb.pay;
+  if(!lines.length)return toast('At least one item with quantity is required. Use Cancel Bill to remove the bill.');
+  if(!nm&&pay.startsWith('Credit'))return toast('Enter the '+(sale?'customer':'vendor')+' name for a credit bill.');
+  if(sale&&lines.some(l=>l.rate<l.cost)&&!confirm('Some items are priced below cost. Save anyway?'))return;
+  if(!sale&&b.lines.some(l=>{const i=D.items.find(x=>x.id==l.itemId);return !i||i.stock<l.qty-0.0005}))return toast('Not enough stock on hand; this purchase cannot be edited.');
+  const snap=JSON.stringify(D),fail=msg=>{D=JSON.parse(snap);toast(msg);return false};
+  /* 1. undo the old bill's effect on stock and part-payments */
+  b.lines.forEach(l=>{const i=D.items.find(x=>x.id==l.itemId);if(!i)return;if(sale)restoreStock(i,l,l.qty);else takeStock(i,l.qty)});
+  D.pay=D.pay.filter(x=>!(x.partyId==b.partyId&&String(x.note||'')==='Part payment bill #'+b.no));
+  /* 2. check stock for the new quantities */
+  if(sale){const need={};lines.forEach(l=>need[l.itemId]=nq((need[l.itemId]||0)+l.qty));
+    for(const id in need){const i=D.items.find(x=>x.id==id);if(!i||need[id]>i.stock+0.0005)return fail('Not enough stock: '+(i?i.name:'item')+(i?' (available: '+sf(i)+')':''))}}
+  /* 3. party */
+  let partyId=sale?1:2;
+  if(nm){const ty=sale?'customer':'vendor';let pt=D.parties.find(x=>x.type===ty&&x.name.toLowerCase()===nm.toLowerCase());
+    if(!pt){pt={id:nid(),name:nm,type:ty,phone:''};D.parties.push(pt)}partyId=pt.id}
+  /* 4. apply the new lines */
+  lines.forEach(l=>{const i=D.items.find(x=>x.id==l.itemId);if(!i)return;
+    if(sale){l.batch=takeStock(i,l.qty)||l.batch;l.bts=TK.slice()}
+    else{const os=Math.max(0,i.stock);i.cost=n((os*i.cost+l.qty*l.rate)/(os+l.qty));addBatch(i,l.qty,l.batchNo,l.expiry);l.batch=l.batchNo||'';if(l.salePrice>0)i.price=l.salePrice}});
+  const t=ebTot();
+  Object.assign(b,{lines,partyId,payMethod:pay,sub:t.sub,disc:t.disc,tax:t.tax,total:t.total,edited:today()});
+  delete b.rcv;delete b.change;
+  if(sale)rememberRates(partyId,lines);
+  if(String(pay).startsWith('Credit')&&partyId>2){const pd=Math.min(n(eb.paid),t.total);if(pd>0)D.pay.push({id:nid(),partyId,amt:pd,date:today(),time:nowT(),m:'Cash',note:'Part payment bill #'+b.no})}
+  save();eb=null;toast('Bill updated.');render();
+}
+
+/* ---------- Returns ---------- */
+function retRows(){
+  const l=[...D.returns].reverse().filter(r=>qm('ret',r.item,r.billNo||'',r.type||'sale',r.date,r.refund));
+  return l.length?`<table><tr><th>Date</th><th>Type</th><th>Bill</th><th>Item</th><th class="r">Qty</th><th class="r">Refund</th></tr>${l.map(r=>{const it=D.items.find(x=>x.name===r.item);return `<tr><td>${r.date}</td><td>${r.type||'sale'}</td><td>${esc(r.billNo||'-')}</td><td>${esc(r.item)}</td><td class="r">${it?fq(r.qty,it):nq(r.qty)}</td><td class="r">${m(r.refund)}</td></tr>`}).join('')}</table>`:'<div class="empty">No returns found.</div>';
+}
+function returns(){
+  return `<h2>Sales / Purchase Return</h2>
+  <div class="card">
+    <div class="row"><div><label>Return Type</label><select id="ret_type"><option value="sale">Sale Return (from customer)</option><option value="purchase">Purchase Return (to vendor)</option></select></div>
+    <div><label>Bill Number</label><input id="ret_bill_id" placeholder="e.g. 1"></div></div>
+    <label>Item Name / Barcode</label><input id="ret_item" list="il2" autocomplete="off"><datalist id="il2">${D.items.map(i=>`<option value="${esc(i.name)}">`).join('')}</datalist>
+    <div class="row"><div><label>Return Qty</label><input id="ret_qty" type="number" step="any"></div><div><label>Unit</label><select id="ret_unit"><option value="p">Pack</option><option value="l">Loose</option></select></div><div><label>Refund Amount (empty = auto)</label><input id="ret_amt" type="number" step="any"></div></div>
+    <button class="p" onclick="processReturn()">Process Return</button>
+  </div>
+  <h2 style="font-size:17px;margin-top:18px">Return History (search)</h2>
+  ${sbox('ret','Search returns by item, bill no, date...','retRows')}<div class="card scroll" id="sr_ret">${retRows()}</div>`;
+}
+function processReturn(){
+  const type=val('ret_type'),bNo=val('ret_bill_id').trim(),nm=val('ret_item'),qty=nq(retQty());
+  const b=D.bills.find(x=>x.type===type&&String(x.no)===bNo),item=byNameOrBarcode(nm);
+  if(!b)return toast('No '+(type==='sale'?'sale':'purchase')+' bill found with this number.');
+  if(!item||qty<=0)return toast('Enter a valid item and quantity.');
+  const ln=b.lines.find(l=>l.itemId==item.id);
+  if(!ln)return toast('This item is not in that bill.');
+  const done=nq(S(D.returns.filter(r=>r.type===type&&String(r.billNo)===bNo&&r.item===item.name),r=>r.qty));
+  if(qty>nq(ln.qty-done)+0.0004)return toast('Cannot return more than sold (remaining: '+fq(nq(ln.qty-done),item)+').');
+  if(type==='purchase'&&qty>item.stock+0.0004)return toast('Cannot return more than stock on hand.');
+  const amt=val('ret_amt')===''?n(qty*ln.rate):n(val('ret_amt'));
+  if(type==='sale')restoreStock(item,qty,ln,done);else takeStock(item,qty);
+  D.returns.push({id:nid(),type,billNo:b.no,item:item.name,qty,refund:amt,cost:ln.cost||0,date:today()});
+  const cr=creditOf(b);
+  if(cr>0&&b.partyId>2&&b.total>0){const a=n(amt*Math.min(1,cr/b.total));if(a>0)D.pay.push({id:nid(),partyId:b.partyId,amt:a,date:today(),time:nowT(),m:'Adjust',note:'Return bill #'+b.no})}
+  save();toast('Return processed and stock updated.');render();
+}
+function voidBill(id){
+  const b=D.bills.find(x=>x.id==id);if(!b||!isAdmin())return;
+  if(D.returns.some(r=>r.type===b.type&&r.billNo==b.no))return toast('This bill already has a return and cannot be cancelled.');
+  if(b.type==='purchase'&&b.lines.some(l=>{const i=D.items.find(x=>x.id==l.itemId);return !i||i.stock<l.qty-0.0005}))return toast('Not enough stock; the purchase cannot be cancelled.');
+  if(!confirm('Bill #'+b.no+' will be cancelled and stock restored. Continue?'))return;
+  b.lines.forEach(l=>{const i=D.items.find(x=>x.id==l.itemId);if(!i)return;if(b.type==='sale')restoreStock(i,l,l.qty);else takeStock(i,l.qty)});
+  D.pay=D.pay.filter(x=>!(x.partyId==b.partyId&&String(x.note||'').endsWith('bill #'+b.no)&&String(x.note).startsWith('Part')));
+  D.bills=D.bills.filter(x=>x.id!=id);save();viewBill=null;toast('Bill cancelled.');render();
+}
+/* ---------- Parties ---------- */
+function balance(p){
+  const credit=S(D.bills.filter(b=>b.partyId==p.id),b=>creditOf(b));
+  const paid=S(D.pay.filter(x=>x.partyId==p.id),x=>x.amt);
+  return n(credit-paid);
+}
+function partyRows(){
+  const l=D.parties.filter(p=>qm('parties',p.name,p.type,p.phone||''));
+  return l.length?`<table><tr><th>Name</th><th>Type</th><th>Phone</th><th class="r">Credit Limit</th><th class="r">Balance Due</th><th></th></tr>
+  ${l.map(p=>{const b=balance(p);return `<tr><td>${esc(p.name)}</td><td>${p.type}</td><td>${esc(p.phone||'-')}</td><td class="r">${p.limit?m(p.limit):'-'}</td><td class="r ${b>0?'neg':''}">${m(b)}</td><td><button class="s sm" onclick="payParty(${p.id})">${p.type=='customer'?'Receive':'Pay'}</button> ${p.id>2?`<button class="s sm" onclick="editParty(${p.id})">Edit</button>`:''} ${p.id>2&&isAdmin()?`<button class="d" onclick="delParty(${p.id})">Delete</button>`:''}</td></tr>`}).join('')}</table>`:'<div class="empty">No parties found.</div>';
+}
+function parties(){
+  return `<h2>Customers &amp; Suppliers</h2>
+  <div class="card">
+    <div class="row"><div><label>Name</label><input id="p_name"></div><div><label>Type</label><select id="p_type"><option value="customer">Customer</option><option value="vendor">Vendor / Supplier</option></select></div></div>
+    <label>Phone</label><input id="p_phone">
+    <button class="p" onclick="addParty()">Add Party</button>
+  </div>
+  ${sbox('parties','Search by name, phone, type...','partyRows')}<div class="card scroll" id="sr_parties">${partyRows()}</div>`;
+}
+function addParty(){
+  const name=val('p_name').trim();if(!name)return toast('Enter a name.');
+  D.parties.push({id:nid(),name,type:val('p_type'),phone:val('p_phone')});save();toast('Party added.');render();
+}
+function delParty(id){if(!confirm('Delete this?'))return;D.parties=D.parties.filter(p=>p.id!=id);save();render()}
+function payParty(id){
+  const a=n(prompt('Enter amount:'));if(a<=0)return;
+  D.pay.push({id:nid(),partyId:id,amt:a,date:today()});save();toast('Payment recorded.');render();
+}
+
+/* ---------- Expenses ---------- */
+function expRows(){
+  const l=[...D.exp].reverse().filter(e=>qm('exp',e.cat,e.name||e.note||'',e.date,e.amt));
+  return l.length?`<table><tr><th>Date</th><th>Category</th><th>Name</th><th class="r">Amount</th><th></th></tr>${l.map(e=>`<tr><td>${e.date}</td><td>${esc(e.cat)}</td><td>${esc(e.name||e.note||'-')}</td><td class="r">${m(e.amt)}</td><td><button class="s sm" onclick="editExp(${e.id})">Edit</button> <button class="d" onclick="delExp(${e.id})">Delete</button></td></tr>`).join('')}</table>`:'<div class="empty">No expenses found.</div>';
+}
+function expense(){
+  return `<h2>Daily Expense Tracker</h2>
+  <div class="card">
+    <div class="row"><div><label>Category</label><select id="e_cat">${CATS.map(c=>`<option>${c}</option>`).join('')}</select></div><div><label>Amount</label><input id="e_amt" type="number" step="any"></div></div>
+    <div class="row"><div><label>Date</label><input id="e_date" type="date" value="${today()}"></div><div><label>Name (person paid)</label><input id="e_name" list="enl" placeholder="e.g. Ahmed" autocomplete="off"><datalist id="enl">${[...new Set(D.exp.map(e=>e.name).filter(Boolean))].map(x=>`<option value="${esc(x)}">`).join('')}</datalist></div></div>
+    <button class="p" onclick="addExp()">Add Expense</button>
+  </div>
+  ${sbox('exp','Search by name, category, date, amount...','expRows')}<div class="card scroll" id="sr_exp">${expRows()}</div>`;
+}
+function addExp(){
+  const amt=n(val('e_amt'));if(amt<=0)return toast('Enter an amount.');
+  D.exp.push({id:nid(),cat:val('e_cat'),amt,date:val('e_date')||today(),name:val('e_name').trim()});save();toast('Expense added.');render();
+}
+function delExp(id){D.exp=D.exp.filter(e=>e.id!=id);save();render()}
+
+/* ---------- Profit ---------- */
+function itemProfit(s){
+  const map={};
+  s.forEach(b=>b.lines.forEach(l=>{const o=map[l.name]||(map[l.name]={name:l.name,qty:0,rev:0,cost:0});o.qty+=l.qty;o.rev+=l.qty*l.rate;o.cost+=l.qty*l.cost}));
+  const arr=Object.values(map).map(o=>({...o,pr:o.rev-o.cost})).filter(o=>qm('profit',o.name)).sort((a,b)=>b.pr-a.pr);
+  if(!arr.length)return `<div class="card"><b>Item-wise Profit</b><div class="empty">No sales found for this period / search.</div></div>`;
+  const tot=S(arr,o=>o.pr),mx=Math.max(1,...arr.map(o=>Math.abs(o.pr))),top=arr[0];
+  return `<div class="card hero"><span>Top profit-making item</span><b>${esc(top.name)}</b><span>Profit: ${m(top.pr)} &nbsp;|&nbsp; Sold: ${nq(top.qty)} &nbsp;|&nbsp; Margin: ${top.rev?m(top.pr/top.rev*100):'0.00'}%</span></div>
+  <div class="card scroll"><b>Item-wise Profit</b>
+  <table><tr><th>#</th><th>Item</th><th class="r">Qty Sold</th><th class="r">Sale</th><th class="r">Cost</th><th class="r">Profit</th><th class="r">Margin %</th><th>Share</th></tr>
+  ${arr.map((o,k)=>`<tr><td>${k+1}</td><td>${esc(o.name)}</td><td class="r">${nq(o.qty)}</td><td class="r">${m(o.rev)}</td><td class="r">${m(o.cost)}</td><td class="r ${o.pr>=0?'pos':'neg'}">${m(o.pr)}</td><td class="r">${o.rev?m(o.pr/o.rev*100):'0.00'}</td><td><div class="bar"><i class="${o.pr<0?'n':''}" style="width:${Math.abs(o.pr)/mx*100}%"></i></div><small>${tot>0?m(o.pr/tot*100):'0.00'}%</small></td></tr>`).join('')}
+  <tr><td></td><td><b>Total</b></td><td class="r"><b>${m(S(arr,o=>o.qty))}</b></td><td class="r"><b>${m(S(arr,o=>o.rev))}</b></td><td class="r"><b>${m(S(arr,o=>o.cost))}</b></td><td class="r ${tot>=0?'pos':'neg'}"><b>${m(tot)}</b></td><td></td><td></td></tr></table>
+  <div class="empty">Note: Profit = Sale - Cost. Bill-level discount and tax are not included in this table.</div></div>`;
+}
+function expSummary(gross,net){
+  const inR=d=>d>=rf&&d<=rt,l=D.exp.filter(e=>inR(e.date)).sort((a,b)=>a.date<b.date?1:-1),ex=S(l,e=>e.amt),by={};
+  l.forEach(e=>{const k=e.name||e.note||'(no name)';by[k]=(by[k]||0)+e.amt});
+  const people=Object.entries(by).sort((a,b)=>b[1]-a[1]);
+  return `<div class="card hero"><span>Remaining after expenses</span><b>${m(net)}</b><span>Profit ${m(gross)} &minus; Expenses paid ${m(ex)} = ${m(net)}</span></div>
+  <div class="card scroll"><b>Expenses paid (who received how much)</b>
+  ${l.length?`<table><tr><th>Date</th><th>Name</th><th>Category</th><th class="r">Amount</th></tr>${l.map(e=>`<tr><td>${e.date}</td><td>${esc(e.name||e.note||'-')}</td><td>${esc(e.cat)}</td><td class="r neg">- ${m(e.amt)}</td></tr>`).join('')}
+  <tr><td></td><td><b>Total paid</b></td><td></td><td class="r neg"><b>- ${m(ex)}</b></td></tr></table>
+  <b style="display:block;margin-top:12px">Total per person</b><table>${people.map(([k,v])=>`<tr><td>${esc(k)}</td><td class="r">${m(v)}</td></tr>`).join('')}</table>`:'<div class="empty">No expenses in this period.</div>'}</div>`;
+}
+function summary(){
+  const inR=d=>d>=rf&&d<=rt;
+  const s=D.bills.filter(b=>b.type=='sale'&&inR(b.date)),p=D.bills.filter(b=>b.type=='purchase'&&inR(b.date));
+  const sales=S(s,b=>b.total-(b.tax||0)),cogs=S(s,b=>S(b.lines,l=>l.cost*l.qty)),disc=S(s,b=>b.disc||0);
+  const refunds=S(D.returns.filter(r=>(r.type||'sale')=='sale'&&inR(r.date)),r=>r.refund);
+  const retC=S(D.returns.filter(r=>(r.type||'sale')=='sale'&&inR(r.date)),r=>(r.cost||0)*r.qty),wo=writeOff(rf,rt);
+  const gross=n(sales-cogs-refunds+retC-wo),ex=S(D.exp.filter(e=>inR(e.date)),e=>e.amt),net=n(gross-ex);
+  const row=(a,b,cls='')=>`<tr><td>${a}</td><td class="r ${cls}">${m(b)}</td></tr>`;
+  return `<h2>Profit &amp; Financials</h2>
+  <div class="card"><div class="row"><div><label>From</label><input type="date" value="${rf}" onchange="rf=this.value;render()"></div><div><label>To</label><input type="date" value="${rt}" onchange="rt=this.value;render()"></div></div></div>
+  <div class="card scroll"><table>
+  ${row('Total Sales ('+s.length+' bills)',sales)}${row('Cost of Goods Sold',-cogs)}${row('Sale Returns / Refunds',-refunds)}${row('Stock write-offs (damage / expired)',-wo)}
+  ${row('<b>Gross Profit</b>',gross,gross>=0?'pos':'neg')}${row('Expenses',-ex)}${row('<b>Net Profit</b>',net,net>=0?'pos':'neg')}
+  ${row('Discount given (info)',disc)}${row('Total Purchases ('+p.length+' bills)',S(p,b=>b.total)-S(D.returns.filter(r=>r.type=='purchase'&&inR(r.date)),r=>r.refund))}
+  </table></div>${expSummary(gross,net)}
+  <input id="sq_profit" placeholder="Search item-wise profit by item name..." value="${esc(sq.profit)}" oninput="sset('profit',this.value)" style="margin-bottom:10px">${itemProfit(s)}`;
+}
+
+function guide(){
+  return `<h2>Help - What each part does</h2><div class="card"><h3 style="margin:0 0 6px">What is this software?</h3><p>A complete billing and accounting system for a pharmacy: create invoices, manage stock, track credit, record expenses and see profit. Tap any section below to read what it does and how it helps.</p></div><div class="card guide"><details open><summary>Home</summary><p>Shows today&#x27;s total sales, purchases, profit and expenses at a glance, plus medicines that are low in stock or close to expiry.</p><p class="fy">Benefit: You know every morning what to re-order and what is about to expire, so you avoid losses.</p></details><details ><summary>Sale Bill</summary><p>Where you sell medicines. Type the customer name, then search an item or scan its barcode and tap it to add it to the cart. Search again to add more items, edit the quantity and price of each line in the cart, then press Save &amp; Print Invoice once. Stock reduces automatically and the bill is added to Bills. Use the search box to find old sales. Press Account Save to keep the customer and the rates you charged. Next time open Saved Accounts, tap Make Bill, and those rates are applied automatically (marked with a star). If another customer arrives, press Hold Bill, serve the new customer, then press Resume on the held bill.</p><p class="fy">Benefit: Invoices are created instantly, stock reduces automatically, and you are warned about low stock or expired medicines.</p></details><details ><summary>Purchase Bill</summary><p>Record stock bought from suppliers: type the vendor name, the item name (new items are created automatically), the purchase price and the selling price. Stock increases automatically and the latest prices are saved.</p><p class="fy">Benefit: Your stock stays accurate and profit is calculated from the real purchase cost.</p></details><details ><summary>Items</summary><p>Your medicine list: name, barcode, batch, rack, cost, sale price, stock, expiry and re-order level, with search.</p><p class="fy">Benefit: All medicine details are in one place, so medicines are easy to find and stock is never forgotten.</p></details><details ><summary>Bills</summary><p>History of all sale and purchase invoices. Click View to reopen or reprint any bill.</p><p class="fy">Benefit: If a customer asks for an old bill or there is a dispute, you have proof immediately.</p></details><details ><summary>Returns</summary><p>Record medicines returned by customers (sale return) or sent back to suppliers (purchase return). Stock is corrected automatically.</p><p class="fy">Benefit: Returns are tracked, stock stays correct, and refunds are included in the profit calculation.</p></details><details ><summary>Parties</summary><p>List of customers and suppliers. Choose &#x27;Credit (On Account)&#x27; on a bill to record money owed, then use Receive or Pay to settle.</p><p class="fy">Benefit: You always know who owes you and whom you owe, without a paper register.</p></details><details ><summary>Expenses</summary><p>Record daily costs such as rent, salary, electricity, transport and tea, and write the name of the person you paid. The Profit page then shows who received how much and what remains after expenses.</p><p class="fy">Benefit: True net profit is only known after expenses are deducted; this page does that.</p></details><details ><summary>Profit</summary><p>Pick a date range to see total sales, cost of goods, returns, gross profit and net profit. Below, see the profit of each item, its margin and its share of total profit.</p><p class="fy">Benefit: You see which medicines earn the most and which earn little, so you can stock wisely.</p></details><details ><summary>Settings</summary><p>Set the pharmacy name, address and phone (printed on bills), change your password, and download or restore a backup.</p><p class="fy">Benefit: Bills carry your shop details, your data is protected by a password, and backups prevent data loss.</p></details><details ><summary>Login / Account</summary><p>Log in with your username and password. &#x27;Create Account&#x27; adds another user. Each bill records who created it.</p><p class="fy">Benefit: Only authorised people can open the system, and you can see who made each bill.</p></details><details ><summary>Backup (important)</summary><p>Data is stored in this browser only. Clearing browser data or switching device can erase it, so download a backup from Settings regularly.</p><p class="fy">Benefit: With a backup file you can restore all data on any computer.</p></details></div>`;
+}
+
+/* ---------- Settings ---------- */
+function data(){
+  return `<h2>Shop Settings</h2>${usersCard()}
+  <div class="card">
+    <label>Pharmacy Name</label><input id="sh_n" value="${esc(D.shop.name)}">
+    <label>Address</label><input id="sh_a" value="${esc(D.shop.addr)}">
+    <label>Phone</label><input id="sh_p" value="${esc(D.shop.phone)}"><div class="row"><div><label>NTN</label><input id="sh_ntn" value="${esc(D.shop.ntn||'')}"></div><div><label>STRN</label><input id="sh_strn" value="${esc(D.shop.strn||'')}"></div></div><label>POS ID (optional)</label><input id="sh_pos" value="${esc(D.shop.pos||'')}"><label>Invoice footer text</label><input id="sh_foot" value="${esc(D.shop.footer||'')}">
+    <button class="p" onclick="D.shop.name=val('sh_n').trim()||'My Pharmacy';D.shop.addr=val('sh_a');D.shop.phone=val('sh_p');shopExtra();save();toast('Saved!');render()">Save Info</button>
+  </div>
+  <div class="card">
+    <b>Change Password (${esc(currentUser)})</b>
+    <label>New Password</label><input id="np" type="password">
+    <button class="p" onclick="chPass()">Change Password</button>
+  </div>
+  <div class="card">
+    <b>Backup / Restore</b><br>
+    <button class="p" onclick="backup()">Download Backup</button>
+    <label>Restore from backup file</label><input type="file" accept=".json" onchange="restore(this.files[0])">
+  </div>`;
+}
+async function chPass(){
+  const p=val('np').trim();if(!p)return toast('Enter a password.');
+  if(p.length<4)return toast('At least 4 characters.');
+  try{D.users.find(u=>u.user===currentUser).pass=await mkPass(currentUser,p);aud('Password changed','');save();toast('Password changed.');$('#np').value=''}
+  catch(e){showErr(e)}
+}
+function backup(){D.lastBackup=today();save();
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([JSON.stringify(D)],{type:'application/json'}));
+  a.download='pharmacy-backup-'+today()+'.json';a.click();
+}
+function restore(f){
+  if(!f)return;const r=new FileReader();
+  r.onload=()=>{try{const x=JSON.parse(r.result);if(!x.items)throw 0;if(!confirm('Current data will be replaced. Continue?'))return;D=x;fix();save();toast('Restore complete.');render()}catch(e){toast('Invalid backup file.')}};
+  r.readAsText(f);
+}
+
+/* ===== v8 new definitions ===== */
+var QRX=(function(){
+  var ECC=[7,10,15,20,26,18,20,24,30,18],NB=[1,1,1,1,1,2,2,2,2,4];
+  function rawMods(v){var r=(16*v+128)*v+64;if(v>=2){var a=Math.floor(v/7)+2;r-=(25*a-10)*a-55;if(v>=7)r-=36}return r}
+  function mul(x,y){var z=0;for(var i=7;i>=0;i--){z=(z<<1)^((z>>>7)*0x11D);z^=((y>>>i)&1)*x}return z}
+  function rsGen(d){var r=[],i,j;for(i=0;i<d;i++)r.push(0);r[d-1]=1;var root=1;
+    for(i=0;i<d;i++){for(j=0;j<d;j++){r[j]=mul(r[j],root);if(j+1<d)r[j]^=r[j+1]}root=mul(root,2)}return r}
+  function rsRem(data,gen){var r=gen.map(function(){return 0});
+    data.forEach(function(b){var f=b^r.shift();r.push(0);gen.forEach(function(c,i){r[i]^=mul(c,f)})});return r}
+  function utf8(s){var o=[],i,c;s=unescape(encodeURIComponent(s));for(i=0;i<s.length;i++){c=s.charCodeAt(i);o.push(c)}return o}
+  function make(text){
+    var bytes=utf8(text),ver=0,v;
+    for(v=1;v<=10;v++){var cap=(rawMods(v)>>3)-ECC[v-1]*NB[v-1],cc=v<10?8:16;if(4+cc+8*bytes.length<=cap*8){ver=v;break}}
+    if(!ver)return null;
+    var dataCw=(rawMods(ver)>>3)-ECC[ver-1]*NB[ver-1],bits=[];
+    function put(val,len){for(var i=len-1;i>=0;i--)bits.push((val>>>i)&1)}
+    put(4,4);put(bytes.length,ver<10?8:16);bytes.forEach(function(b){put(b,8)});
+    put(0,Math.min(4,dataCw*8-bits.length));while(bits.length%8)bits.push(0);
+    var pad=[0xEC,0x11],pi=0;while(bits.length<dataCw*8){put(pad[pi++&1],8)}
+    var data=[];for(var i=0;i<bits.length;i+=8){var x=0;for(var j=0;j<8;j++)x=(x<<1)|bits[i+j];data.push(x)}
+    /* blocks */
+    var nb=NB[ver-1],eccLen=ECC[ver-1],raw=rawMods(ver)>>3,nShort=nb-raw%nb,shortLen=Math.floor(raw/nb),blocks=[],gen=rsGen(eccLen),k=0;
+    for(i=0;i<nb;i++){var len=shortLen-eccLen+(i<nShort?0:1),d=data.slice(k,k+len);k+=len;var e=rsRem(d,gen);blocks.push({d:d,e:e})}
+    var all=[],maxD=shortLen-eccLen+1;
+    for(i=0;i<maxD;i++)blocks.forEach(function(b){if(i<b.d.length)all.push(b.d[i])});
+    for(i=0;i<eccLen;i++)blocks.forEach(function(b){all.push(b.e[i])});
+    /* matrix */
+    var size=ver*4+17,M=[],F=[],y,x;
+    for(y=0;y<size;y++){M.push(new Array(size).fill(false));F.push(new Array(size).fill(false))}
+    function setF(x,y,dark){M[y][x]=dark;F[y][x]=true}
+    for(i=0;i<size;i++){setF(6,i,i%2==0);setF(i,6,i%2==0)}
+    function finder(cx,cy){for(var dy=-4;dy<=4;dy++)for(var dx=-4;dx<=4;dx++){var dist=Math.max(Math.abs(dx),Math.abs(dy)),xx=cx+dx,yy=cy+dy;if(xx>=0&&xx<size&&yy>=0&&yy<size)setF(xx,yy,dist!=2&&dist!=4)}}
+    finder(3,3);finder(size-4,3);finder(3,size-4);
+    var ap=[];if(ver>1){var na=Math.floor(ver/7)+2,step=Math.ceil((ver*4+4)/(na*2-2))*2;ap=[6];for(var pos=size-7;ap.length<na;pos-=step)ap.splice(1,0,pos)}
+    ap.forEach(function(ax,ai){ap.forEach(function(ay,aj){
+      if((ai==0&&aj==0)||(ai==0&&aj==ap.length-1)||(ai==ap.length-1&&aj==0))return;
+      for(var dy=-2;dy<=2;dy++)for(var dx=-2;dx<=2;dx++)setF(ax+dx,ay+dy,Math.max(Math.abs(dx),Math.abs(dy))!=1)})});
+    function fmt(mask){
+      var d=(1<<3)|mask,r=d,i;for(i=0;i<10;i++)r=(r<<1)^((r>>>9)*0x537);
+      var b=((d<<10)|r)^0x5412,g=function(i){return((b>>>i)&1)!=0};
+      for(i=0;i<=5;i++)setF(8,i,g(i));setF(8,7,g(6));setF(8,8,g(7));setF(7,8,g(8));for(i=9;i<15;i++)setF(14-i,8,g(i));
+      for(i=0;i<8;i++)setF(size-1-i,8,g(i));for(i=8;i<15;i++)setF(8,size-15+i,g(i));setF(8,size-8,true)}
+    fmt(0);
+    if(ver>=7){var r2=ver;for(i=0;i<12;i++)r2=(r2<<1)^((r2>>>11)*0x1F25);var vb=(ver<<12)|r2;
+      for(i=0;i<18;i++){var bt=((vb>>>i)&1)!=0,a=size-11+i%3,b2=Math.floor(i/3);setF(a,b2,bt);setF(b2,a,bt)}}
+    /* data placement */
+    var bi=0;
+    for(var right=size-1;right>=1;right-=2){if(right==6)right=5;
+      for(var vert=0;vert<size;vert++)for(var j=0;j<2;j++){var xx=right-j,up=((right+1)&2)==0,yy=up?size-1-vert:vert;
+        if(!F[yy][xx]&&bi<all.length*8){M[yy][xx]=((all[bi>>>3]>>>(7-(bi&7)))&1)!=0;bi++}}}
+    function mask(m){for(var y=0;y<size;y++)for(var x=0;x<size;x++){if(F[y][x])continue;var inv;
+      switch(m){case 0:inv=(x+y)%2==0;break;case 1:inv=y%2==0;break;case 2:inv=x%3==0;break;case 3:inv=(x+y)%3==0;break;
+        case 4:inv=(Math.floor(x/3)+Math.floor(y/2))%2==0;break;case 5:inv=x*y%2+x*y%3==0;break;
+        case 6:inv=(x*y%2+x*y%3)%2==0;break;default:inv=((x+y)%2+x*y%3)%2==0}
+      if(inv)M[y][x]=!M[y][x]}}
+    function penalty(){
+      var p=0,x,y,run,i;
+      function line(get){var run=1,col=get(0),res=0,hist=[];
+        for(var i=1;i<size;i++){if(get(i)==col)run++;else{if(run>=5)res+=3+run-5;run=1;col=get(i)}}if(run>=5)res+=3+run-5;
+        var s='';for(i=0;i<size;i++)s+=get(i)?'1':'0';
+        var pats=['10111010000','00001011101'],q;for(q=0;q<2;q++){var idx=-1;while((idx=s.indexOf(pats[q],idx+1))>=0)res+=40}
+        return res}
+      for(y=0;y<size;y++)p+=line(function(i){return M[y][i]});
+      for(x=0;x<size;x++)p+=line(function(i){return M[i][x]});
+      for(y=0;y<size-1;y++)for(x=0;x<size-1;x++){var c=M[y][x];if(c==M[y][x+1]&&c==M[y+1][x]&&c==M[y+1][x+1])p+=3}
+      var dark=0;for(y=0;y<size;y++)for(x=0;x<size;x++)if(M[y][x])dark++;
+      var tot=size*size,kk=Math.ceil(Math.abs(dark*20-tot*10)/tot)-1;p+=Math.max(0,kk)*10;return p}
+    var best=0,bp=1e9;
+    for(var m=0;m<8;m++){mask(m);fmt(m);var pn=penalty();if(pn<bp){bp=pn;best=m}mask(m)}
+    mask(best);fmt(best);
+    return M}
+  function svg(text,px){
+    var M=make(text);if(!M)return '';var n=M.length,b=4,d='',y,x,s;
+    for(y=0;y<n;y++){x=0;while(x<n){if(M[y][x]){s=x;while(x<n&&M[y][x])x++;d+='M'+(s+b)+' '+(y+b)+'h'+(x-s)+'v1h-'+(x-s)+'z'}else x++}}
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+(n+2*b)+' '+(n+2*b)+'" width="'+px+'" height="'+px+'" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="#fff"/><path d="'+d+'" fill="#000"/></svg>'}
+  return {make:make,svg:svg}
+})();
+var C128=(function(){
+  var P=["212222", "222122", "222221", "121223", "121322", "131222", "122213", "122312", "132212", "221213", "221312", "231212", "112232", "122132", "122231", "113222", "123122", "123221", "223211", "221132", "221231", "213212", "223112", "312131", "311222", "321122", "321221", "312212", "322112", "322211", "212123", "212321", "232121", "111323", "131123", "131321", "112313", "132113", "132311", "211313", "231113", "231311", "112133", "112331", "132131", "113123", "113321", "133121", "313121", "211331", "231131", "213113", "213311", "213131", "311123", "311321", "331121", "312113", "312311", "332111", "314111", "221411", "431111", "111224", "111422", "121124", "121421", "141122", "141221", "112214", "112412", "122114", "122411", "142112", "142211", "241211", "221114", "413111", "241112", "134111", "111242", "121142", "121241", "114212", "124112", "124211", "411212", "421112", "421211", "212141", "214121", "412121", "111143", "111341", "131141", "114113", "114311", "411113", "411311", "113141", "114131", "311141", "411131", "211412", "211214", "211232", "2331112"];
+  function enc(text){
+    var codes=[104],i,c,sum=104;
+    for(i=0;i<text.length;i++){c=text.charCodeAt(i)-32;if(c<0||c>94)c=0;codes.push(c);sum+=c*(i+1)}
+    codes.push(sum%103);codes.push(106);return codes}
+  function svg(text,h,mw){
+    mw=mw||2;h=h||50;var codes=enc(String(text)),x=10*mw,bars='',i,j,pat,w,tot=0;
+    codes.forEach(function(cd){pat=P[cd];for(j=0;j<pat.length;j++){w=+pat[j]*mw;if(j%2==0)bars+='<rect x="'+x+'" y="0" width="'+w+'" height="'+h+'"/>';x+=w}});
+    tot=x+10*mw;
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+tot+' '+h+'" preserveAspectRatio="none" style="width:100%;height:'+h*0.5+'px" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="#fff"/><g fill="#000">'+bars+'</g></svg>'}
+  return {enc:enc,svg:svg,P:P}
+})();
+function qrSvg(t,px){try{return QRX.svg(t,px||84)}catch(e){return ''}}
+function bcSvg(t,h){try{return C128.svg(t,h||50,2)}catch(e){return ''}}
+function canCrypto(){return !!(window.crypto&&crypto.subtle&&window.TextEncoder)}
+function hex(buf){return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('')}
+async function pbk(p,salt){
+  const enc=new TextEncoder(),key=await crypto.subtle.importKey('raw',enc.encode(p),'PBKDF2',false,['deriveBits']);
+  return hex(await crypto.subtle.deriveBits({name:'PBKDF2',salt:enc.encode(salt),iterations:120000,hash:'SHA-256'},key,256));
+}
+async function mkPass(u,p){
+  if(!canCrypto())return hp(u,p);
+  const a=new Uint8Array(16);crypto.getRandomValues(a);const salt=hex(a);
+  return 'p2$'+salt+'$'+await pbk(p,salt);
+}
+async function chkPass(user,p){
+  const s=user.pass;
+  if(s.startsWith('p2$')){if(!canCrypto())return false;const t=s.split('$');return (await pbk(p,t[1]))===t[2]}
+  return s===hp(user.user,p);
+}
+function newRecCode(){
+  const a=new Uint8Array(12);crypto.getRandomValues(a);
+  const c='ABCDEFGHJKMNPQRSTUVWXYZ23456789';let s='';a.forEach(x=>s+=c[x%c.length]);
+  return s.match(/.{1,4}/g).join('-');
+}
+async function makeRecovery(){
+  if(!canCrypto())return null;
+  const code=newRecCode();D.rec=await mkPass('recovery',code.replace(/-/g,''));save();return code;
+}
+let regBusy=false;
+function lineQ(l){
+  const U=l.upp||1;
+  return l.u==='l'?{q:(l.cnt!=null?l.cnt:nq(l.qty*U))+' loose',r:m(l.rate/U)}:{q:String(nq(l.qty)),r:m(l.rate)};
+}
+function payLines(b){
+  let h='';
+  if(b.pays)b.pays.forEach(p=>{h+=`<div><span>${/^Credit/.test(p.m)?'On account':'Paid - '+esc(p.m.replace(' / Easypaisa',''))}</span><span>${m(p.a)}</span></div>`});
+  if(b.change)h+=`<div><span>Cash received</span><span>${m(b.rcv)}</span></div><div><span>Change returned</span><span>${m(b.change)}</span></div>`;
+  return h;
+}
+function qrText(b){const s=D.shop;return [s.ntn||'',s.strn||'',(b.type==='sale'?'S':'P')+b.no,b.date,m(b.total),m(b.tax||0)].join('|')}
+function billPhone(b){const pt=D.parties.find(x=>x.id==b.partyId)||{};return b.phone||pt.phone||''}
+let loginBusy=false;
+let resetBusy=false;
+let addUBusy=false;
+function invText(b){
+  const s=D.shop,sale=b.type==='sale';
+  let t=`*${s.name}*\n${sale?'Sale Invoice':'Purchase Bill'} #${b.no}\nDate: ${b.date}${b.time?' '+b.time:''}\n${sale?'Customer':'Vendor'}: ${partyName(b.partyId)}\n\n`;
+  b.lines.forEach((l,k)=>{const q=lineQ(l);t+=`${k+1}. ${l.name} - ${q.q} x ${q.r} = ${m(l.qty*l.rate)}\n`});
+  t+=`\nSubtotal: ${m(b.sub??b.total)}\n`;
+  if(b.disc)t+=`Discount: -${m(b.disc)}\n`;
+  if(b.tax)t+=`Tax: ${m(b.tax)}\n`;
+  t+=`*Total: ${m(b.total)}* (${b.payMethod||'Cash'})\n`;
+  if(b.pays)b.pays.forEach(p=>{t+=`${/^Credit/.test(p.m)?'On account':'Paid '+p.m}: ${m(p.a)}\n`});
+  if(s.phone)t+=`\n${s.name}: ${s.phone}`;
+  t+=`\n${s.footer||'Thank you for visiting!'}`;
+  return t;
+}
+function waNumber(ph){
+  let d=String(ph||'').replace(/\D/g,'');
+  if(d.startsWith('00'))d=d.slice(2);
+  else if(d.startsWith('0'))d='92'+d.slice(1);
+  return d;
+}
+function shareWA(id){
+  const b=D.bills.find(x=>x.id==id);if(!b)return;
+  const num=waNumber(billPhone(b));
+  window.open('https://wa.me/'+num+'?text='+encodeURIComponent(invText(b)),'_blank');
+}
+function shareSys(id){
+  const b=D.bills.find(x=>x.id==id);if(!b)return;
+  if(navigator.share)navigator.share({title:'Invoice #'+b.no,text:invText(b)}).catch(()=>{});
+  else if(navigator.clipboard){navigator.clipboard.writeText(invText(b)).then(()=>toast('Invoice text copied.'),()=>toast('Could not copy.'))}
+  else toast('Sharing is not supported in this browser.');
+}
+function pdfInv(id){toast('In the print window, choose "Save as PDF" as the printer.');printInv(id,'a4')}
+function showAlt(id){
+  const i=D.items.find(x=>x.id==id);if(!i||!i.salt)return;
+  isq=i.salt;const e=$('#s_q');if(e)e.value=isq;const s=$('#s_res');if(s)s.innerHTML=saleRes();
+  toast('Showing every item with the same salt / formula.');
+}
+function saleScanned(v){
+  const i=byNameOrBarcode(v);
+  if(i)addToCart(i.id);
+  else{isq=v;render();toast('No item with this barcode: '+v)}
+}
+function normLine(l){
+  if(l.u===undefined){const i=D.items.find(x=>x.id==l.itemId);l.upp=l.upp||upk(i);l.u='p';l.cnt=l.qty}
+}
+const nq=v=>Math.round((+v||0)*10000)/10000;
+let TK=[];
+let cph='',rcv='',spC='',spCd='',spW='';
+
+try{load()}catch(e){D={};fix();showErr(e)}
+try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
+if(!D.users.length){toggleAuth('register');amsg('First time: create your Admin account.',true)}
+(function(){let t=null;try{t=localStorage.getItem('pharmacy_theme')}catch(e){}applyTheme(t||(window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'))})();
+</script>
+<style>@media print{body.ps header,body.ps #toast{display:none!important}body.ps #v>*:not(#stmtWrap){display:none!important}}</style>
+<script type="text/plain" class="appjs">
+/* ===== v3 additions ===== */
+function once(f,rel){let l=0;return function(){if(l)return;l=1;setTimeout(()=>l=0,800);const r=f.apply(this,arguments);if(rel&&r===false)l=0;return r}}
+let stp=0,_t;
+/* auto-backup (IndexedDB) */
+function idbOpen(cb){const r=indexedDB.open('pos_auto',1);r.onupgradeneeded=()=>r.result.createObjectStore('k');r.onsuccess=()=>cb(r.result)}
+function idbPut(s){try{idbOpen(d=>{try{d.transaction('k','readwrite').objectStore('k').put(s,'last')}catch(e){}})}catch(e){}}
+function idbGet(cb){try{idbOpen(d=>{const g=d.transaction('k').objectStore('k').get('last');g.onsuccess=()=>cb(g.result)})}catch(e){}}
+const _save=save;save=function(){_save();clearTimeout(_t);_t=setTimeout(()=>idbPut(JSON.stringify(D)),1500)};
+function autoRestore(){idbGet(s=>{if(!s)return toast('No auto-backup found.');if(!confirm('Restore data from the auto-backup? Current data will be replaced.'))return;D=JSON.parse(s);fix();save();toast('Restore complete.');render()})}
+backup=function(){D.lastBackup=today();_save();const t=JSON.stringify(D),nm='pharmacy-backup-'+today()+'.json';let f=null;try{f=new File([t],nm,{type:'application/json'})}catch(e){}
+ if(f&&navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({files:[f],title:'Pharmacy Backup'}).catch(()=>{});
+ else{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'application/json'}));a.download=nm;a.click()}};
+const _data=data;data=function(){return _data()+`<div class="card"><b>Auto-Backup</b><div class="empty">A copy of your data is saved on this device automatically after every change. Before changing phones, always use "Download Backup" (it can be shared via WhatsApp).</div><button class="s" onclick="autoRestore()">Restore from Auto-Backup</button></div>`};
+if(!D.users.length)idbGet(s=>{if(s&&confirm('An earlier auto-backup was found. Restore the data?')){D=JSON.parse(s);fix();save();toggleAuth('login');amsg('Data restored. Please log in.',true)}});
+/* duplicate protection */
+const _si=saveItem;saveItem=once(function(){const nm=val('f_name').trim().toLowerCase();if(nm&&D.items.some(i=>i.name.toLowerCase()===nm&&i.id!=cur))return toast('This item already exists.');return _si()});
+const _ap=addParty;addParty=once(function(){const nm=val('p_name').trim().toLowerCase(),ty=val('p_type');if(nm&&D.parties.some(p=>p.type===ty&&p.name.toLowerCase()===nm))return toast('This name already exists.');return _ap()});
+['addExp','processReturn','addUser'].forEach(k=>{window[k]=once(window[k])});
+/* multi-item purchase */
+const PM=['Cash','Card','Online Wallet / Easypaisa','Credit (On Account)'];
+const _bill=bill;bill=function(t){return t==='purchase'?purchaseBill():_bill(t)};
+function purchaseBill(){
+ if(last&&last.type==='purchase')return inv(last)+printBtns(last)+`<button class="s noprint" onclick="last=null;render()">New Purchase</button>`;
+ const sub=S(cart,l=>l.qty*l.rate);
+ return `<h2>Purchase Invoice</h2><div class="card"><div class="row"><div><label>Vendor (supplier)</label><input id="b_vname" value="${esc(cn)}" oninput="cn=this.value" list="vl" autocomplete="off"><datalist id="vl">${D.parties.filter(p=>p.type=='vendor'&&p.id!=2).map(p=>`<option value="${esc(p.name)}">`).join('')}</datalist></div><div><label>Payment</label><select id="b_pay_method" onchange="pm=this.value;render()">${PM.map(o=>`<option ${o==pm?'selected':''}>${o}</option>`).join('')}</select></div></div>
+ <label>Item name / Barcode</label><input id="b_item" list="il" oninput="pickItem()" autocomplete="off"><datalist id="il">${D.items.map(i=>`<option value="${esc(i.name)}">`).join('')}</datalist><div id="b_info" class="empty"></div>
+ <div class="row"><div><label>Qty</label><input id="b_qty" type="number" step="any" value="1"></div><div><label>Cost price</label><input id="b_rate" type="number" step="any"></div></div>
+ <div class="row"><div><label>Sale price</label><input id="b_sprice" type="number" step="any"></div><div><label>Barcode (new item)</label><input id="b_bc"></div></div>
+ <div class="row"><div><label>Units per pack (new item)</label><input id="b_upp" type="number" step="any" value="1"></div><div><label>Salt / Formula (new item)</label><input id="b_salt"></div></div>
+ <div class="row"><div><label>Batch</label><input id="b_batch"></div><div><label>Expiry</label><input id="b_exp" type="date"></div></div>
+ <button class="s" onclick="addPLine()">+ Add to list</button></div>
+ <div class="card scroll"><b>Items in this purchase (${cart.length})</b><table><tr><th>Item</th><th class="r">Qty</th><th class="r">Cost</th><th class="r">Amount</th><th></th></tr>${cart.map((l,k)=>`<tr><td>${esc(l.name)}<br><small>${esc(l.batchNo||'')} ${l.expiry||''}</small></td><td class="r">${l.qty}</td><td class="r">${m(l.rate)}</td><td class="r">${m(l.qty*l.rate)}</td><td><button class="d" onclick="cart.splice(${k},1);render()">X</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">No items yet.</td></tr>'}</table>
+ <div class="row"><div><label>Discount (Rs)</label><input type="number" step="any" value="${bd||''}" oninput="bd=n(this.value)"></div><div><label>Tax %</label><input type="number" step="any" value="${bt||''}" oninput="bt=n(this.value)"></div></div>
+ ${pm.startsWith('Credit')?`<label>Amount paid now (optional)</label><input id="s_paid" type="number" step="any">`:''}
+ <p><b>Sub total: ${m(sub)}</b></p><button class="p" onclick="saveBill('purchase')">Save Purchase</button></div>
+ <h2 style="font-size:17px;margin-top:18px">Saved Purchases</h2>${billBox('pur','Search...')}`}
+function addPLine(){const typed=val('b_item').trim(),i=byNameOrBarcode(typed),qty=n(val('b_qty')),rate=n(val('b_rate'));
+ if(!typed||qty<=0||rate<=0)return toast('Item, quantity and cost are required.');
+ const bn=val('b_batch').trim(),ex=val('b_exp'),nm=i?i.name:typed,bc=val('b_bc').trim();
+ if(!i&&bc&&D.items.some(x=>x.barcode==bc))return toast('This barcode belongs to another item.');
+ const d=cart.find(l=>l.name.toLowerCase()===nm.toLowerCase()&&(l.batchNo||'')===bn&&(l.expiry||'')===ex);
+ if(d){d.qty=n(d.qty+qty);d.rate=rate;toast('Same item found - quantities added together.')}
+ else cart.push({itemId:i?i.id:null,name:nm,qty,rate,salePrice:n(val('b_sprice'))||(i?i.price:0),cost:rate,barcode:i?'':bc,upp:i?0:Math.max(1,Math.round(n(val('b_upp'))||1)),salt:i?'':val('b_salt').trim(),batch:'',batchNo:bn,expiry:ex});
+ render();setTimeout(()=>{const e=$('#b_item');e&&e.focus()},0)}
+const _sb=saveBill;saveBill=once(function(t){
+ const pd=n((($('#s_paid')||{}).value)),pmv=($('#b_pay_method')||{}).value||'';const r=_sb(t);
+ if(r&&t==='purchase'){cn='';if(pmv.startsWith('Credit')&&last.partyId>2){const p=Math.min(pd,last.total);if(p>0){D.pay.push({id:nid(),partyId:last.partyId,amt:p,date:today(),note:'Part payment bill #'+last.no});save()}}}
+ return r},true);
+/* ledger statement */
+function showStmt(v){stp=+v;render()}
+function stmtHtml(p){const e=[];D.bills.filter(b=>b.partyId==p.id&&String(b.payMethod||'').startsWith('Credit')).forEach(b=>e.push({d:b.date,id:b.id,t:'Bill #'+b.no,dr:b.total,cr:0}));
+ D.pay.filter(x=>x.partyId==p.id).forEach(x=>e.push({d:x.date,id:x.id,t:x.note||'Payment',dr:0,cr:x.amt}));
+ e.sort((a,b)=>a.d>b.d?1:a.d<b.d?-1:a.id-b.id);let r=0;
+ return `<div id="stmtWrap" class="card"><b>${esc(D.shop.name)} - Statement: ${esc(p.name)}</b> <small>(${today()})</small><div class="scroll"><table><tr><th>Date</th><th>Detail</th><th class="r">Credit</th><th class="r">Paid</th><th class="r">Balance</th></tr>${e.map(x=>{r=n(r+x.dr-x.cr);return `<tr><td>${x.d}</td><td>${esc(x.t)}</td><td class="r">${x.dr?m(x.dr):''}</td><td class="r">${x.cr?m(x.cr):''}</td><td class="r">${m(r)}</td></tr>`}).join('')||'<tr><td colspan="5" class="empty">No entries.</td></tr>'}</table></div><button class="p noprint" onclick="document.body.classList.add('ps');window.print();setTimeout(()=>document.body.classList.remove('ps'),800)">Print Statement</button></div>`}
+const _pa=parties;parties=function(){const o=D.parties.filter(p=>p.id>2).map(p=>`<option value="${p.id}" ${p.id==stp?'selected':''}>${esc(p.name)} (${p.type})</option>`).join('');
+ const p=D.parties.find(x=>x.id==stp);return _pa()+`<div class="card noprint"><b>Statement / Ledger</b><select onchange="showStmt(this.value)"><option value="0">-- select a party --</option>${o}</select></div>`+(p?stmtHtml(p):'')};
+</script>
+<script type="text/plain" class="appjs">
+/* ===== v8 additions: pack/loose, split payment, closing, orders, reports, audit, labels, security ===== */
+const PMS=['Cash','Card','Online Wallet / Easypaisa','Credit (On Account)','Split Payment'];
+
+/* ---------- small helpers ---------- */
+function upk(i){return Math.max(1,Math.round(+(i&&i.upp)||1))}
+function fq(q,i){
+  q=nq(q);const U=upk(i);if(U<=1)return String(q);
+  const w=Math.floor(q+0.0005),lo=Math.round((q-w)*U);
+  if(lo>=U)return String(w+1);if(!lo)return String(w);
+  return (w?w+' pk + ':'')+lo+' loose';
+}
+function sf(i){return fq(i.stock,i)}
+function imatch(i,k){return [i.name,i.barcode,i.salt,i.company,i.category].some(x=>x&&String(x).toLowerCase().includes(k))}
+function nowT(){const d=new Date();return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}
+function creditOf(b){
+  if(b.pays)return S(b.pays.filter(p=>/^Credit/.test(p.m)),p=>p.a);
+  return String(b.payMethod||'').startsWith('Credit')?b.total:0;
+}
+function pl(mt){mt=String(mt||'');return /^Credit/.test(mt)?'Credit':/^Online/.test(mt)?'Wallet':/^Card/.test(mt)?'Card':/^Cash/.test(mt)?'Cash':'Other'}
+function payBreak(b){return b.pays?b.pays.map(p=>({m:p.m,a:p.a})):[{m:b.payMethod||'Cash',a:b.total}]}
+function calcTax(lines,sub,disc,pct){
+  if(n(pct)>0)return n((sub-disc)*pct/100);
+  const f=sub>0?(sub-disc)/sub:1;
+  return n(S(lines,l=>l.qty*l.rate*(l.tr||0)/100)*f);
+}
+function writeOff(from,to){
+  return n(S(D.adj.filter(a=>a.qty<0&&(a.reason==='Damage'||a.reason==='Expired')&&a.date>=from&&a.date<=to),a=>{
+    const c=a.cost!=null?a.cost:((D.items.find(i=>i.name===a.item)||{}).cost||0);return -a.qty*c}));
+}
+function restoreStock(i,l,q,skip){
+  const d=l.bts;
+  if(d&&d.length){
+    let r=nq(q),sk=nq(skip||0);
+    for(const x of d){
+      let a=x.qty;
+      if(sk>0){const t=Math.min(a,sk);a=nq(a-t);sk=nq(sk-t)}
+      if(a<=0.0005)continue;
+      a=Math.min(a,r);if(a>0)addBatch(i,a,x.batch,x.expiry);
+      r=nq(r-a);if(r<=0.0005)break;
+    }
+    if(r>0.0005)addBatch(i,r,'','');
+  }else addBatch(i,q,String(l.batch||'').split(', ')[0].replace(/^-$/,''),'');
+}
+function newBillReset(){cn='';pm='Cash';cph='';rcv='';spC='';spCd='';spW=''}
+function retQty(){const it=byNameOrBarcode(val('ret_item')),q=+val('ret_qty')||0;return val('ret_unit')==='l'&&it?q/upk(it):q}
+function aud(a,d){
+  try{D.audit=D.audit||[];D.audit.push({t:ld()+' '+nowT(),u:currentUser||'-',a:a,d:String(d||'')});
+    if(D.audit.length>3000)D.audit.splice(0,D.audit.length-3000)}catch(e){}
+}
+function printHTML(html,pg){
+  $('#printArea').innerHTML=html;
+  let st=$('#pgStyle');if(!st){st=document.createElement('style');st.id='pgStyle';document.head.appendChild(st)}
+  st.textContent=pg;setTimeout(()=>window.print(),80);
+}
+
+/* ---------- simple dialog ---------- */
+function dlg(title,fields,okLabel,onok){
+  const o=document.createElement('div');
+  o.style.cssText='position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;padding:16px';
+  o.innerHTML=`<div class="card" style="width:100%;max-width:420px;margin:0;max-height:92vh;overflow:auto"><b>${esc(title)}</b>${fields.map(f=>`<label>${esc(f.label)}</label>${f.options?`<select id="dg_${f.id}">${f.options.map(x=>`<option ${x==f.value?'selected':''}>${esc(x)}</option>`).join('')}</select>`:`<input id="dg_${f.id}" type="${f.type||'text'}" ${f.type==='number'?'step="any"':''} value="${esc(f.value??'')}">`}`).join('')}<div class="row" style="margin-top:6px"><button class="p" id="dg_ok">${esc(okLabel||'OK')}</button><button class="s" id="dg_x">Cancel</button></div></div>`;
+  document.body.appendChild(o);
+  const close=()=>o.remove();
+  o.querySelector('#dg_x').onclick=close;
+  o.querySelector('#dg_ok').onclick=()=>{const v={};fields.forEach(f=>v[f.id]=o.querySelector('#dg_'+f.id).value);if(onok(v)!==false)close()};
+  const first=o.querySelector('input,select');if(first)first.focus();
+}
+
+/* ---------- camera barcode scan ---------- */
+async function scanBarcode(cb){
+  if(!('BarcodeDetector' in window)||!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)
+    return toast('Camera scanning needs Chrome (Android / desktop) over https. A USB or Bluetooth scanner works everywhere.');
+  let stream;
+  try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}})}
+  catch(e){return toast('Camera permission was denied.')}
+  const ov=document.createElement('div');
+  ov.style.cssText='position:fixed;inset:0;z-index:500;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px';
+  ov.innerHTML='<video playsinline muted autoplay style="max-width:100%;max-height:70vh;border-radius:12px"></video><div style="color:#fff;margin:10px 0">Point the camera at a barcode</div><button class="p" id="scx">Cancel</button>';
+  document.body.appendChild(ov);
+  const v=ov.querySelector('video');v.srcObject=stream;
+  let live=true;
+  const stop=()=>{live=false;stream.getTracks().forEach(t=>t.stop());ov.remove()};
+  ov.querySelector('#scx').onclick=stop;
+  let det;try{det=new BarcodeDetector()}catch(e){stop();return toast('Barcode detection is not available on this device.')}
+  try{await v.play()}catch(e){}
+  const tick=async()=>{
+    if(!live)return;
+    try{const r=await det.detect(v);if(r&&r.length){const code=r[0].rawValue;stop();cb(code);return}}catch(e){}
+    setTimeout(tick,250);
+  };
+  tick();
+}
+
+/* ---------- write-offs / stock adjustment (pack or loose) ---------- */
+window.adjStock=once(function(){
+  const i=byNameOrBarcode(val('a_item')),q=+val('a_qty')||0;
+  if(!i)return toast('Item not found.');
+  if(!q)return toast('Enter a quantity (+ or -).');
+  const lo=val('a_unit')==='l',pk=nq(lo?q/upk(i):q);
+  if(pk<0&&-pk>i.stock+0.0005)return toast('Only '+sf(i)+' in stock.');
+  const reason=val('a_reason');
+  if(pk<0)takeStock(i,-pk,reason==='Expired');else addBatch(i,pk,'','');
+  D.adj.push({id:nid(),date:today(),item:i.name,qty:pk,lu:lo?q:0,reason:reason,note:val('a_note'),user:currentUser,cost:i.cost});
+  aud('Stock adjusted',i.name+' '+(lo?q+' loose':q+' pack')+' | '+reason);
+  save();toast('Stock adjusted.');render();
+});
+
+/* ---------- audit-log wrappers ---------- */
+(function(){
+  function wrap(name,pre,post){
+    const o=window[name];if(typeof o!=='function')return;
+    window[name]=function(){
+      let c;try{c=pre&&pre.apply(this,arguments)}catch(e){}
+      const r=o.apply(this,arguments);
+      try{post&&post.call(this,r,c,arguments)}catch(e){}
+      return r;
+    };
+  }
+  wrap('saveBill',null,function(r){
+    if(r===true&&last){
+      aud('Bill created',(last.type==='sale'?'Sale':'Purchase')+' #'+last.no+' | '+partyName(last.partyId)+' | '+m(last.total)+' | '+last.payMethod);
+      if(last.type==='purchase'&&last.partyId>2){
+        last.lines.forEach(l=>{const it=D.items.find(x=>x.id==l.itemId);if(it)it.vendor=partyName(last.partyId)});save();
+      }
+    }
+  });
+  wrap('ebSave',()=>{const b=eb&&D.bills.find(x=>x.id==eb.id);return b?b.no:null},(r,c)=>{if(c!=null&&!eb)aud('Bill edited','#'+c)});
+  wrap('voidBill',id=>D.bills.find(x=>x.id==id),(r,c,a)=>{if(c&&!D.bills.some(x=>x.id==a[0]))aud('Bill cancelled',c.type+' #'+c.no+' | '+m(c.total))});
+  wrap('processReturn',()=>D.returns.length,(r,c)=>{if(D.returns.length>c){const x=D.returns[D.returns.length-1];aud('Return',x.type+' bill #'+x.billNo+' | '+x.item+' x '+x.qty+' | refund '+m(x.refund))}});
+  wrap('saveItem',()=>({len:D.items.length,cur:cur,snap:cur?JSON.stringify(D.items.find(i=>i.id==cur)):''}),(r,c)=>{
+    if(!c)return;
+    if(D.items.length>c.len)aud('Item added',D.items[D.items.length-1].name);
+    else if(c.cur){const it=D.items.find(i=>i.id==c.cur);if(it&&JSON.stringify(it)!==c.snap)aud('Item updated',it.name)}
+  });
+  wrap('delItem',id=>D.items.find(i=>i.id==id),(r,c,a)=>{if(c&&!D.items.some(i=>i.id==a[0]))aud('Item deleted',c.name)});
+  wrap('addExp',()=>D.exp.length,(r,c)=>{if(D.exp.length>c){const e=D.exp[D.exp.length-1];aud('Expense added',e.cat+' | '+(e.name||'')+' | '+m(e.amt))}});
+  wrap('delExp',id=>D.exp.find(e=>e.id==id),(r,c,a)=>{if(c&&!D.exp.some(e=>e.id==a[0]))aud('Expense deleted',c.cat+' | '+m(c.amt))});
+  wrap('addParty',()=>D.parties.length,(r,c)=>{if(D.parties.length>c)aud('Party added',D.parties[D.parties.length-1].name)});
+  wrap('delParty',id=>D.parties.find(p=>p.id==id),(r,c,a)=>{if(c&&!D.parties.some(p=>p.id==a[0]))aud('Party deleted',c.name)});
+  wrap('delUser',k=>D.users[k],(r,c,a)=>{if(c&&!D.users.includes(c))aud('User deleted',c.user)});
+  wrap('logout',()=>{aud('Logout','')},null);
+  wrap('restore',()=>D,(r,c)=>{if(c!==D){aud('Backup restored','');save()}});
+  wrap('backup',null,()=>aud('Backup downloaded',''));
+})();
+
+/* ---------- parties: edit + credit limit ---------- */
+function editParty(id){
+  const p=D.parties.find(x=>x.id==id);if(!p||p.id<=2)return;
+  dlg('Edit '+p.name,[{id:'name',label:'Name',value:p.name},{id:'phone',label:'Phone',value:p.phone||''},{id:'limit',label:'Credit limit (Rs, empty = no limit)',type:'number',value:p.limit||''}],'Save',v=>{
+    const nm=v.name.trim();if(!nm){toast('Enter a name.');return false}
+    if(D.parties.some(x=>x.id!=id&&x.type===p.type&&x.name.toLowerCase()===nm.toLowerCase())){toast('This name already exists.');return false}
+    p.name=nm;p.phone=v.phone.trim();p.limit=Math.max(0,n(v.limit));aud('Party edited',nm);save();render();
+  });
+}
+const _acr=applyCustRates;
+applyCustRates=function(){
+  _acr();
+  const nm=cn.trim().toLowerCase(),p=nm&&D.parties.find(x=>x.type==='customer'&&x.id>2&&x.name.toLowerCase()===nm);
+  if(p&&p.phone&&!cph){cph=p.phone;const e=$('#b_cphone');if(e)e.value=cph}
+};
+const _bf=billFor;
+billFor=function(id){_bf(id);const p=D.parties.find(x=>x.id==id);if(p){cph=p.phone||'';render()}};
+
+/* ---------- payments: receive / pay, receipts, edit, delete ---------- */
+function payParty(id){
+  const p=D.parties.find(x=>x.id==id);if(!p)return;
+  const cust=p.type==='customer';
+  dlg((cust?'Receive payment from ':'Pay supplier ')+p.name,[
+    {id:'amt',label:'Amount',type:'number'},
+    {id:'m',label:'Method',options:['Cash','Card','Online Wallet / Easypaisa','Bank Transfer']},
+    {id:'note',label:'Note (optional)'}],cust?'Receive':'Pay',v=>{
+    const a=n(v.amt);if(a<=0){toast('Enter an amount.');return false}
+    if(a>balance(p)+0.005&&!confirm('This is more than the balance due ('+m(balance(p))+'). Record it anyway?'))return false;
+    const pay={id:nid(),partyId:id,amt:a,date:today(),time:nowT(),m:v.m,note:v.note.trim(),man:true,user:currentUser};
+    D.pay.push(pay);aud(cust?'Payment received':'Payment made',p.name+' | '+m(a)+' | '+v.m);
+    save();toast('Payment recorded.');render();
+    if(confirm('Print a receipt for this payment?'))printReceipt(pay.id);
+  });
+}
+function receiptHtml(p){
+  const pt=D.parties.find(x=>x.id==p.partyId)||{},s=D.shop,cust=pt.type==='customer',dz=s.design||'classic';
+  return `<div class="card inv dz-${dz} ${fsC()}"><div class="ih"><div><b>${esc(s.name)}</b><br><small>${esc(s.addr||'')} ${esc(s.phone||'')}</small><br><small>Powered by ADI BUTT</small></div><div class="ir">${cust?'Payment Receipt':'Payment Voucher'}<br><small>#${p.id}</small></div></div>
+  <div class="meta"><div><small>Date:</small> <b>${p.date}</b>${p.time?' <small>'+p.time+'</small>':''}<br><small>${cust?'Received from':'Paid to'}:</small> <b>${esc(pt.name||'-')}</b><br><small>Method:</small> <b>${esc(p.m||'Cash')}</b>${p.note&&!/^(Part payment|Return)/.test(p.note)?'<br><small>Note:</small> '+esc(p.note):''}<br><small>By:</small> <b>${esc(p.user||'-')}</b></div><div></div></div>
+  <div class="sum"><div class="g"><span>Amount</span><span>${m(p.amt)}</span></div><div><span>Balance remaining</span><span>${m(balance(pt))}</span></div></div>
+  <div class="ft">${esc(s.footer||'Thank you!')}</div></div>`;
+}
+function printReceipt(id){const p=D.pay.find(x=>x.id==id);if(!p)return toast('Payment not found.');printHTML(receiptHtml(p),'@page{size:A5;margin:10mm}')}
+function editPay(id){
+  const p=D.pay.find(x=>x.id==id);if(!p||!isAdmin())return;
+  dlg('Edit payment',[{id:'amt',label:'Amount',type:'number',value:p.amt},{id:'m',label:'Method',options:['Cash','Card','Online Wallet / Easypaisa','Bank Transfer'],value:p.m||'Cash'},{id:'note',label:'Note',value:p.note||''}],'Save',v=>{
+    const a=n(v.amt);if(a<=0){toast('Enter an amount.');return false}
+    aud('Payment edited',partyName(p.partyId)+' | '+m(p.amt)+' -> '+m(a));
+    p.amt=a;p.m=v.m;p.note=v.note.trim();p.man=true;save();render();
+  });
+}
+function delPay(id){
+  const p=D.pay.find(x=>x.id==id);if(!p||!isAdmin())return;
+  if(!confirm('Delete this payment of '+m(p.amt)+'?'))return;
+  aud('Payment deleted',partyName(p.partyId)+' | '+m(p.amt));
+  D.pay=D.pay.filter(x=>x.id!=id);save();render();
+}
+function stmtHtml(p){
+  const e=[];
+  D.bills.filter(b=>b.partyId==p.id&&creditOf(b)>0).forEach(b=>e.push({d:b.date,id:b.id,t:'Bill #'+b.no,dr:creditOf(b),cr:0}));
+  D.pay.filter(x=>x.partyId==p.id).forEach(x=>e.push({d:x.date,id:x.id,t:(x.note||'Payment')+(x.m&&x.m!=='Adjust'&&x.m!=='Cash'?' ('+x.m+')':''),dr:0,cr:x.amt,pid:x.id,man:!!(x.man||!x.note)}));
+  e.sort((a,b)=>a.d>b.d?1:a.d<b.d?-1:a.id-b.id);let r=0;
+  return `<div id="stmtWrap" class="card"><b>${esc(D.shop.name)} - Statement: ${esc(p.name)}</b> <small>(${today()})</small><div class="scroll"><table><tr><th>Date</th><th>Detail</th><th class="r">Credit</th><th class="r">Paid</th><th class="r">Balance</th><th class="noprint"></th></tr>${e.map(x=>{r=n(r+x.dr-x.cr);return `<tr><td>${x.d}</td><td>${esc(x.t)}</td><td class="r">${x.dr?m(x.dr):''}</td><td class="r">${x.cr?m(x.cr):''}</td><td class="r">${m(r)}</td><td class="noprint">${x.pid?`<button class="s sm" onclick="printReceipt(${x.pid})">Receipt</button>${x.man&&isAdmin()?` <button class="s sm" onclick="editPay(${x.pid})">Edit</button> <button class="d" onclick="delPay(${x.pid})">Delete</button>`:''}`:''}</td></tr>`}).join('')||'<tr><td colspan="6" class="empty">No entries.</td></tr>'}</table></div><button class="p noprint" onclick="document.body.classList.add('ps');window.print();setTimeout(()=>document.body.classList.remove('ps'),800)">Print Statement</button></div>`;
+}
+
+/* ---------- expenses: edit ---------- */
+function editExp(id){
+  const e=D.exp.find(x=>x.id==id);if(!e)return;
+  dlg('Edit expense',[{id:'cat',label:'Category',options:CATS.includes(e.cat)?CATS:[...CATS,e.cat],value:e.cat},{id:'amt',label:'Amount',type:'number',value:e.amt},{id:'date',label:'Date',type:'date',value:e.date},{id:'name',label:'Name (person paid)',value:e.name||e.note||''}],'Save',v=>{
+    const a=n(v.amt);if(a<=0){toast('Enter an amount.');return false}
+    e.cat=v.cat;e.amt=a;e.date=v.date||today();e.name=v.name.trim();
+    aud('Expense edited',e.cat+' | '+m(a));save();render();
+  });
+}
+
+/* ---------- cash closing ---------- */
+const pm0=x=>x.m||(/^Return/.test(x.note||'')?'Adjust':'Cash');
+function cashBook(td){
+  const ptype=id=>(D.parties.find(p=>p.id==id)||{}).type;
+  const sales=D.bills.filter(b=>b.date==td&&b.type==='sale'),purch=D.bills.filter(b=>b.date==td&&b.type==='purchase'),by={Cash:0,Card:0,Wallet:0,Credit:0};
+  sales.forEach(b=>payBreak(b).forEach(p=>{const k=pl(p.m);by[k]=(by[k]||0)+p.a}));
+  const cp=D.pay.filter(x=>x.date==td&&pm0(x)==='Cash');
+  const recv=S(cp.filter(x=>ptype(x.partyId)==='customer'),x=>x.amt),paidV=S(cp.filter(x=>ptype(x.partyId)==='vendor'),x=>x.amt);
+  const cashPart=b=>S(payBreak(b).filter(p=>pl(p.m)==='Cash'),p=>p.a);
+  const purCash=S(purch,cashPart);
+  const exp=S(D.exp.filter(e=>e.date==td),e=>e.amt);
+  const rets=D.returns.filter(r=>r.date==td);
+  const refunds=S(rets.filter(r=>(r.type||'sale')==='sale'),r=>{const b=D.bills.find(x=>x.type==='sale'&&x.no==r.billNo);return b&&b.total?n(r.refund*cashPart(b)/b.total):0});
+  const prefund=S(rets.filter(r=>r.type==='purchase'),r=>{const b=D.bills.find(x=>x.type==='purchase'&&x.no==r.billNo);return b&&b.total?n(r.refund*cashPart(b)/b.total):0});
+  const prev=[...D.closings].filter(x=>x.date<td).sort((a,b)=>a.date<b.date?1:-1)[0];
+  const open=D.cash[td]&&D.cash[td].open!=null?n(D.cash[td].open):(prev?prev.counted:0);
+  const inn=n(by.Cash+recv+prefund),out=n(purCash+paidV+exp+refunds);
+  return {by,recv,prefund,purCash,paidV,exp,refunds,open,inn,out,expected:n(open+inn-out)};
+}
+function setOpen(v){const td=today();D.cash[td]=D.cash[td]||{};D.cash[td].open=n(v);save();render()}
+function ccDiff(){
+  const e=$('#cc_cnt'),o=$('#cc_diff');if(!e||!o)return;
+  if(e.value===''){o.textContent='';return}
+  const d=n(n(e.value)-(+e.dataset.exp));
+  o.innerHTML=d===0?'<span class="pos">Matches exactly</span>':d>0?'<span class="pos">Over by '+m(d)+'</span>':'<span class="neg">Short by '+m(-d)+'</span>';
+}
+function closeDay(){
+  const e=$('#cc_cnt');if(!e||e.value==='')return toast('Enter the cash you counted in the drawer first.');
+  const td=today(),c=cashBook(td),cnt=n(e.value);
+  D.closings=D.closings.filter(x=>x.date!==td);
+  D.closings.push({id:nid(),date:td,time:nowT(),open:c.open,expected:c.expected,counted:cnt,diff:n(cnt-c.expected),card:c.by.Card||0,wallet:c.by.Wallet||0,credit:c.by.Credit||0,user:currentUser});
+  aud('Day closed','expected '+m(c.expected)+' | counted '+m(cnt));
+  save();toast('Day closed. Tomorrow\'s opening cash will be '+m(cnt)+'.');render();
+}
+function closingCard(){
+  const td=today(),c=cashBook(td),done=D.closings.find(x=>x.date===td);
+  const row=(a,v,cls)=>`<tr><td>${a}</td><td class="r ${cls||''}">${m(v)}</td></tr>`;
+  const hist=[...D.closings].sort((a,b)=>a.date<b.date?1:-1).slice(0,7);
+  return `<div class="card"><b>Today's Cash Closing</b>
+  <label>Opening cash in drawer</label><input type="number" step="any" value="${c.open||''}" placeholder="0" onchange="setOpen(this.value)">
+  <div class="scroll"><table>
+  ${row('+ Cash sales',c.by.Cash)}${row('+ Cash received from customers',c.recv)}${c.prefund?row('+ Cash refunds from suppliers',c.prefund):''}
+  ${row('- Cash purchases',-c.purCash,'neg')}${row('- Payments to suppliers (cash)',-c.paidV,'neg')}${row('- Expenses',-c.exp,'neg')}${row('- Cash refunds to customers',-c.refunds,'neg')}
+  <tr><td><b>Expected cash in drawer</b></td><td class="r"><b>${m(c.expected)}</b></td></tr></table></div>
+  <label>Cash actually counted</label><input id="cc_cnt" type="number" step="any" data-exp="${c.expected}" value="${done?done.counted:''}" oninput="ccDiff()"><div id="cc_diff" style="margin-top:4px"></div>
+  <div class="empty">Not in drawer today: Card ${m(c.by.Card)} | Wallet ${m(c.by.Wallet)} | On account (credit) ${m(c.by.Credit)}</div>
+  <button class="p" onclick="closeDay()">${done?'Update Closing':'Close Day'}</button>
+  ${hist.length?`<div class="scroll" style="margin-top:10px"><b>Recent closings</b><table><tr><th>Date</th><th class="r">Expected</th><th class="r">Counted</th><th class="r">Difference</th><th>By</th></tr>${hist.map(h=>`<tr><td>${h.date}</td><td class="r">${m(h.expected)}</td><td class="r">${m(h.counted)}</td><td class="r ${h.diff<0?'neg':h.diff>0?'pos':''}">${m(h.diff)}</td><td>${esc(h.user||'')}</td></tr>`).join('')}</table></div>`:''}</div>`;
+}
+const _h8=home;
+home=function(){return _h8()+closingCard()};
+
+/* ---------- barcode labels ---------- */
+function labelsCard(){
+  return `<div class="card noprint"><b>Barcode Labels</b><div class="empty">Prints Code 128 barcodes that any scanner can read.</div>
+  <label>Item</label><input id="lb_item" list="lbl" autocomplete="off"><datalist id="lbl">${D.items.map(i=>`<option value="${esc(i.name)}">`).join('')}</datalist>
+  <div class="row"><div><label>Copies</label><input id="lb_n" type="number" value="1" min="1"></div><div><label>Label size</label><select id="lb_sz"><option value="38x25">38 x 25 mm roll</option><option value="50x30">50 x 30 mm roll</option><option value="a4">A4 sheet (3 columns)</option></select></div></div>
+  <button class="p" onclick="printLabels(false)">Print Labels</button> <button class="s" onclick="printLabels(true)">One label for every item</button> <button class="s" onclick="autoBarcodes()">Generate barcodes for items without one</button></div>`;
+}
+const _items8=items;
+items=function(){return _items8()+labelsCard()};
+function labelHtml(i){
+  return `<div class="lbl"><div class="ln">${esc(i.name)}</div>${bcSvg(i.barcode,44)}<div class="lc">${esc(i.barcode)}</div><div class="lp">Rs ${m(i.price)}${i.expiry?' &nbsp; Exp '+i.expiry:''}</div></div>`;
+}
+function printLabels(all){
+  const sz=val('lb_sz');let list=[];
+  if(all){D.items.filter(i=>i.barcode).forEach(i=>list.push(i));if(!list.length)return toast('No item has a barcode yet.')}
+  else{
+    const i=byNameOrBarcode(val('lb_item'));
+    if(!i)return toast('Choose an item first.');
+    if(!i.barcode)return toast('This item has no barcode. Use "Generate barcodes" first.');
+    const c=Math.max(1,Math.min(500,Math.round(n(val('lb_n'))||1)));for(let k=0;k<c;k++)list.push(i);
+  }
+  const w=sz.split('x'),a4=sz==='a4';
+  printHTML(`<div class="${a4?'lblA4':'lblS'}" style="${a4?'':'--lw:'+w[0]+'mm;--lh:'+w[1]+'mm'}">${list.map(labelHtml).join('')}</div>`,a4?'@page{size:A4;margin:8mm}':`@page{size:${w[0]}mm ${w[1]}mm;margin:0}`);
+}
+function autoBarcodes(){
+  const l=D.items.filter(i=>!i.barcode);
+  if(!l.length)return toast('Every item already has a barcode.');
+  if(!confirm(l.length+' items have no barcode. Generate an internal barcode for each?'))return;
+  const used=new Set(D.items.map(i=>String(i.barcode||'')));
+  l.forEach(i=>{let c=2*1e11+i.id,s=String(c);while(used.has(s)){c++;s=String(c)}used.add(s);i.barcode=s});
+  aud('Barcodes generated',l.length+' items');save();toast('Barcodes generated.');render();
+}
+
+/* ---------- order list (low stock + manual -> supplier) ---------- */
+let poq={},pov='*',pon={},pom=[],poc=[],poall=false,posq='',pocn=1;
+const poSug=i=>Math.max(1,Math.ceil((i.reorder||0)*2-i.stock));
+const poVendors=()=>D.parties.filter(p=>p.type==='vendor'&&p.id>2).sort((a,b)=>a.name.localeCompare(b.name));
+const poSupObj=()=>pov==='*'?null:poVendors().find(p=>p.name===pov)||null;
+const poLow=i=>i.stock<=i.reorder;
+const poList=()=>{
+  const low=D.items.filter(i=>poLow(i)&&!pom.includes(i.id)&&(pov==='*'||poall||!i.vendor||i.vendor===pov));
+  const man=pom.map(id=>D.items.find(i=>i.id===id)).filter(Boolean);
+  return [...low,...man,...poc].sort((a,b)=>a.name.localeCompare(b.name));
+};
+const poQty=i=>poq[i.id]!=null?poq[i.id]:(i.custom?1:(poLow(i)?poSug(i):1));
+const poSel=i=>pon[i.id]!==false;
+const poLines=()=>poList().filter(i=>poSel(i)&&poQty(i)>0).map(i=>({i:i,q:poQty(i)}));
+function poTot(){const e=$('#po_tot');if(e)e.textContent=m(S(poLines(),x=>x.q*x.i.cost))}
+function poSupOpts(){
+  const k=posq.toLowerCase().trim(),l=poVendors().filter(p=>!k||(p.name+' '+(p.phone||'')).toLowerCase().includes(k));
+  return `<option value="*">-- No supplier / All suppliers --</option>`+l.map(p=>`<option value="${esc(p.name)}" ${p.name===pov?'selected':''}>${esc(p.name)}${p.phone?' - '+esc(p.phone):''}</option>`).join('');
+}
+function poSupChange(v){pov=v;render()}
+function poSupSearch(v){posq=v;const e=$('#po_sup');if(e)e.innerHTML=poSupOpts()}
+function poNewSup(){
+  dlg('New supplier',[{id:'name',label:'Supplier name'},{id:'phone',label:'Phone / WhatsApp number'}],'Add',v=>{
+    const nm=v.name.trim();if(!nm){toast('Enter a name.');return false}
+    let p=D.parties.find(x=>x.type==='vendor'&&x.name.toLowerCase()===nm.toLowerCase());
+    if(p){if(v.phone.trim())p.phone=v.phone.trim()}
+    else{p={id:nid(),name:nm,type:'vendor',phone:v.phone.trim()};D.parties.push(p)}
+    pov=p.name;aud('Supplier added (order list)',p.name);save();render();
+  });
+}
+function poFind(v){
+  const k=String(v).trim().toLowerCase(),e=$('#po_res');if(!e)return;
+  if(!k){e.innerHTML='';return}
+  const r=D.items.filter(i=>imatch(i,k)).slice(0,8);
+  e.innerHTML=r.length?r.map(i=>`<button class="pick" onclick="poAddItem(${i.id})"><span><b>${esc(i.name)}</b>${i.salt?`<br><small>${esc(i.salt)}${i.company?' | '+esc(i.company):''}</small>`:''}</span><span style="text-align:right">Cost ${m(i.cost)}<br><small class="${poLow(i)?'low':''}">Stock: ${sf(i)}</small></span></button>`).join(''):'<div class="empty">No item found. Use "Add new item by name" below.</div>';
+}
+function poFindEnter(v){
+  const i=byNameOrBarcode(v);if(i)return poAddItem(i.id);
+  const r=D.items.filter(x=>imatch(x,String(v).trim().toLowerCase()));
+  if(r.length===1)poAddItem(r[0].id);else toast(r.length?'Tap the item from the list.':'Item not found.');
+}
+function poAddItem(id){
+  const i=D.items.find(x=>x.id==id);if(!i)return;
+  if(!pom.includes(id)&&!poList().some(x=>x.id===id))pom.push(id);
+  pon[id]=true;toast(poList().some(x=>x.id===id)?i.name+' is in the order list.':i.name+' added.');render();
+  setTimeout(()=>{const e=$('#po_q');e&&e.focus()},0);
+}
+function poAddCustom(){
+  const nm=val('po_cn').trim(),q=n(val('po_cq'))||1,c=n(val('po_cc'));
+  if(!nm)return toast('Enter the item name.');
+  const id='c'+(pocn++);
+  poc.push({id,name:nm,cost:c,price:0,unit:'',stock:0,reorder:0,vendor:pov==='*'?'':pov,custom:true});
+  poq[id]=q;pon[id]=true;render();
+}
+function poRemove(id){
+  pom=pom.filter(x=>x!==id);poc=poc.filter(x=>x.id!==id);delete poq[id];delete pon[id];render();
+}
+function poClear(){if(!confirm('Remove all manually added items and reset quantities?'))return;pom=[];poc=[];poq={};pon={};render()}
+function orders(){
+  const l=poList(),sp=poSupObj();
+  return `<h2>Order List</h2><div class="card">
+  <b>Supplier</b>
+  <div class="row"><input id="po_supq" placeholder="Search supplier by name or number..." value="${esc(posq)}" oninput="poSupSearch(this.value)"><button class="s" style="flex:none;margin:0" onclick="poNewSup()">+ New</button></div>
+  <select id="po_sup" onchange="poSupChange(this.value)" style="margin-top:6px">${poSupOpts()}</select>
+  ${sp?`<div class="empty">Selected: <b>${esc(sp.name)}</b>${sp.phone?' | Phone: <b>'+esc(sp.phone)+'</b>':' | <span class="low">no phone saved (add it in Parties &gt; Edit)</span>'}</div>
+  <label style="display:flex;gap:8px;align-items:center;margin-top:6px"><input type="checkbox" style="width:auto" ${poall?'checked':''} onchange="poall=this.checked;render()"> Show low-stock items of all suppliers</label>`:'<div class="empty">Choose a supplier to put his name and number on the order and to send it on WhatsApp.</div>'}
+  </div>
+  <div class="card"><b>Add items manually</b>
+  <label>Search any item (name, barcode, salt, company)</label>
+  <div class="row"><input id="po_q" placeholder="Type item name or scan barcode" autocomplete="off" oninput="poFind(this.value)" onkeydown="if(event.key==='Enter'){event.preventDefault();poFindEnter(this.value)}"><button class="s" style="flex:none;margin:0" onclick="scanBarcode(v=>{poAddItem((byNameOrBarcode(v)||{}).id)})">Scan</button></div>
+  <div id="po_res"></div>
+  <label>Or add a new item by name (not in your items list)</label>
+  <div class="row"><input id="po_cn" placeholder="Item name"><input id="po_cq" type="number" step="any" placeholder="Qty" style="max-width:90px"><input id="po_cc" type="number" step="any" placeholder="Cost (optional)" style="max-width:120px"></div>
+  <button class="s" onclick="poAddCustom()">+ Add to order</button></div>
+  <div class="card"><b>Order items (${l.length})</b> <small>- low-stock items are added automatically</small>
+  <div class="scroll"><table><tr><th></th><th>Item</th><th class="r">Stock</th><th class="r">Re-order</th><th class="r">Order qty</th><th class="r">Cost</th><th></th></tr>
+  ${l.map(i=>`<tr><td><input type="checkbox" style="width:auto" ${poSel(i)?'checked':''} onchange="pon['${i.id}']=this.checked;poTot()"></td><td>${esc(i.name)}${i.custom?' <small>(new)</small>':''}${i.vendor&&!i.custom?'<br><small>Last: '+esc(i.vendor)+'</small>':''}</td><td class="r ${poLow(i)&&!i.custom?'low':''}">${i.custom?'-':sf(i)}</td><td class="r">${i.custom?'-':i.reorder}</td><td class="r"><input class="qin" type="number" min="0" step="any" value="${poQty(i)}" oninput="poq['${i.id}']=+this.value||0;poTot()"></td><td class="r">${i.custom?`<input class="qin" type="number" min="0" step="any" value="${i.cost||''}" oninput="poc.find(x=>x.id==='${i.id}').cost=n(this.value);poTot()">`:m(i.cost)}</td><td>${(i.custom||pom.includes(i.id))?`<button class="d" onclick="poRemove('${i.id}')">&#10005;</button>`:''}</td></tr>`).join('')||'<tr><td colspan="7" class="empty">Nothing to order. Search an item above to add it.</td></tr>'}</table></div>
+  <div class="tot"><span>Estimated cost</span><span id="po_tot">${m(S(poLines(),x=>x.q*x.i.cost))}</span></div>
+  <button class="p" onclick="poPrint()">Print Order</button> <button class="s" onclick="poWA()">WhatsApp</button> <button class="s" onclick="poCSV()">Download CSV</button> <button class="s" onclick="poToPurchase()">Start Purchase Bill</button> ${(pom.length||poc.length)?'<button class="s" onclick="poClear()">Clear manual items</button>':''}</div>`;
+}
+function poText(){
+  const ls=poLines(),sp=poSupObj();let t=`*Order - ${D.shop.name}*\n${today()}\n`;
+  if(pov!=='*')t+='Supplier: '+pov+(sp&&sp.phone?' ('+sp.phone+')':'')+'\n';
+  t+='\n';ls.forEach((x,k)=>{t+=`${k+1}. ${x.i.name} - ${x.q}${x.i.unit?' '+x.i.unit:''}\n`});
+  if(D.shop.phone)t+=`\n${D.shop.name}: ${D.shop.phone}`;
+  return t;
+}
+function poWA(){
+  if(!poLines().length)return toast('Nothing selected.');
+  const sp=poSupObj(),num=sp&&sp.phone?waNumber(sp.phone):'';
+  if(sp&&!num)toast('This supplier has no phone number saved. Choose the contact in WhatsApp.');
+  window.open('https://wa.me/'+num+'?text='+encodeURIComponent(poText()),'_blank');
+}
+function poCSV(){
+  const ls=poLines(),sp=poSupObj();if(!ls.length)return toast('Nothing selected.');
+  dlCSV('order-list-'+today()+'.csv',[['Item','Supplier','Supplier phone','Stock','Order qty','Unit','Cost','Estimated']].concat(ls.map(x=>[x.i.name,pov==='*'?(x.i.vendor||''):pov,sp?sp.phone||'':'',x.i.custom?'':sf(x.i),x.q,x.i.unit||'',x.i.cost,n(x.q*x.i.cost)])));
+}
+function poPrint(){
+  const ls=poLines(),sp=poSupObj();if(!ls.length)return toast('Nothing selected.');
+  const t=S(ls,x=>x.q*x.i.cost);
+  printHTML(`<div class="card inv dz-${D.shop.design||'classic'}"><div class="ih"><div><b>${esc(D.shop.name)}</b><br><small>${esc(D.shop.addr||'')} ${esc(D.shop.phone||'')}</small></div><div class="ir">Purchase Order<br><small>${today()}</small></div></div>
+  <div class="meta"><div>${pov!=='*'?'<small>Supplier:</small> <b>'+esc(pov)+'</b>'+(sp&&sp.phone?'<br><small>Phone:</small> <b>'+esc(sp.phone)+'</b>':''):''}</div><div></div></div>
+  <div class="scroll"><table class="it"><tr><th>#</th><th>Item</th><th class="r">Qty</th><th class="r">Cost</th><th class="r">Estimated</th></tr>${ls.map((x,k)=>`<tr><td>${k+1}</td><td>${esc(x.i.name)}</td><td class="r">${x.q}${x.i.unit?' '+esc(x.i.unit):''}</td><td class="r">${x.i.cost?m(x.i.cost):'-'}</td><td class="r">${x.i.cost?m(x.q*x.i.cost):'-'}</td></tr>`).join('')}</table></div>
+  <div class="sum"><div class="g"><span>Estimated total</span><span>${m(t)}</span></div></div></div>`,'@page{size:A4;margin:10mm}');
+}
+function poToPurchase(){
+  const ls=poLines();if(!ls.length)return toast('Nothing selected.');
+  const v=pov!=='*'?pov:'';go('purchase');cn=v;
+  cart=ls.map(x=>({itemId:x.i.custom?null:x.i.id,name:x.i.name,qty:x.q,rate:x.i.cost||0,salePrice:x.i.price||0,cost:x.i.cost||0,barcode:'',batch:'',batchNo:'',expiry:''}));
+  render();toast('Order loaded as a purchase draft. Check the costs; batch and expiry can be added when the stock arrives.');
+}
+
+/* ---------- reports, CSV exports, audit log ---------- */
+let aq='';
+function csvEsc(v){v=String(v==null?'':v);return /[",\n\r]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v}
+function dlCSV(name,rows){
+  const t='﻿'+rows.map(r=>r.map(csvEsc).join(',')).join('\r\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/csv'}));a.download=name;a.click();
+}
+const inRange=d=>d>=rf&&d<=rt;
+function billsCSV(){
+  const rows=[['Date','Time','Type','No','Party','Phone','Payment','Subtotal','Discount','Tax','Total','User']];
+  D.bills.filter(b=>inRange(b.date)).forEach(b=>rows.push([b.date,b.time||'',b.type,b.no,partyName(b.partyId),billPhone(b),b.payMethod||'',n(b.sub??b.total),n(b.disc||0),n(b.tax||0),n(b.total),b.user||'']));
+  dlCSV('bills-'+rf+'-to-'+rt+'.csv',rows);
+}
+function billLinesCSV(){
+  const rows=[['Date','Type','No','Party','Item','Batch','Qty','Rate','Amount','Cost per pack']];
+  D.bills.filter(b=>inRange(b.date)).forEach(b=>b.lines.forEach(l=>{const q=lineQ(l);rows.push([b.date,b.type,b.no,partyName(b.partyId),l.name,l.batch||'',q.q,q.r.replace(/,/g,''),n(l.qty*l.rate),l.cost||0])}));
+  dlCSV('bill-items-'+rf+'-to-'+rt+'.csv',rows);
+}
+function itemsCSV(){
+  const rows=[['Name','Barcode','Salt','Company','Category','Unit','Units per pack','Rack','Batch','Expiry','Cost','Price','Stock (packs)','Stock','Re-order','Tax %','Last supplier']];
+  D.items.forEach(i=>rows.push([i.name,i.barcode||'',i.salt||'',i.company||'',i.category||'',i.unit||'',upk(i),i.rack||'',i.batch||'',i.expiry||'',i.cost,i.price,i.stock,sf(i),i.reorder,i.taxRate||0,i.vendor||'']));
+  dlCSV('items-'+today()+'.csv',rows);
+}
+function partiesCSV(){
+  const rows=[['Name','Type','Phone','Credit limit','Balance due']];
+  D.parties.forEach(p=>rows.push([p.name,p.type,p.phone||'',p.limit||0,balance(p)]));
+  dlCSV('parties-'+today()+'.csv',rows);
+}
+function expensesCSV(){
+  const rows=[['Date','Category','Name','Amount']];
+  D.exp.filter(e=>inRange(e.date)).forEach(e=>rows.push([e.date,e.cat,e.name||e.note||'',e.amt]));
+  dlCSV('expenses-'+rf+'-to-'+rt+'.csv',rows);
+}
+function profitData(){
+  const map={};
+  D.bills.filter(b=>b.type==='sale'&&inRange(b.date)).forEach(b=>b.lines.forEach(l=>{const o=map[l.name]||(map[l.name]={name:l.name,qty:0,rev:0,cost:0});o.qty+=l.qty;o.rev+=l.qty*l.rate;o.cost+=l.qty*l.cost}));
+  return Object.values(map).sort((a,b)=>(b.rev-b.cost)-(a.rev-a.cost));
+}
+function profitCSV(){
+  const rows=[['Item','Qty sold (packs)','Sale','Cost','Profit','Margin %']];
+  profitData().forEach(o=>rows.push([o.name,nq(o.qty),n(o.rev),n(o.cost),n(o.rev-o.cost),o.rev?n((o.rev-o.cost)/o.rev*100):0]));
+  dlCSV('item-profit-'+rf+'-to-'+rt+'.csv',rows);
+}
+function cashierData(){
+  const by={};
+  D.bills.filter(b=>b.type==='sale'&&inRange(b.date)).forEach(b=>{
+    const u=b.user||'Admin',o=by[u]=by[u]||{u:u,n:0,tot:0,Cash:0,Card:0,Wallet:0,Credit:0,disc:0};
+    o.n++;o.tot+=b.total;o.disc+=b.disc||0;
+    payBreak(b).forEach(p=>{const k=pl(p.m);o[k]=(o[k]||0)+p.a});
+  });
+  return Object.values(by).sort((a,b)=>b.tot-a.tot);
+}
+function cashierCSV(){
+  const rows=[['Cashier','Bills','Sales','Cash','Card','Wallet','Credit','Discount']];
+  cashierData().forEach(o=>rows.push([o.u,o.n,n(o.tot),n(o.Cash),n(o.Card),n(o.Wallet),n(o.Credit),n(o.disc)]));
+  dlCSV('cashier-report-'+rf+'-to-'+rt+'.csv',rows);
+}
+function auditCSV(){
+  const rows=[['Time','User','Action','Details']];
+  (D.audit||[]).forEach(a=>rows.push([a.t,a.u,a.a,a.d]));
+  dlCSV('audit-log-'+today()+'.csv',rows);
+}
+function audRows(){
+  const k=aq.toLowerCase().trim();
+  const l=[...(D.audit||[])].reverse().filter(a=>!k||k.split(/\s+/).every(w=>[a.t,a.u,a.a,a.d].join(' ').toLowerCase().includes(w))).slice(0,300);
+  return l.length?`<table><tr><th>Time</th><th>User</th><th>Action</th><th>Details</th></tr>${l.map(a=>`<tr><td>${esc(a.t)}</td><td>${esc(a.u)}</td><td>${esc(a.a)}</td><td style="white-space:normal">${esc(a.d)}</td></tr>`).join('')}</table>`:'<div class="empty">No entries.</div>';
+}
+function reports(){
+  const c=cashierData(),T=k=>S(c,o=>o[k]||0);
+  return `<h2>Reports &amp; Exports</h2>
+  <div class="card"><div class="row"><div><label>From</label><input type="date" value="${rf}" onchange="rf=this.value;render()"></div><div><label>To</label><input type="date" value="${rt}" onchange="rt=this.value;render()"></div></div>
+  <label>Download as CSV (opens in Excel)</label>
+  <div><button class="s" onclick="billsCSV()">Bills</button> <button class="s" onclick="billLinesCSV()">Bill items</button> <button class="s" onclick="profitCSV()">Item-wise profit</button> <button class="s" onclick="expensesCSV()">Expenses</button> <button class="s" onclick="cashierCSV()">Cashier report</button></div>
+  <div><button class="s" onclick="itemsCSV()">Items &amp; stock</button> <button class="s" onclick="partiesCSV()">Customers &amp; suppliers</button> <button class="s" onclick="auditCSV()">Audit log</button></div></div>
+  <div class="card scroll"><b>Cashier-wise sales (${rf} to ${rt})</b>
+  ${c.length?`<table><tr><th>Cashier</th><th class="r">Bills</th><th class="r">Sales</th><th class="r">Cash</th><th class="r">Card</th><th class="r">Wallet</th><th class="r">Credit</th><th class="r">Discount</th></tr>${c.map(o=>`<tr><td>${esc(o.u)}</td><td class="r">${o.n}</td><td class="r">${m(o.tot)}</td><td class="r">${m(o.Cash)}</td><td class="r">${m(o.Card)}</td><td class="r">${m(o.Wallet)}</td><td class="r">${m(o.Credit)}</td><td class="r">${m(o.disc)}</td></tr>`).join('')}<tr><td><b>Total</b></td><td class="r"><b>${T('n')}</b></td><td class="r"><b>${m(T('tot'))}</b></td><td class="r"><b>${m(T('Cash'))}</b></td><td class="r"><b>${m(T('Card'))}</b></td><td class="r"><b>${m(T('Wallet'))}</b></td><td class="r"><b>${m(T('Credit'))}</b></td><td class="r"><b>${m(T('disc'))}</b></td></tr></table>`:'<div class="empty">No sales in this period.</div>'}</div>
+  <div class="card scroll"><b>Audit log (latest 300)</b><input placeholder="Search user, action, details..." value="${esc(aq)}" oninput="aq=this.value;$('#aud_rows').innerHTML=audRows()" style="margin:8px 0"><div id="aud_rows">${audRows()}</div></div>`;
+}
+
+/* ---------- settings extras ---------- */
+function shopExtra(){D.shop.ntn=val('sh_ntn').trim();D.shop.strn=val('sh_strn').trim();D.shop.pos=val('sh_pos').trim();D.shop.footer=val('sh_foot').trim()}
+function setLogo(f){
+  if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{const im=new Image();
+    im.onload=()=>{const c=document.createElement('canvas'),sc=Math.min(1,240/Math.max(im.width,im.height));
+      c.width=Math.max(1,Math.round(im.width*sc));c.height=Math.max(1,Math.round(im.height*sc));
+      c.getContext('2d').drawImage(im,0,0,c.width,c.height);D.shop.logo=c.toDataURL('image/png');save();toast('Logo saved.');render()};
+    im.onerror=()=>toast('Could not read this image.');im.src=r.result};
+  r.readAsDataURL(f);
+}
+function logoCard(){
+  const has=/^data:image\//.test(D.shop.logo||'');
+  return `<div class="card"><b>Invoice Logo</b>${has?`<div style="margin:8px 0"><img src="${D.shop.logo}" alt="logo" style="max-height:60px;background:#fff;border-radius:6px;padding:3px"></div>`:'<div class="empty">No logo yet. It is printed at the top of every invoice.</div>'}
+  <input type="file" accept="image/*" onchange="setLogo(this.files[0])">${has?'<button class="s" onclick="D.shop.logo=\'\';save();render()">Remove logo</button>':''}</div>`;
+}
+let _est=null,_per=null;
+try{if(navigator.storage){navigator.storage.estimate&&navigator.storage.estimate().then(e=>{_est=e}).catch(()=>{});navigator.storage.persisted&&navigator.storage.persisted().then(p=>{_per=p}).catch(()=>{})}}catch(e){}
+function storageCard(){
+  let used=0;try{used=JSON.stringify(D).length}catch(e){}
+  if(!window.__IDB_OK){
+    const pc=Math.min(100,Math.round(used/5000000*100));
+    return `<div class="card"><b>Storage</b><div class="bar" style="margin:8px 0"><i class="${pc>80?'n':''}" style="width:${pc}%"></i></div>
+    <div class="empty">About ${(used/1048576).toFixed(2)} MB of roughly 5 MB used (${pc}%). This browser could not open the large database, so the small 5 MB store is in use. Download a backup regularly.</div></div>`;
+  }
+  const prot=_per===true?'Yes':(_per===false?'No (install the app / add it to the Home screen to protect it)':'Unknown');
+  return `<div class="card"><b>Storage</b>
+  <div class="empty">Data size: ${(used/1048576).toFixed(2)} MB. Saved in the browser's large database (IndexedDB), so there is no 5 MB limit; the only limit is free space on this device.<br>Protected from automatic deletion by the browser: ${prot}.<br>Data lives in this browser on this device only. To use another phone or computer, download a backup here and restore it there.</div></div>`;
+}
+function recoveryCard(){
+  return `<div class="card"><b>Recovery Code</b><div class="empty">${D.rec?'A recovery code is set.':'No recovery code yet.'} It lets the owner reset the app if the Admin password is forgotten. Generating a new one replaces the old one.</div><button class="s" onclick="newRec()">Generate new recovery code</button></div>`;
+}
+async function newRec(){
+  if(!confirm('Generate a new recovery code? The old one will stop working.'))return;
+  const c=await makeRecovery();
+  if(c){aud('Recovery code generated','');save();alert('SAVE THIS RECOVERY CODE (write it down):\n\n'+c+'\n\nIt will not be shown again.')}
+  else toast('Secure storage is not available in this browser.');
+  render();
+}
+const _data8=data;
+data=function(){return _data8()+(isAdmin()?`<div class="card"><b>Invoice Text Size</b>${fsSel()}<div class="empty">Applies to A4 and Thermal invoices and receipts.</div></div>`+logoCard()+storageCard()+recoveryCard():'')};
+let _sv=0;const _save8=save;
+save=function(){_save8();if(!window.__IDB_OK&&++_sv%25===0){try{const l=JSON.stringify(D).length;if(l>4200000)toast('Storage is almost full ('+(l/1048576).toFixed(1)+' MB). Download a backup now.')}catch(e){}}};
+
+/* ---------- help additions ---------- */
+const _g8=guide;
+guide=function(){
+  return _g8()+`<h2>New features</h2><div class="card guide">
+  <details><summary>Pack / loose selling</summary><p>On the Items page set "Units per pack" (for example 10 tablets per strip). In the Sale cart choose Pack or Loose for each line. Loose sells 1 unit at pack price / units per pack. Stock shows as "2 pk + 3 loose".</p></details>
+  <details><summary>Alternatives (same salt)</summary><p>Fill in the Salt / Formula of each item. In the Sale search tap "Alternatives (same salt)" under a medicine to see every item with the same formula.</p></details>
+  <details><summary>Split payment and change</summary><p>Choose "Split Payment" to take part cash, part card and part wallet; the remainder goes on the customer's account. With Cash, type the cash received to see the change to return.</p></details>
+  <details><summary>Credit limit</summary><p>Set a credit limit for a customer in Parties (Edit). A credit sale above the limit asks for confirmation.</p></details>
+  <details><summary>Order List</summary><p>Lists items at or below their re-order level with a suggested quantity. Print it, send it on WhatsApp, download a CSV or start a purchase bill from it.</p></details>
+  <details><summary>Cash closing</summary><p>On Home enter the opening cash, count the drawer at night and press Close Day. The difference is saved. The next day's opening cash is filled in automatically.</p></details>
+  <details><summary>Stock write-offs</summary><p>Adjusting stock with reason Damage or Expired is counted as a loss in Profit.</p></details>
+  <details><summary>Barcode labels and camera scan</summary><p>Items page: print Code 128 labels and generate barcodes for items that have none. Use the scan button to read a barcode with the phone camera (Chrome over https).</p></details>
+  <details><summary>Reports, exports and audit log</summary><p>The Reports page exports bills, stock, parties, expenses and profit to CSV, shows cashier-wise sales and keeps an audit log of important actions.</p></details>
+  <details><summary>Invoice designs, logo and sharing</summary><p>Pick from many A4 designs after saving a bill. Add your logo, NTN, STRN and footer text in Settings. Share a bill on WhatsApp or save it as PDF from the print window.</p></details>
+  <details><summary>Storage and backup</summary><p>Data is saved automatically in the browser's large database on this device, so it does not fill up like before. It is still only on this device: download a backup regularly (daily is best) and keep a copy on Google Drive or WhatsApp.</p></details>
+  <details><summary>Recovery code</summary><p>A recovery code is shown once when the first Admin is created. Keep it safe; it is needed to erase or reset the app if the password is forgotten.</p></details></div>`;
+};
+
+/* ---------- license hooks ---------- */
+(function(){
+  const _lg=login;
+  login=async function(){
+    if(window.licGuard&&!(await licGuard()))return;
+    const r=await _lg.apply(this,arguments);
+    if(currentUser&&window.licWarn)setTimeout(licWarn,1500);
+    return r;
+  };
+  const _dl=data;
+  data=function(){return _dl()+(isAdmin()&&window.licCard?licCard():'')};
+  const _gl=guide;
+  guide=function(){return _gl()+`<h2>License</h2><div class="card guide"><details><summary>Activating the app</summary><p>The app needs a license key. Open Settings to see this device's ID, send it to ADI BUTT and paste the key you receive. The key works only on this device. When it expires the app asks for a new key; your data is not lost.</p></details></div>`};
+})();
+
+</script>
+<script>
+/* storage bootstrap: read the main data from IndexedDB first, then start the app scripts */
+(function(){
+  var done=false;
+  function go(raw,ok){
+    if(done)return;done=true;window.__IDB_MAIN=raw||null;window.__IDB_OK=!!ok;
+    var apps=document.querySelectorAll('script.appjs');
+    for(var i=0;i<apps.length;i++){var sc=document.createElement('script');sc.text=apps[i].text;document.body.appendChild(sc)}
+  }
+  setTimeout(function(){go(null,false)},4000);
+  try{
+    var r=indexedDB.open('pos_auto',1);
+    r.onupgradeneeded=function(){if(!r.result.objectStoreNames.contains('k'))r.result.createObjectStore('k')};
+    r.onerror=r.onblocked=function(){go(null,false)};
+    r.onsuccess=function(){
+      var db=r.result;
+      try{
+        var g=db.transaction('k').objectStore('k').get('main');
+        g.onsuccess=function(){db.close();go(typeof g.result==='string'?g.result:null,true)};
+        g.onerror=function(){db.close();go(null,false)};
+      }catch(e){try{db.close()}catch(x){}go(null,false)}
+    };
+  }catch(e){go(null,false)}
+})();
+</script>
+<script>
+/* ---------- PWA: install name follows the pharmacy name from Settings ---------- */
+(function(){
+  var last='',url='';
+  function base(){return new URL('./',location.href).href}
+  function build(name){
+    var b=base();
+    var m={name:name,short_name:name.length>12?name.slice(0,12):name,start_url:b,scope:b,id:b,display:'standalone',orientation:'any',
+      background_color:'#073b4c',theme_color:'#073b4c',
+      icons:[{src:b+'icon-192.png',sizes:'192x192',type:'image/png',purpose:'any'},
+             {src:b+'icon-512.png',sizes:'512x512',type:'image/png',purpose:'any'},
+             {src:b+'icon-maskable-512.png',sizes:'512x512',type:'image/png',purpose:'maskable'}]};
+    return JSON.stringify(m);
+  }
+  window.pwaSync=function(){
+    try{
+      var n='';
+      try{n=(D&&D.shop&&D.shop.name)||''}catch(e){}
+      if(n)try{localStorage.setItem('pwa_name',n)}catch(e){}
+      else try{n=localStorage.getItem('pwa_name')||''}catch(e){}
+      n=(n||'Pharmacy POS').trim();
+      if(n===last)return;
+      last=n;
+      var blob=new Blob([build(n)],{type:'application/manifest+json'});
+      var u=URL.createObjectURL(blob);
+      document.getElementById('pwaManifest').setAttribute('href',u);
+      if(url)URL.revokeObjectURL(url);
+      url=u;
+      var t=document.querySelector('meta[name="apple-mobile-web-app-title"]');if(t)t.setAttribute('content',n);
+    }catch(e){}
+  };
+  pwaSync();
+  [1500,4000,8000].forEach(function(t){setTimeout(pwaSync,t)});
+  try{var _s=save;save=function(){var r=_s.apply(this,arguments);pwaSync();return r}}catch(e){}
+  if('serviceWorker' in navigator&&location.protocol!=='file:'){
+    window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});
+  }
+})();
+</script>
+<script>
+/* ---------- LICENSE (offline, signed keys; only ADI BUTT's private key can make a valid key) ---------- */
+(function(){
+  var PUB={"kty":"EC","crv":"P-256","x":"E0OMx3SqM24cJdUx13cvku0zI5uvXI5U5-aoW9oDWXw","y":"CkgvE3f7z3OgBBTiC6dsWYj2UO1_ZVubRTEbz_uMnj4"};
+  var CONTACT_WA='923167633140'; /* optional: your WhatsApp number with country code, e.g. 923001234567 */
+  var LS_ID='pos_inst',LS_LIC='pos_lic',LS_SEEN='pos_seen';
+  var st={ok:false,pending:true,exp:'',days:null,msg:''};
+  var pend=null;
+  function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+  function devId(){
+    var id=ls(LS_ID);
+    if(id&&/^[A-Z2-9]{12}$/.test(id))return id;
+    var A='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',b=new Uint8Array(12),s='',i;
+    try{crypto.getRandomValues(b)}catch(e){for(i=0;i<12;i++)b[i]=Math.floor(Math.random()*256)}
+    for(i=0;i<12;i++)s+=A[b[i]%A.length];
+    ls(LS_ID,s);return s;
+  }
+  function fmtId(s){return s.replace(/(.{4})(?=.)/g,'$1-')}
+  function b64d(s){s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';var r=atob(s),u=new Uint8Array(r.length);for(var i=0;i<r.length;i++)u[i]=r.charCodeAt(i);return u}
+  function ymd(d){d=d||new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+  function daysLeft(exp){var a=new Date(ymd()+'T00:00:00'),b=new Date(exp+'T00:00:00');return Math.round((b-a)/864e5)}
+  async function verify(key){
+    var r={ok:false,msg:'',exp:'',days:null};
+    if(!(window.crypto&&crypto.subtle&&window.TextEncoder)){r.msg='License check needs a secure page (https). Open the app from its https link.';return r}
+    try{
+      var p=String(key||'').replace(/\s+/g,'').split('.');
+      if(p.length!==2){r.msg='Invalid license key.';return r}
+      var payload=b64d(p[0]),sig=b64d(p[1]);
+      var k=await crypto.subtle.importKey('jwk',PUB,{name:'ECDSA',namedCurve:'P-256'},false,['verify']);
+      var ok=await crypto.subtle.verify({name:'ECDSA',hash:'SHA-256'},k,sig,payload);
+      if(!ok){r.msg='Invalid license key.';return r}
+      var f=new TextDecoder().decode(payload).split('|');
+      if(f[0]!=='AHAD1'||f.length<3){r.msg='Invalid license key.';return r}
+      if(f[1]!==devId()){r.msg='This key was made for a different device. Send this device\'s ID to get a new key.';return r}
+      if(f[2]==='0'){r.ok=true;r.exp='';r.days=null;return r}
+      if(!/^\d{4}-\d{2}-\d{2}$/.test(f[2])){r.msg='Invalid license key.';return r}
+      var now=Date.now(),seen=+ls(LS_SEEN)||0;
+      if(seen&&now<seen-36*3600e3){r.msg='Device date/time looks wrong. Correct it and try again.';return r}
+      if(now>seen)ls(LS_SEEN,String(now));
+      var d=daysLeft(f[2]);
+      if(d<0){r.msg='License expired on '+f[2]+'. Enter a new key.';r.exp=f[2];r.days=d;return r}
+      r.ok=true;r.exp=f[2];r.days=d;return r;
+    }catch(e){r.msg='Invalid license key.';return r}
+  }
+  function check(){
+    var key=ls(LS_LIC);
+    if(!key){st={ok:false,pending:false,exp:'',days:null,msg:''};return Promise.resolve(st)}
+    return verify(key).then(function(r){st={ok:r.ok,pending:false,exp:r.exp,days:r.days,msg:r.msg};return st});
+  }
+  function $(i){return document.getElementById(i)}
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function build(){
+    if($('licOverlay'))return;
+    var d=document.createElement('div');d.id='licOverlay';
+    d.style.cssText='display:none;position:fixed;inset:0;z-index:500;background:linear-gradient(135deg,#073b4c,#0e7c86);align-items:center;justify-content:center;padding:16px;overflow:auto';
+    d.innerHTML='<div class="poster-card" style="max-width:440px"><h1>Activate License</h1><div class="sub">Powered by ADI BUTT</div>'
+      +'<div style="text-align:left"><label>Your Device ID</label>'
+      +'<div style="display:flex;gap:8px"><input id="licId" readonly style="font:600 16px/1.2 monospace;letter-spacing:1px;text-align:center"><button class="s sm" style="margin:0" onclick="licCopyId()">Copy</button></div>'
+      +'<div style="font-size:12px;color:var(--mu);margin-top:4px">Send this ID to ADI BUTT to get your license key.</div>'
+      +(CONTACT_WA?'<button class="s" style="width:100%" onclick="licWA()">Send ID on WhatsApp</button>':'')
+      +'<label style="margin-top:14px">License Key</label><textarea id="licKey" rows="4" placeholder="Paste your license key here" style="font:12px monospace" autocomplete="off" spellcheck="false"></textarea></div>'
+      +'<button class="p" id="licBtn" style="width:100%;margin-top:12px" onclick="licActivate()">Activate</button>'
+      +'<div id="licMsg" style="margin-top:10px;font-size:13px;min-height:18px;color:var(--bad)"></div>'
+      +'<a href="#" id="licCancel" style="display:none;color:var(--mu);font-size:13px" onclick="licHide();return false">Cancel</a></div>';
+    document.body.appendChild(d);
+  }
+  function show(optional,msg){
+    build();$('licId').value=fmtId(devId());
+    $('licMsg').style.color='var(--bad)';$('licMsg').textContent=msg||'';
+    $('licCancel').style.display=optional?'inline':'none';
+    $('licOverlay').style.display='flex';
+  }
+  function hide(){var o=$('licOverlay');if(o)o.style.display='none'}
+  window.licCopyId=function(){
+    var t=fmtId(devId());
+    try{navigator.clipboard.writeText(t).then(function(){$('licMsg').style.color='var(--ok)';$('licMsg').textContent='Device ID copied.'})}
+    catch(e){$('licId').select();try{document.execCommand('copy')}catch(x){}}
+  };
+  window.licWA=function(){window.open('https://wa.me/'+CONTACT_WA+'?text='+encodeURIComponent('License request. Device ID: '+fmtId(devId())),'_blank')};
+  window.licHide=hide;
+  window.licActivate=async function(){
+    var k=$('licKey').value.trim(),b=$('licBtn');
+    if(!k){$('licMsg').style.color='var(--bad)';$('licMsg').textContent='Paste the license key first.';return}
+    b.disabled=true;
+    try{
+      var r=await verify(k);
+      if(!r.ok){$('licMsg').style.color='var(--bad)';$('licMsg').textContent=r.msg;return}
+      ls(LS_LIC,k.replace(/\s+/g,''));
+      st={ok:true,pending:false,exp:r.exp,days:r.days,msg:''};
+      hide();$('licKey').value='';
+      var t=document.getElementById('toast');if(t){t.textContent='License activated.'+(r.exp?' Valid until '+r.exp+'.':'');t.style.display='block';setTimeout(function(){t.style.display='none'},2600)}
+      if(window.render&&window.currentUser)try{render()}catch(e){}
+    }finally{b.disabled=false}
+  };
+  /* used by the app */
+  window.licState=function(){return st};
+  window.licShow=show;
+  window.licGuard=async function(){ /* true when the app may be used; shows the screen otherwise */
+    if(st.pending&&pend)await pend;
+    if(st.ok&&st.exp&&daysLeft(st.exp)<0){await check()}
+    if(st.ok)return true;
+    show(false,st.msg);return false;
+  };
+  window.licInfo=function(){return {id:fmtId(devId()),ok:st.ok,exp:st.exp,days:st.days}};
+  window.licCard=function(){
+    var i=licInfo(),s=i.ok?(i.exp?'Active - expires '+esc(i.exp)+' ('+i.days+' days left)':'Active - lifetime license'):'Not active';
+    return '<div class="card"><b>License</b><div class="'+(i.ok?'pos':'neg')+'" style="margin:6px 0;font-weight:600">'+s+'</div>'
+      +'<div class="empty">Device ID: <b style="font-family:monospace;color:var(--tx)">'+esc(i.id)+'</b></div>'
+      +'<button class="s" onclick="licShow(true)">Enter / change license key</button></div>';
+  };
+  window.licWarn=function(){
+    var i=licInfo();
+    if(i.ok&&i.exp&&i.days<=7){var t=document.getElementById('toast');if(t){t.textContent='License expires in '+i.days+' day'+(i.days===1?'':'s')+' ('+i.exp+'). Contact ADI BUTT to renew.';t.style.display='block';setTimeout(function(){t.style.display='none'},5000)}}
+  };
+  /* start: verify the saved key, then re-check every minute */
+  devId();
+  pend=check().then(function(r){if(!r.ok&&document.body)show(false,r.msg);return r});
+  setInterval(function(){check().then(function(r){if(!r.ok)show(false,r.msg)})},60000);
+})();
+</script>
+</body>
+</html>
